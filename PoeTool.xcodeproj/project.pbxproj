@@ -10,7 +10,7 @@
 		9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */; };
 		9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */; };
 		9887FC5523535DB6005D7AD1 /* PoeTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5323535DB6005D7AD1 /* PoeTool.xcdatamodeld */; };
-		9887FC5723535DB6005D7AD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5623535DB6005D7AD1 /* ContentView.swift */; };
+		9887FC5723535DB6005D7AD1 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5623535DB6005D7AD1 /* LogInView.swift */; };
 		9887FC5923535DB8005D7AD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9887FC5823535DB8005D7AD1 /* Assets.xcassets */; };
 		9887FC5C23535DB8005D7AD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9887FC5B23535DB8005D7AD1 /* Preview Assets.xcassets */; };
 		9887FC5F23535DB8005D7AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */; };
@@ -40,7 +40,7 @@
 		9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9887FC5423535DB6005D7AD1 /* PoeTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PoeTool.xcdatamodel; sourceTree = "<group>"; };
-		9887FC5623535DB6005D7AD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9887FC5623535DB6005D7AD1 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		9887FC5823535DB8005D7AD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9887FC5B23535DB8005D7AD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9887FC5E23535DB8005D7AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			children = (
 				9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */,
 				9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */,
-				9887FC5623535DB6005D7AD1 /* ContentView.swift */,
+				9887FC5623535DB6005D7AD1 /* LogInView.swift */,
 				9887FC5823535DB8005D7AD1 /* Assets.xcassets */,
 				9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */,
 				9887FC6023535DB8005D7AD1 /* Info.plist */,
@@ -272,7 +272,7 @@
 			files = (
 				9887FC5523535DB6005D7AD1 /* PoeTool.xcdatamodeld in Sources */,
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
-				9887FC5723535DB6005D7AD1 /* ContentView.swift in Sources */,
+				9887FC5723535DB6005D7AD1 /* LogInView.swift in Sources */,
 				9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
