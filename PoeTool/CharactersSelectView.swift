@@ -11,9 +11,13 @@ struct CharacterSelectView: View
     @Binding var account : AccountInfo
     var body : some View
     {
-        VStack
+        NavigationView
         {
-            Text(account.accountName)
+            List(account.characters)
+            { character in
+                Text(character.league)
+            }
         }
+        .navigationBarTitle(Text(account.accountName))
     }
 }
