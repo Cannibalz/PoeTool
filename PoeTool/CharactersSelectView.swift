@@ -6,6 +6,22 @@
 import Foundation
 import SwiftUI
 
+struct characterCell: View
+{
+    var characterInfo : CharacterInfo
+    var body : some View
+    {
+        VStack(alignment: .leading)
+        {
+            Text(characterInfo.id)
+                .fontWeight(.heavy)
+            Text(characterInfo.className)
+            Text("\(characterInfo.level)")
+            Text(characterInfo.league)
+        }
+    }
+}
+
 struct CharacterSelectView: View
 {
     @Binding var account : AccountInfo
@@ -14,8 +30,8 @@ struct CharacterSelectView: View
         NavigationView
         {
             List(account.characters)
-            { character in
-                Text(character.league)
+            { chara in
+                characterCell(characterInfo: chara)
             }
         }
         .navigationBarTitle(Text(account.accountName))

@@ -12,23 +12,7 @@ struct AccountInfo : Codable
     var characters : [CharacterInfo] = [CharacterInfo]()
     var accountName : String = ""
 }
-class CharacterInfo : Codable,Identifiable
-{
-    var id : String? = ""
-    var league : String? = ""
-    var className : String? = ""
-    var level : Int = 0
-    private enum CodingKeys : String, CodingKey {
-        case id = "name", league, className = "class", level
-    }
-    public init(id:String, league:String, className:String, level:Int)
-    {
-        self.id = id
-        self.league = league
-        self.className = className
-        self.level = level
-    }
-}
+
 struct LogInView: View {
     @State private var accName = "niuwencong1"
     @State private var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
