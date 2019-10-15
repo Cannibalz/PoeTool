@@ -11,6 +11,7 @@ struct AccountInfo : Codable
 {
     var characters : [CharacterInfo] = [CharacterInfo]()
     var accountName : String = ""
+    var leagues = Set<String>()
 }
 
 struct LogInView: View {
@@ -25,6 +26,7 @@ struct LogInView: View {
         {
             VStack
             {
+                
                 NavigationLink(destination: CharacterSelectView(account:self.$accountInfo), tag: 1, selection: $segue) {
                     EmptyView()
                 }
@@ -37,9 +39,15 @@ struct LogInView: View {
                 Button(action: {
                     LogIn(accName: self.accName, POESSID: self.POESSID)
                     { charactersInfo in
+                        var leaguesArray : [String] = [String]()
                         self.accountInfo.characters = charactersInfo
                         self.accountInfo.accountName = self.accName
-                        
+                        for var character in self.accountInfo.characters
+                        {
+                            leaguesArray.append(character.league)
+                        }
+                        self.accountInfo.leagues = Set(leaguesArray.map{ $0 })
+
                         self.segue = Int(1)
                     }
                 })
