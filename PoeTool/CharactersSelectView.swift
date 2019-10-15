@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 class LeaguePicker
 {
     var leaguesSet : Set<String> = Set<String>()
@@ -78,7 +79,7 @@ struct CharacterSelectView: View
                         }
                     }
                 }
-//                .frame(height: 50.0) enable this if list separate from form
+                //                .frame(height: 50.0) enable this if list separate from form
             }
         }
         .padding(.top, -10.0)
