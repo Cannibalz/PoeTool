@@ -49,20 +49,48 @@ struct characterCell: View
 struct CharacterSelectView: View
 {
     @Binding var account : AccountInfo
-    var leaguePicker = LeaguePicker()
+    @State private var leagueIndex = 0
     var body : some View
     {
         NavigationView
         {
-            List(account.characters)
-            { chara in
-                NavigationLink(destination:Text("text"))
+            VStack
+            {
+                Form
                 {
-                    characterCell(characterInfo: chara)
-                    
+                    Section
+                    {
+                        Picker(selection: $leagueIndex, label: Text("League"))
+                        {
+                            ForEach(0..<account.leagues.count)
+                            {
+                                Text(self.account.leagues[$0]).tag($0)
+                            }
+                        }
+                    }
+                    .foregroundColor(.blue)
+                    List(account.characters)
+                    { chara in
+                        NavigationLink(destination:Text("text"))
+                        {
+                            characterCell(characterInfo: chara)
+
+                        }
+                    }
                 }
+//                .frame(height: 50.0) enable this if list separate from form
             }
         }
-        .navigationBarTitle(Text(account.accountName))
+        .padding(.top, -10.0)
+//        .navigationBarTitle(Text(account.accountName), displayMode: .automatic)
+        
     }
 }
+#if DEBUG
+struct CharacterSelectView_Previews: PreviewProvider {
+@State static var accountInfo = AccountInfo(characters: [CharacterInfo(id: "", league: "", className: "", level: 0)], accountName: "niuwencong1", leagues: ["fds","aaa"])
+    static var previews: some View {
+        CharacterSelectView(account: $accountInfo)
+    }
+}
+#endif

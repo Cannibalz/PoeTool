@@ -11,7 +11,7 @@ struct AccountInfo : Codable
 {
     var characters : [CharacterInfo] = [CharacterInfo]()
     var accountName : String = ""
-    var leagues = Set<String>()
+    var leagues = Array<String>()
 }
 
 struct LogInView: View {
@@ -46,7 +46,7 @@ struct LogInView: View {
                         {
                             leaguesArray.append(character.league)
                         }
-                        self.accountInfo.leagues = Set(leaguesArray.map{ $0 })
+                        self.accountInfo.leagues = leaguesArray.removingDuplicates()
 
                         self.segue = Int(1)
                     }
