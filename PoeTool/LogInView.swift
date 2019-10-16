@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+
 struct AccountInfo : Codable
 {
     var characters : [CharacterInfo] = [CharacterInfo]()
@@ -18,8 +19,9 @@ struct LogInView: View {
     @State private var accName = "niuwencong1"
     @State private var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
     @State private var segue : Int? = 0
-    @State var accountInfo : AccountInfo = AccountInfo(characters: [CharacterInfo](), accountName: "")
+    @State var accountInfo : AccountInfo = AccountInfo()
     
+    @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationView
