@@ -3,9 +3,9 @@ import Combine
 
 final class LoginViewModel: ObservableObject
 {
-    @Published var accName = "niuwencong1"
+    @Published var accName = "niuwencong1" //asdfasdfasdf : forbidden
     @Published var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
-    @Published private(set) var accountInfo = AccountInfo()
+    @State private(set) var accountInfo = AccountInfo()
     @Published private(set) var charactersInfo = [CharacterInfo]()
     private var loginCancellable: Cancellable?
     {
@@ -21,6 +21,17 @@ final class LoginViewModel: ObservableObject
             .decode(type: [CharacterInfo].self, decoder: JSONDecoder())
             .replaceError(with: [])
             .receive(on: RunLoop.main)
-            .assign(to: \.charactersInfo, on: self)
+            .sink(receiveValue: {charas in
+                var leaguesArray = [String]()
+                for var character in charas
+                {
+                    leaguesArray.append(character.league)
+                }
+                self.accountInfo.characters = charas
+                self.accountInfo.accountName = self.accName
+                self.accountInfo.leagues = leaguesArray.removingDuplicates()
+                print(self.accountInfo)
+            })
+            //.assign(to: \.charactersInfo, on: self)
     }
 }

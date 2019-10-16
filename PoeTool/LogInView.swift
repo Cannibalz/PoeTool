@@ -48,6 +48,7 @@ struct LogInView: View {
                         {
                             leaguesArray.append(character.league)
                         }
+                        self.viewModel.login()
                         self.accountInfo.leagues = leaguesArray.removingDuplicates()
 
                         self.segue = Int(1)
