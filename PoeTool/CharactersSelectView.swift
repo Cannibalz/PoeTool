@@ -25,6 +25,14 @@ class LeaguePicker
     }
 
 }
+struct characterList: View
+{
+    var accountInfo : AccountInfo
+    var body : some View
+    {
+        Text("test")
+    }
+}
 struct characterCell: View
 {
     var characterInfo : CharacterInfo
@@ -70,6 +78,7 @@ struct CharacterSelectView: View
                         }
                     }
                     .foregroundColor(.blue)
+                    characterList(accountInfo: account)
                     List(account.characters)
                     { chara in
                         NavigationLink(destination:Text("text"))
