@@ -27,10 +27,10 @@ class LoginViewModel: ObservableObject
                 {
                     leaguesArray.append(character.league)
                 }
+                leaguesArray.append("All")
                 accInfo.characters = charas
                 accInfo.accountName = self.accName
                 accInfo.leagues = leaguesArray.removingDuplicates()
-                print(accInfo)
                 return completion(accInfo)
             })
             //.assign(to: \.charactersInfo, on: self)

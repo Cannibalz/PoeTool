@@ -6,31 +6,30 @@
 import Foundation
 import SwiftUI
 import Combine
-class LeaguePicker
-{
-    var leaguesSet : Set<String> = Set<String>()
-    var leaguesArray : [String] = [String]()
-    init()
-    {
-
-    }
-    init(accountInfo:AccountInfo)
-    {
-        for var character in accountInfo.characters
-        {
-            leaguesArray.append(character.league)
-        }
-        self.leaguesSet = Set(leaguesArray.map{ $0 })
-        print(leaguesSet)
-    }
-
-}
 struct characterList: View
 {
     var accountInfo : AccountInfo
     var body : some View
     {
         Text("test")
+    }
+}
+struct leaguePicker: View
+{
+    @ObservedObject var viewModel : CharacterSelectViewModel
+    @State private var leagueIndex = 0
+    var body: some View
+    {
+        Section
+        {
+            Picker(selection: $viewModel.leagueIndex, label: Text("League"))
+            {
+                ForEach(0..<viewModel.accountInfo.leagues.count)
+                {
+                    Text(self.viewModel.accountInfo.leagues[$0]).tag($0)
+                }
+            }
+        }.foregroundColor(.blue)
     }
 }
 struct characterCell: View
@@ -59,6 +58,7 @@ struct CharacterSelectView: View
 {
     @Binding var account : AccountInfo
     @State private var leagueIndex = 0
+    @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
     {
         NavigationView
@@ -67,17 +67,7 @@ struct CharacterSelectView: View
             {
                 Form
                 {
-                    Section
-                    {
-                        Picker(selection: $leagueIndex, label: Text("League"))
-                        {
-                            ForEach(0..<account.leagues.count)
-                            {
-                                Text(self.account.leagues[$0]).tag($0)
-                            }
-                        }
-                    }
-                    .foregroundColor(.blue)
+                    leaguePicker(viewModel: self.viewModel)
                     characterList(accountInfo: account)
                     List(account.characters)
                     { chara in
