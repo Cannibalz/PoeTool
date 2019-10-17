@@ -39,18 +39,10 @@ struct LogInView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 Button(action: {
-                    LogIn(accName: self.accName, POESSID: self.POESSID)
-                    { charactersInfo in
-                        var leaguesArray : [String] = [String]()
-                        self.accountInfo.characters = charactersInfo
-                        self.accountInfo.accountName = self.accName
-                        for var character in self.accountInfo.characters
-                        {
-                            leaguesArray.append(character.league)
-                        }
-                        self.viewModel.login()
-                        self.accountInfo.leagues = leaguesArray.removingDuplicates()
-
+                    self.viewModel.login
+                    {
+                        accountInfo in
+                        self.accountInfo = accountInfo
                         self.segue = Int(1)
                     }
                 })
