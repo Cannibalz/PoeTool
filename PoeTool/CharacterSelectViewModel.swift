@@ -6,11 +6,18 @@
 import SwiftUI
 import Combine
 
-class CharacterSelectViewModel: ObservableObject
+class CharacterSelectViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
     @State var leagueIndex = Int(0)
-    @Published var accountInfo = AccountInfo()
+    @Published var accountInfo : AccountInfo = AccountInfo.shared
+//    init(accountInfo:AccountInfo) {
+//        self.accountInfo = accountInfo
+//    }
+    init()
+    {
+        print(print(AccountInfo.shared.characters))
+    }
     deinit {
         
     }

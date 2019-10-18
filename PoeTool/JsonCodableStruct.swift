@@ -21,3 +21,4 @@ class CharacterInfo : Codable,Identifiable
         self.level = level
     }
 }
+

@@ -8,12 +8,7 @@
 
 import SwiftUI
 
-struct AccountInfo : Codable
-{
-    var characters : [CharacterInfo] = [CharacterInfo]()
-    var accountName : String = ""
-    var leagues = Array<String>()
-}
+
 
 struct LogInView: View {
     @State private var accName = "niuwencong1"
@@ -43,6 +38,7 @@ struct LogInView: View {
                     {
                         accountInfo in
                         self.accountInfo = accountInfo
+                        print(self.accountInfo.characters)
                         self.segue = Int(1)
                     }
                 })

@@ -89,6 +89,7 @@ struct CharacterSelectView: View
 #if DEBUG
 struct CharacterSelectView_Previews: PreviewProvider {
 @State static var accountInfo = AccountInfo(characters: [CharacterInfo(id: "", league: "", className: "", level: 0)], accountName: "niuwencong1", leagues: ["fds","aaa"])
+    
     static var previews: some View {
         CharacterSelectView(account: $accountInfo)
     }
