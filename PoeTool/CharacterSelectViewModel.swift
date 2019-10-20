@@ -10,13 +10,13 @@ class CharacterSelectViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
     @State var leagueIndex = Int(0)
-    @Published var accountInfo : AccountInfo = AccountInfo.shared
-//    init(accountInfo:AccountInfo) {
-//        self.accountInfo = accountInfo
-//    }
+    @Published var accountInfo : AccountInfo = AccountInfo()
+    init(account:AccountInfo)
+    {
+        self.accountInfo = account
+    }
     init()
     {
-        print(print(AccountInfo.shared.characters))
     }
     deinit {
         

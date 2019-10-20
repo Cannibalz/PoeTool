@@ -15,7 +15,6 @@ struct LogInView: View {
     @State private var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
     @State private var segue : Int? = 0
     @State var accountInfo : AccountInfo = AccountInfo()
-    
     @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
@@ -35,10 +34,7 @@ struct LogInView: View {
                         .padding()
                 Button(action: {
                     self.viewModel.login
-                    {
-                        accountInfo in
-                        self.accountInfo = accountInfo
-                        print(self.accountInfo.characters)
+                    {accountInfo in
                         self.segue = Int(1)
                     }
                 })

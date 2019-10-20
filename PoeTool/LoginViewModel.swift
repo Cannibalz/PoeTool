@@ -14,7 +14,9 @@ class LoginViewModel: ObservableObject
     func login(completion:@escaping (AccountInfo)->())
     {
         let urlString = URL(string: "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)")
-        let urlReq = URLRequest(url: urlString!)
+        var urlReq = URLRequest(url: urlString!)
+        urlReq.setValue("POESESSID=\(POESSID)", forHTTPHeaderField: "cookie")
+        print(urlReq.value(forHTTPHeaderField: "cookie"))
         loginCancellable = URLSession.shared.dataTaskPublisher(for: urlReq)
             .map{$0.data}
             .decode(type: [CharacterInfo].self, decoder: JSONDecoder())
@@ -31,6 +33,7 @@ class LoginViewModel: ObservableObject
                 accInfo.characters = charas
                 accInfo.accountName = self.accName
                 accInfo.leagues = leaguesArray.removingDuplicates()
+                print(charas)
                 return completion(accInfo)
             })
             //.assign(to: \.charactersInfo, on: self)
