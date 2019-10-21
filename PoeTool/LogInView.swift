@@ -33,17 +33,10 @@ struct LogInView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 Button(action: {
-                    var login = self.viewModel.login(accName:self.accName, POESESSID: self.POESSID)
-                    login.sink(receiveCompletion:
-                    {completion in
-                        print(completion)
-                    }, receiveValue:
-                    {data in
-                            
-                    })
+                    self.viewModel.accountAuth(accName: self.accName, POESESSID: self.POESSID)
                 })
                 {
-                    Text("Log In")
+                    Text("\(viewModel.statusCode)")
                 }
                 
                 Toggle(isOn: $remeberPass) {

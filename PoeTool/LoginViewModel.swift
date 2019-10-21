@@ -3,16 +3,14 @@ import Combine
 
 class LoginViewModel: ObservableObject
 {
-    var isError = false
-    func login(accName:String, POESESSID:String)->URLSession.DataTaskPublisher
+    @Published var statusCode : Int = 0
+    
+    func accountAuth(accName:String, POESESSID:String)
     {
-        var login = PoEAPI().Login(accName: accName, POESSID: POESESSID)
-        return login as! URLSession.DataTaskPublisher
-
-    }
-    func accountAuth()
-    {
-        
+        PoEAPI().isValid(accName: accName, POESESSID: POESESSID, Completion:
+        {statusCode in
+            self.statusCode = statusCode
+        })
     }
 }
 
