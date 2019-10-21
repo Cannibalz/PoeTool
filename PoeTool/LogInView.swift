@@ -23,7 +23,6 @@ struct LogInView: View {
         {
             VStack
             {
-                
                 NavigationLink(destination: CharacterSelectView(account:self.$accountInfo), tag: 1, selection: $segue) {
                     EmptyView()
                 }
@@ -34,9 +33,17 @@ struct LogInView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 Button(action: {
-                    self.viewModel.login
-                    {accountInfo in
-                        self.segue = Int(1)
+                    self.viewModel.login(accName:self.accName, POESESSID: self.POESSID)
+                    {isError in
+                        print(isError)
+                        if isError
+                        {
+                            
+                        }
+                        else if !isError
+                        {
+                            self.segue = Int(1)
+                        }
                     }
                 })
                 {
