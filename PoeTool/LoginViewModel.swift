@@ -6,6 +6,7 @@ class LoginViewModel: ObservableObject
     @Published var accName = "niuwencong1" //asdfasdfasdf : forbidden
     @Published var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
     @Published private(set) var charactersInfo = [CharacterInfo]()
+    var isError = false
     private var loginCancellable: Cancellable?
     {
         didSet{oldValue?.cancel()}
@@ -21,17 +22,21 @@ class LoginViewModel: ObservableObject
             .map{$0.data}
             .decode(type: [CharacterInfo].self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion:{ completion in
+            .replaceError(with: [])
+            .sink(receiveCompletion:
+            { completion in
                 switch completion
                 {
                 case .finished:
+                    self.isError = false
                     break
                 case .failure(let error):
+                    self.isError = true
                     print(error.localizedDescription)
-                    
                 }
-            },receiveValue:
-            {charas in
+            },
+            receiveValue:
+            { charas in
                 var accInfo = AccountInfo()
                 var leaguesArray = [String]()
                 for var character in charas
@@ -42,10 +47,9 @@ class LoginViewModel: ObservableObject
                 accInfo.characters = charas
                 accInfo.accountName = self.accName
                 accInfo.leagues = leaguesArray.removingDuplicates()
-                print(charas)
+                print(self.isError)
                 return completion(accInfo)
-            }
-            )
+            })
             //.assign(to: \.charactersInfo, on: self)
     }
     func accountAuth()

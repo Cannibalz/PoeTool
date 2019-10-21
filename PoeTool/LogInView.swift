@@ -15,6 +15,7 @@ struct LogInView: View {
     @State private var POESSID = "f2b5f9a200793c5b0f33ad660f8b31a8"
     @State private var segue : Int? = 0
     @State var accountInfo : AccountInfo = AccountInfo()
+    @State var remeberPass = true
     @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
@@ -41,32 +42,16 @@ struct LogInView: View {
                 {
                     Text("Log In")
                 }
+                
+                Toggle(isOn: $remeberPass) {
+                    Text("Remeber me")
+                }
+                .frame(width: 200.0)
+                
             }
         }
 
     }
-}
-func LogIn(accName:String, POESSID:String, completion:@escaping ([CharacterInfo])->())
-{
-    let session = URLSession(configuration: .default)
-    let urlString = URL(string: "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)")
-    let urlReq = URLRequest(url: urlString!)
-    let decoder = JSONDecoder()
-    _ = session.dataTask(with: urlReq)
-    { (data, responds, error) in
-        if let data = data
-        {
-            do
-            {
-                let charactersInfo = try decoder.decode([CharacterInfo].self, from: data)
-                return completion(charactersInfo)
-            }
-            catch
-            {
-                print(error)
-            }
-        }
-    }.resume()
 }
 #if DEBUG
 struct LogInView_Previews: PreviewProvider {

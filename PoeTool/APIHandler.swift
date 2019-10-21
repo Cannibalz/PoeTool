@@ -7,7 +7,15 @@
 //
 
 import Foundation
-extension Never:Error
+
+class PoEAPI
 {
-    
+    func Authentication()
+    {
+        
+    }
+    func Authencitaction(name:String,POESESSID:String)
+    {
+        
+    }
 }
