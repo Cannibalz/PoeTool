@@ -33,18 +33,14 @@ struct LogInView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 Button(action: {
-                    self.viewModel.login(accName:self.accName, POESESSID: self.POESSID)
-                    {isError in
-                        print(isError)
-                        if isError
-                        {
+                    var login = self.viewModel.login(accName:self.accName, POESESSID: self.POESSID)
+                    login.sink(receiveCompletion:
+                    {completion in
+                        print(completion)
+                    }, receiveValue:
+                    {data in
                             
-                        }
-                        else if !isError
-                        {
-                            self.segue = Int(1)
-                        }
-                    }
+                    })
                 })
                 {
                     Text("Log In")
