@@ -16,13 +16,22 @@ class LoginViewModel: ObservableObject
         let urlString = URL(string: "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)")
         var urlReq = URLRequest(url: urlString!)
         urlReq.setValue("POESESSID=\(POESSID)", forHTTPHeaderField: "cookie")
-        print(urlReq.value(forHTTPHeaderField: "cookie"))
-        loginCancellable = URLSession.shared.dataTaskPublisher(for: urlReq)
+        
+        loginCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
             .map{$0.data}
             .decode(type: [CharacterInfo].self, decoder: JSONDecoder())
-            .replaceError(with: [])
             .receive(on: RunLoop.main)
-            .sink(receiveValue: {charas in
+            .sink(receiveCompletion:{ completion in
+                switch completion
+                {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    
+                }
+            },receiveValue:
+            {charas in
                 var accInfo = AccountInfo()
                 var leaguesArray = [String]()
                 for var character in charas
@@ -35,7 +44,14 @@ class LoginViewModel: ObservableObject
                 accInfo.leagues = leaguesArray.removingDuplicates()
                 print(charas)
                 return completion(accInfo)
-            })
+            }
+            )
             //.assign(to: \.charactersInfo, on: self)
     }
+    func accountAuth()
+    {
+        
+    }
 }
+
+

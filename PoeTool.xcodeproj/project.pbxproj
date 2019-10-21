@@ -22,6 +22,7 @@
 		9887FC6A23535DB8005D7AD1 /* PoeToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC6923535DB8005D7AD1 /* PoeToolTests.swift */; };
 		9887FC7523535DB8005D7AD1 /* PoeToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC7423535DB8005D7AD1 /* PoeToolUITests.swift */; };
 		98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2EE982356E65F00C7F06C /* LoginViewModel.swift */; };
+		98A8707E235D34FC001C10A5 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A8707D235D34FC001C10A5 /* APIHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		9887FC7423535DB8005D7AD1 /* PoeToolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoeToolUITests.swift; sourceTree = "<group>"; };
 		9887FC7623535DB8005D7AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98A2EE982356E65F00C7F06C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		98A8707D235D34FC001C10A5 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				321C9896D2E3A8F2E270FC93 /* CharacterSelectViewModel.swift */,
 				9887FC5623535DB6005D7AD1 /* LogInView.swift */,
 				98A2EE982356E65F00C7F06C /* LoginViewModel.swift */,
+				98A8707D235D34FC001C10A5 /* APIHandler.swift */,
 				9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */,
 				9887FC6023535DB8005D7AD1 /* Info.plist */,
 				9887FC5323535DB6005D7AD1 /* PoeTool.xcdatamodeld */,
@@ -292,6 +295,7 @@
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
 				9887FC5723535DB6005D7AD1 /* LogInView.swift in Sources */,
 				9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */,
+				98A8707E235D34FC001C10A5 /* APIHandler.swift in Sources */,
 				98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */,
 				983CDC0B2359F71A00AF46E7 /* Account.swift in Sources */,
 				321C9D12BF79B2E6E37381C6 /* ArrayExtension.swift in Sources */,
