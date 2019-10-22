@@ -10,21 +10,23 @@ import Foundation
 import Combine
 class PoEAPI
 {
-    private var LoginCancellable: Cancellable?
-    {
-        didSet{oldValue?.cancel()}
-    }
-    func Authentication()
+    static let shared = PoEAPI()
+    func fetchCharacterData()
     {
         
     }
+    
+    var characterCancellable: Cancellable?
+    {
+        didSet{oldValue?.cancel()}
+    }
     func isValid(accName:String,POESESSID:String,Completion:@escaping(Int)->())
     {
+        
         let urlString = URL(string: "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)")
         var urlReq = URLRequest(url: urlString!)
-        var isError = true
         urlReq.setValue("POESESSID=\(POESESSID)", forHTTPHeaderField: "cookie")
-        var login = LoginCancellable
+        var login = characterCancellable
         login = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
             .map{$0.response}
 //            .decode(type: [CharacterInfo].self, decoder: JSONDecoder())
@@ -39,4 +41,6 @@ class PoEAPI
                 Completion(statusCode)
             })
     }
+    
+    
 }

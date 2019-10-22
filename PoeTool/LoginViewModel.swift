@@ -3,8 +3,8 @@ import Combine
 
 class LoginViewModel: ObservableObject
 {
-    @Published var accName = ""//"niuwencong1"
-    @Published var POESESSID = ""//"f2b5f9a200793c5b0f33ad660f8b31a8"
+    @Published var accName = ""
+    @Published var POESESSID = ""
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
