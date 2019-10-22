@@ -8,10 +8,34 @@
 import SwiftUI
 
 
-
+struct loadingCircle: View
+{
+    @State var spin = false
+    var body: some View
+    {
+        VStack{
+            Image(systemName: "arrow.2.circlepath.circle")
+            .resizable()
+            .frame(width: 200.0, height: 200.0)
+            .rotationEffect(.degrees(spin ? 360:0))
+            .animation(loadingAnimation)
+            .onAppear(){self.spin.toggle()}
+            .cornerRadius(25)
+            Text("loading...")
+        }
+        .background(Color(red: 0.9, green: 0.9, blue: 0.9))
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+    }
+    var loadingAnimation: Animation
+    {
+        Animation.linear(duration: 0.5)
+            .speed(0.5)
+            .repeatForever(autoreverses: false)
+        
+    }
+}
 struct LogInView: View {
     @ObservedObject var viewModel = LoginViewModel()
-    
     var body: some View {
         NavigationView
         {
@@ -31,20 +55,21 @@ struct LogInView: View {
                     NavigationLink(destination: CharacterSelectView(), isActive: $viewModel.authed, label: {
                         Button(action: {
                             self.viewModel.accountAuth(accName: self.viewModel.accName, POESESSID: self.viewModel.POESSID)
-                            print(self.viewModel.authed)
                         })
                         {
                             Text("Authenticate")
                         }
                     })
+                    
                 }
-                Image(systemName: "arrow.2.circlepath.circle")
-                    .resizable()
-                    .frame(width: 200.0, height: 200.0)
-                    .rotationEffect(.degrees(360))
-                    .animation(.linear)
-                    .onAppear(){}
-                    //.hidden()
+                if viewModel.isLoading
+                {
+                    loadingCircle()
+                }
+                else
+                {
+                    loadingCircle().hidden()
+                }
             }
             
         }
