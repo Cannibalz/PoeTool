@@ -46,15 +46,15 @@ struct LogInView: View {
                     TextField("Account Name",text: $viewModel.accName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
-                    TextField("POESSID",text: $viewModel.POESSID)
+                    TextField("POESSID",text: $viewModel.POESESSID)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
-                    Toggle(isOn: $viewModel.isToggle) {
+                    Toggle(isOn: $viewModel.wannaStore) {
                         Text("Remeber me")
                     }.frame(width: 200.0)
                     NavigationLink(destination: CharacterSelectView(), isActive: $viewModel.authed, label: {
                         Button(action: {
-                            self.viewModel.accountAuth(accName: self.viewModel.accName, POESESSID: self.viewModel.POESSID)
+                            self.viewModel.accountAuth()
                         })
                         {
                             Text("Authenticate")
