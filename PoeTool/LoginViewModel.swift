@@ -8,7 +8,7 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
-    var PoEinstance = PoEAPI.shared
+    var PoEinstance = PoEData.shared
     init()
     {
         if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID"), let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")

@@ -11,9 +11,9 @@ import Combine
 import CoreFoundation
 import CoreGraphics
 
-class PoEAPI : NSObject
+class PoEData : NSObject
 {
-    static let shared = PoEAPI()
+    static let shared = PoEData()
     var charaters : [Character] = [Character]()
     var getCharacter = GetCharacter()
     private override init(){
