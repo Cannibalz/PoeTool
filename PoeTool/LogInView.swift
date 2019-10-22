@@ -62,13 +62,22 @@ struct LogInView: View {
                     })
                     
                 }
-                if viewModel.isLoading
+                VStack
                 {
-                    loadingCircle()
-                }
-                else
-                {
-                    loadingCircle().hidden()
+                    if viewModel.isLoading
+                    {
+                        loadingCircle()
+                    }
+                    else
+                    {
+                        loadingCircle().hidden()
+                    }
+                    Button(action:{
+                        print("asdf")
+                    })
+                    {
+                        Text("cancel")
+                    }
                 }
             }
             

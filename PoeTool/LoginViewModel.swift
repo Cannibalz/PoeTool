@@ -8,6 +8,7 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
+    var PoEinstance = PoEAPI.shared
     init()
     {
         if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID"), let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")
@@ -22,7 +23,7 @@ class LoginViewModel: ObservableObject
     {
         isLoading = true
         //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
-        PoEAPI.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        PoEinstance.getCharacter.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
         {statusCode in
             if statusCode == 200
             {
