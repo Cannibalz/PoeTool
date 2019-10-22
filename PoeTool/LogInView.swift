@@ -20,9 +20,6 @@ struct LogInView: View {
         {
             VStack
             {
-                NavigationLink(destination: CharacterSelectView(account:self.$accountInfo), tag: 200, selection: $viewModel.statusCode) {
-                    EmptyView()
-                }
                 TextField("Account Name",text: $viewModel.accName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
@@ -38,9 +35,7 @@ struct LogInView: View {
                 NavigationLink(destination: CharacterSelectView(account:self.$accountInfo), isActive: $viewModel.authed, label: {
                     Button(action: {
                         self.viewModel.accountAuth(accName: self.viewModel.accName, POESESSID: self.viewModel.POESSID)
-                        {statusCode in
-                            print(statusCode)
-                        }
+                        print(self.viewModel.authed)
                     })
                     {
                         Text("Authenticate")
