@@ -56,7 +56,7 @@ struct characterCell: View
 
 struct CharacterSelectView: View
 {
-    @Binding var account : AccountInfo
+    var account : AccountInfo = AccountInfo()
     @State private var leagueIndex = 0
     @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
@@ -91,7 +91,7 @@ struct CharacterSelectView_Previews: PreviewProvider {
 @State static var accountInfo = AccountInfo(characters: [CharacterInfo(id: "", league: "", className: "", level: 0)], accountName: "niuwencong1", leagues: ["fds","aaa"])
     
     static var previews: some View {
-        CharacterSelectView(account: $accountInfo)
+        CharacterSelectView(account: accountInfo)
     }
 }
 #endif

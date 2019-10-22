@@ -10,40 +10,44 @@ import SwiftUI
 
 
 struct LogInView: View {
-    @State private var segue : Int? = 0
-    @State var accountInfo : AccountInfo = AccountInfo()
-    @State var remeberPass = true
     @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationView
         {
-            VStack
+            ZStack
             {
-                TextField("Account Name",text: $viewModel.accName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                TextField("POESSID",text: $viewModel.POESSID)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                
-                
-                Toggle(isOn: $viewModel.isToggle) {
-                    Text("Remeber me")
-                }
-                .frame(width: 200.0)
-                NavigationLink(destination: CharacterSelectView(account:self.$accountInfo), isActive: $viewModel.authed, label: {
-                    Button(action: {
-                        self.viewModel.accountAuth(accName: self.viewModel.accName, POESESSID: self.viewModel.POESSID)
-                        print(self.viewModel.authed)
+                VStack
+                {
+                    TextField("Account Name",text: $viewModel.accName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                    TextField("POESSID",text: $viewModel.POESSID)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                    Toggle(isOn: $viewModel.isToggle) {
+                        Text("Remeber me")
+                    }.frame(width: 200.0)
+                    NavigationLink(destination: CharacterSelectView(), isActive: $viewModel.authed, label: {
+                        Button(action: {
+                            self.viewModel.accountAuth(accName: self.viewModel.accName, POESESSID: self.viewModel.POESSID)
+                            print(self.viewModel.authed)
+                        })
+                        {
+                            Text("Authenticate")
+                        }
                     })
-                    {
-                        Text("Authenticate")
-                    }
-                })
+                }
+                Image(systemName: "arrow.2.circlepath.circle")
+                    .resizable()
+                    .frame(width: 200.0, height: 200.0)
+                    .rotationEffect(.degrees(360))
+                    .animation(.linear)
+                    .onAppear(){}
+                    //.hidden()
             }
+            
         }
-
     }
 }
 #if DEBUG
