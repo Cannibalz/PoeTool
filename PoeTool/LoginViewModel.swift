@@ -21,7 +21,8 @@ class LoginViewModel: ObservableObject
     func accountAuth()
     {
         isLoading = true
-        PoEAPI().isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        PoEAPI.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
         {statusCode in
             if statusCode == 200
             {
