@@ -11,6 +11,8 @@
 		321C98BCAC7EF31F843F0F64 /* JsonCodableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */; };
 		321C9B3BA7BFFD17C3E6B58C /* CharactersSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C98A05120E7E251FA96AF /* CharactersSelectView.swift */; };
 		321C9D12BF79B2E6E37381C6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9CBFDDC18D4887686CAE /* ArrayExtension.swift */; };
+		9841F52123601A1C0003BD01 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841F52023601A1C0003BD01 /* CharacterDetailView.swift */; };
+		9841F52623602ABA0003BD01 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841F52523602ABA0003BD01 /* CharacterDetailViewModel.swift */; };
 		9885E468235D96BD00241F9C /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9885E467235D96BD00241F9C /* APIHandler.swift */; };
 		9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */; };
 		9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */; };
@@ -46,6 +48,8 @@
 		321C9896D2E3A8F2E270FC93 /* CharacterSelectViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewModel.swift; sourceTree = "<group>"; };
 		321C98A05120E7E251FA96AF /* CharactersSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersSelectView.swift; sourceTree = "<group>"; };
 		321C9CBFDDC18D4887686CAE /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		9841F52023601A1C0003BD01 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		9841F52523602ABA0003BD01 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		9885E467235D96BD00241F9C /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		9887FC4C23535DB6005D7AD1 /* PoeTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9841F52223602A0A0003BD01 /* Character Select */ = {
+			isa = PBXGroup;
+			children = (
+				321C98A05120E7E251FA96AF /* CharactersSelectView.swift */,
+				321C9896D2E3A8F2E270FC93 /* CharacterSelectViewModel.swift */,
+			);
+			name = "Character Select";
+			sourceTree = "<group>";
+		};
+		9841F52323602A4C0003BD01 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9887FC5623535DB6005D7AD1 /* LogInView.swift */,
+				98A2EE982356E65F00C7F06C /* LoginViewModel.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		9841F52423602A950003BD01 /* Character Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9841F52023601A1C0003BD01 /* CharacterDetailView.swift */,
+				9841F52523602ABA0003BD01 /* CharacterDetailViewModel.swift */,
+			);
+			path = "Character Detail";
+			sourceTree = "<group>";
+		};
 		9887FC4323535DB5005D7AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -113,13 +144,12 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				9841F52323602A4C0003BD01 /* Login */,
+				9841F52223602A0A0003BD01 /* Character Select */,
+				9841F52423602A950003BD01 /* Character Detail */,
 				9887FC5823535DB8005D7AD1 /* Assets.xcassets */,
 				321C9CBFDDC18D4887686CAE /* ArrayExtension.swift */,
 				9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */,
-				321C98A05120E7E251FA96AF /* CharactersSelectView.swift */,
-				321C9896D2E3A8F2E270FC93 /* CharacterSelectViewModel.swift */,
-				9887FC5623535DB6005D7AD1 /* LogInView.swift */,
-				98A2EE982356E65F00C7F06C /* LoginViewModel.swift */,
 				9885E467235D96BD00241F9C /* APIHandler.swift */,
 				9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */,
 				9887FC6023535DB8005D7AD1 /* Info.plist */,
@@ -288,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9841F52123601A1C0003BD01 /* CharacterDetailView.swift in Sources */,
 				9887FC5523535DB6005D7AD1 /* PoeTool.xcdatamodeld in Sources */,
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
 				9887FC5723535DB6005D7AD1 /* LogInView.swift in Sources */,
@@ -296,6 +327,7 @@
 				98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */,
 				321C9D12BF79B2E6E37381C6 /* ArrayExtension.swift in Sources */,
 				321C9B3BA7BFFD17C3E6B58C /* CharactersSelectView.swift in Sources */,
+				9841F52623602ABA0003BD01 /* CharacterDetailViewModel.swift in Sources */,
 				321C98BCAC7EF31F843F0F64 /* JsonCodableStruct.swift in Sources */,
 				321C977F8C5DF9B8D418FCB2 /* CharacterSelectViewModel.swift in Sources */,
 			);

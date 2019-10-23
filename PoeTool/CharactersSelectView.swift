@@ -6,29 +6,18 @@
 import Foundation
 import SwiftUI
 import Combine
-struct characterList: View
-{
-    var body : some View
-    {
-        Text("test")
-    }
-}
 struct leaguePicker: View
 {
     @ObservedObject var viewModel : CharacterSelectViewModel
-    @State private var leagueIndex = 0
-    var body: some View
+    var body : some View
     {
-        Section
+        Picker(selection: $viewModel.leagueIndex, label: Text("League"))
         {
-            Picker(selection: $viewModel.leagueIndex, label: Text("League"))
-            {
-                ForEach(0..<viewModel.account.leagues.count)
-                {
-                    Text(self.viewModel.account.leagues[$0]).tag($0)
-                }
+            ForEach(0..<viewModel.account.leagues.count)
+            { index in
+                Text(self.viewModel.account.leagues[index]).tag(index)
             }
-        }.foregroundColor(.blue)
+        }.padding(.bottom, 30.0).pickerStyle(SegmentedPickerStyle())
     }
 }
 struct characterCell: View
@@ -36,7 +25,7 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-        NavigationLink(destination:Text("text"))
+        NavigationLink(destination:CharacterDetailView(character: characterInfo))
         {
             HStack
             {
@@ -80,17 +69,11 @@ struct CharacterSelectView: View
                         }
                     }
                 }
-                Picker(selection: $viewModel.leagueIndex, label: Text("League"))
-                {
-                    ForEach(0..<viewModel.account.leagues.count)
-                    { index in
-                        Text(self.viewModel.account.leagues[index]).tag(index)
-                    }
-                }.padding(.bottom, 30.0).pickerStyle(SegmentedPickerStyle())
-            }
+                leaguePicker(viewModel: viewModel)
+            }//.navigationBarTitle(Text("Characters"))
         }
         .padding(.top, -10.0)
-//        .navigationBarTitle(Text(account.accountName), displayMode: .automatic)
+        .navigationBarBackButtonHidden(true)
         
     }
 }

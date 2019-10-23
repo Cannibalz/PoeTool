@@ -9,7 +9,7 @@ import Combine
 class CharacterSelectViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
-    @Published var leagueIndex = Int(2)
+    @Published var leagueIndex = Int(0)
     @Published var account : Account
     //@Published var showingCharacters : [CharacterInfo]
     init()
@@ -19,9 +19,4 @@ class CharacterSelectViewModel : ObservableObject
     deinit {
         
     }
-    func filter()
-    {
-
-    }
-
 }
