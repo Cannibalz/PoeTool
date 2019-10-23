@@ -9,10 +9,12 @@ import Combine
 class CharacterSelectViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
-    @State var leagueIndex = Int(0)
-    @Published var account : Account = PoEData.shared.account
+    @Published var leagueIndex = Int(2)
+    @Published var account : Account
+    //@Published var showingCharacters : [CharacterInfo]
     init()
     {
+        self.account = PoEData.shared.account
     }
     deinit {
         

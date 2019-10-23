@@ -22,11 +22,20 @@ class PoEData : NSObject
     var account = Account()
     private override init(){
     }
-    func decodeCharacter(characterData:Data)
+    func establishAccount(characterData:Data,name:String)
     {
         do
         {
-            self.account.charaters = try JSONDecoder().decode([CharacterInfo].self, from: characterData)
+            var chars = try JSONDecoder().decode([CharacterInfo].self, from: characterData)
+            self.account.charaters = chars
+            self.account.Name = name
+            var set = [String]()
+            set.append("All")
+            for char in chars
+            {
+                set.append(char.league)
+            }
+            self.account.leagues = set.removingDuplicates()
         }
         catch
         {
@@ -55,16 +64,7 @@ class PoEData : NSObject
                 let statusCode = (res.response as! HTTPURLResponse).statusCode
                 if statusCode == 200
                 {
-                    do
-                    {
-                        
-                        self.charaters = try JSONDecoder().decode([CharacterInfo].self, from: res.data)
-                        print(self.charaters)
-                    }
-                    catch
-                    {
-                        print(error)
-                    }
+                    self.establishAccount(characterData: res.data,name:accName)
                     
                 }
                 Completion(statusCode)

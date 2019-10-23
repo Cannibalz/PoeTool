@@ -36,18 +36,21 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-        HStack
+        NavigationLink(destination:Text("text"))
         {
-            Image(characterInfo.className)
-                .resizable()
-                .frame(width: 106*1.3, height: 49*1.3)
-                
-            VStack(alignment: .leading)
+            HStack
             {
-                Text(characterInfo.id).fontWeight(.heavy)
-                Text(characterInfo.className).fontWeight(.light)
-                Text("\(characterInfo.level)").fontWeight(.light)
-                Text(characterInfo.league).fontWeight(.light)
+                Image(characterInfo.className)
+                    .resizable()
+                    .frame(width: 106*1.3, height: 49*1.3)
+                    
+                VStack(alignment: .leading)
+                {
+                    Text(characterInfo.id).fontWeight(.heavy)
+                    Text(characterInfo.className).fontWeight(.light)
+                    Text("\(characterInfo.level)").fontWeight(.light)
+                    Text(characterInfo.league).fontWeight(.light)
+                }
             }
         }
     }
@@ -63,20 +66,27 @@ struct CharacterSelectView: View
         {
             VStack
             {
-                Form
+                List
                 {
-                    leaguePicker(viewModel: self.viewModel)
-                    //characterList(accountInfo: account)
-                    List(viewModel.account.charaters)
-                    { chara in
-                        NavigationLink(destination:Text("text"))
+                    ForEach(viewModel.account.charaters)
+                    {chara in
+                        if self.viewModel.account.leagues[self.viewModel.leagueIndex] == "All"
                         {
-                            characterCell(characterInfo: chara)
-
+                                characterCell(characterInfo: chara)
+                        }
+                        else if chara.league == self.viewModel.account.leagues[self.viewModel.leagueIndex]
+                        {
+                                characterCell(characterInfo: chara)
                         }
                     }
                 }
-                //                .frame(height: 50.0) enable this if list separate from form
+                Picker(selection: $viewModel.leagueIndex, label: Text("League"))
+                {
+                    ForEach(0..<viewModel.account.leagues.count)
+                    { index in
+                        Text(self.viewModel.account.leagues[index]).tag(index)
+                    }
+                }.padding(.bottom, 30.0).pickerStyle(SegmentedPickerStyle())
             }
         }
         .padding(.top, -10.0)

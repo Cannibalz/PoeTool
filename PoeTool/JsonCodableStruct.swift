@@ -6,6 +6,7 @@
 import Foundation
 class CharacterInfo : Codable,Identifiable
 {
+    
     var id : String = ""
     var league : String = ""
     var className : String = ""
