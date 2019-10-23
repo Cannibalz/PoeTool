@@ -25,9 +25,8 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-//        Button(action: {self.selectCharacter()}) {
-        NavigationLink(destination:CharacterDetailView())
-        {
+//        NavigationLink(destination:CharacterDetailView())
+//        {
             HStack
             {
                 Image(characterInfo.className)
@@ -42,18 +41,14 @@ struct characterCell: View
                     Text(characterInfo.league).fontWeight(.light)
                 }
             }
-        }
 //        }
-    }
-    func selectCharacter()
-    {
-        PoEData.shared.account.selectedCharacter = characterInfo
     }
 }
 
 struct CharacterSelectView: View
 {
     @State private var leagueIndex = 0
+    @State private var selected : Int? = 0
     @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
     {
@@ -61,17 +56,28 @@ struct CharacterSelectView: View
         {
             VStack
             {
+                NavigationLink(destination: CharacterDetailView(), tag: 1, selection: $selected){EmptyView()}
                 List
                 {
                     ForEach(viewModel.account.charaters)
                     {chara in
                         if self.viewModel.account.leagues[self.viewModel.leagueIndex] == "All"
                         {
-                                characterCell(characterInfo: chara)
+                            characterCell(characterInfo: chara)
+                            .gesture(TapGesture().onEnded
+                            {dunnowtf in
+                                self.selectCharacter(chara:chara)
+                                self.selected = 1
+                            })
                         }
                         else if chara.league == self.viewModel.account.leagues[self.viewModel.leagueIndex]
                         {
-                                characterCell(characterInfo: chara)
+                            characterCell(characterInfo: chara)
+                            .gesture(TapGesture().onEnded
+                            {dunnowtf in
+                                self.selectCharacter(chara:chara)
+                                self.selected = 1
+                            })
                         }
                     }
                 }
@@ -80,7 +86,11 @@ struct CharacterSelectView: View
         }
         .padding(.top, -10.0)
         .navigationBarBackButtonHidden(true)
-        
+    }
+    func selectCharacter(chara:CharacterInfo)
+    {
+        PoEData.shared.account.selectedCharacter = chara
+        print(chara.id)
     }
 }
 #if DEBUG
