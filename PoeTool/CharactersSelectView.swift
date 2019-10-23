@@ -8,7 +8,6 @@ import SwiftUI
 import Combine
 struct characterList: View
 {
-    var accountInfo : AccountInfo
     var body : some View
     {
         Text("test")
@@ -24,9 +23,9 @@ struct leaguePicker: View
         {
             Picker(selection: $viewModel.leagueIndex, label: Text("League"))
             {
-                ForEach(0..<viewModel.accountInfo.leagues.count)
+                ForEach(0..<viewModel.account.leagues.count)
                 {
-                    Text(self.viewModel.accountInfo.leagues[$0]).tag($0)
+                    Text(self.viewModel.account.leagues[$0]).tag($0)
                 }
             }
         }.foregroundColor(.blue)
@@ -56,7 +55,6 @@ struct characterCell: View
 
 struct CharacterSelectView: View
 {
-    var account : AccountInfo = AccountInfo()
     @State private var leagueIndex = 0
     @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
@@ -68,8 +66,8 @@ struct CharacterSelectView: View
                 Form
                 {
                     leaguePicker(viewModel: self.viewModel)
-                    characterList(accountInfo: account)
-                    List(account.characters)
+                    //characterList(accountInfo: account)
+                    List(viewModel.account.charaters)
                     { chara in
                         NavigationLink(destination:Text("text"))
                         {
@@ -88,10 +86,9 @@ struct CharacterSelectView: View
 }
 #if DEBUG
 struct CharacterSelectView_Previews: PreviewProvider {
-@State static var accountInfo = AccountInfo(characters: [CharacterInfo(id: "", league: "", className: "", level: 0)], accountName: "niuwencong1", leagues: ["fds","aaa"])
     
     static var previews: some View {
-        CharacterSelectView(account: accountInfo)
+        CharacterSelectView()
     }
 }
 #endif

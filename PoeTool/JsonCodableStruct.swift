@@ -22,14 +22,6 @@ class CharacterInfo : Codable,Identifiable
     }
 }
 
-
-struct AccountInfo : Codable
-{
-    static let shared = AccountInfo()
-    var characters : [CharacterInfo] = [CharacterInfo]()
-    var accountName : String = ""
-    var leagues = Array<String>()
-}
 enum APIError: Error, LocalizedError {
     case unknown, apiError(reason: String)
 

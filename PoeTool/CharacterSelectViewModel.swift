@@ -10,11 +10,7 @@ class CharacterSelectViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
     @State var leagueIndex = Int(0)
-    @Published var accountInfo : AccountInfo = AccountInfo()
-    init(account:AccountInfo)
-    {
-        self.accountInfo = account
-    }
+    @Published var account : Account = PoEData.shared.account
     init()
     {
     }

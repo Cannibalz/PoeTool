@@ -23,7 +23,7 @@ class LoginViewModel: ObservableObject
     {
         isLoading = true
         //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
-        PoEinstance.getCharacter.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        PoEinstance.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
         {statusCode in
             if statusCode == 200
             {
