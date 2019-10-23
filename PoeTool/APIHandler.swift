@@ -14,6 +14,7 @@ struct Account {
     var charaters : [CharacterInfo] = [CharacterInfo]()
     var Name : String = ""
     var leagues : [String] = [""]
+    var selectedCharacter : CharacterInfo = CharacterInfo(id: "Error", league: "Error", className: "Error", level: 0)
 }
 class PoEData : NSObject
 {

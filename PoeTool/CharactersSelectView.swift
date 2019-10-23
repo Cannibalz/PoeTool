@@ -25,7 +25,8 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-        NavigationLink(destination:CharacterDetailView(character: characterInfo))
+//        Button(action: {self.selectCharacter()}) {
+        NavigationLink(destination:CharacterDetailView())
         {
             HStack
             {
@@ -42,6 +43,11 @@ struct characterCell: View
                 }
             }
         }
+//        }
+    }
+    func selectCharacter()
+    {
+        PoEData.shared.account.selectedCharacter = characterInfo
     }
 }
 

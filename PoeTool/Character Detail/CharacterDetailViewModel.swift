@@ -10,13 +10,13 @@ import Combine
 import SwiftUI
 class CharacterDetailViewModel : ObservableObject
 {
-    @Published var Detail : CharacterInfo = CharacterInfo(id: "1", league: "456", className: "789", level: 10)
+    @Published var selectCharacter:CharacterInfo
     init()
     {
-        
+        self.selectCharacter = PoEData.shared.account.selectedCharacter
     }
-    init(Detail:CharacterInfo)
+    func test()
     {
-        self.Detail = Detail
+        print(selectCharacter)
     }
 }

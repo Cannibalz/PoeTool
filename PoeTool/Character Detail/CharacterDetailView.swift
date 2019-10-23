@@ -13,24 +13,21 @@ import Combine
 
 struct CharacterDetailView:View
 {
-    
-    var character : CharacterInfo
     @ObservedObject var viewModel = CharacterDetailViewModel()
+    //@ObservedObject var viewModel = CharacterDetailViewModel(Detail:character)
     var body: some View
     {
         VStack
         {
-            Text(character.id)
-            Text(character.className)
+            Text(viewModel.selectCharacter.className)
         }
     }
 }
 
 #if DEBUG
 struct CharacterDetailView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        CharacterDetailView(character: CharacterInfo(id: "Test", league: "Standard", className: "Engineer", level: 0))
+        CharacterDetailView()
     }
 }
 #endif
