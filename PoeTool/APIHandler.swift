@@ -52,30 +52,51 @@ class PoEData : NSObject
     }
     func isValid(accName:String,POESESSID:String,Completion:@escaping(Int)->())
     {
-        let urlString = URL(string: "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)")
-        var urlReq = URLRequest(url: urlString!)
-        urlReq.setValue("POESESSID=\(POESESSID)", forHTTPHeaderField: "cookie")
-        APIRequestCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
-            .map{$0}
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion:
-            {_ in},
-            receiveValue:
-            {res in
-                let statusCode = (res.response as! HTTPURLResponse).statusCode
-                if statusCode == 200
-                {
-                    self.establishAccount(characterData: res.data,name:accName,POESESSID:POESESSID)
-                    
-                }
-                Completion(statusCode)
-            })
+        let urlString = "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)"
+        getData(url: urlString, POESESSID: POESESSID)
+        {Body in
+            let statusCode = (Body.response as! HTTPURLResponse).statusCode
+            if statusCode == 200
+            {
+                self.establishAccount(characterData: Body.data,name:accName,POESESSID:POESESSID)
+            }
+            Completion(statusCode)
+        }
     }
     func getCharactersItems()
     {
         let characterName = self.account.selectedCharacter.id
         let accountName = self.account.Name
         let POESESSID = self.account.POESESSID
-        
+        let urlString = String( "https://www.pathofexile.com/character-window/get-items?accountName=\(accountName)&character=\(characterName)")
+        getData(url: urlString, POESESSID: POESESSID)
+        {Body in
+            let data = Body.data
+            do
+            {
+                let items = try JSONDecoder().decode([Item].self, from: data)
+                self.account.selectedCharasterItems = items
+            }
+            catch
+            {
+                return
+                print(error)
+            }
+        }
+    }
+    private func getData(url:String,POESESSID:String,completion:@escaping (URLSession.DataTaskPublisher.Output)->())
+    {
+        let url = URL(string: url)
+        var urlReq = URLRequest(url: url!)
+        urlReq.setValue("POESESSID=\(POESESSID)", forHTTPHeaderField: "cookie")
+        APIRequestCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
+        .map{$0}
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion:
+        {_ in},
+        receiveValue:
+        {body in
+            completion(body)
+        })
     }
 }
