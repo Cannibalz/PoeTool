@@ -43,7 +43,7 @@ struct Item: Codable {
     let typeLine: String
     let identified: Bool
     let properties: [Property]?
-    let requirements: [Property]
+    let requirements: [Property]?
     let explicitMods: [String]?
     let flavourText: [String]?
     let frameType: Int
@@ -147,7 +147,7 @@ struct SocketedItem: Codable {
     let typeLine: String
     let identified: Bool
     let properties: [Property]
-    let requirements: [Property]
+    let requirements: [Property]?
     let secDescrText: String
     let explicitMods: [String]?
     let descrText: String

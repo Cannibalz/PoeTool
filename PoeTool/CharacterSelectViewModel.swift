@@ -15,6 +15,8 @@ class CharacterSelectViewModel : ObservableObject
     init()
     {
         self.account = PoEData.shared.account
+        print(account.selectedCharacter)
+        print("POESESSID:",account.POESESSID)
     }
     deinit {
         

@@ -72,17 +72,17 @@ class PoEData : NSObject
         getData(url: urlString, POESESSID: POESESSID)
         {Body in
             let data = Body.data
+            var characterDetail : CharacterDetail
             do
             {
                 print(data)
-                let items = try JSONDecoder().decode([Item].self, from: data)
-                self.account.selectedCharasterItems = items
-                print(items)
-                completion(true)
+                characterDetail = try JSONDecoder().decode(CharacterDetail.self, from: data)
+                self.account.selectedCharasterItems = characterDetail.items
+                print(characterDetail.items)
             }
             catch
             {
-                print("error occured in getCharacters Items function:\(error)")
+                print("Error here:\(error)")
             }
         }
     }
