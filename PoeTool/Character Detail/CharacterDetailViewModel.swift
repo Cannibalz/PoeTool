@@ -11,16 +11,15 @@ import SwiftUI
 class CharacterDetailViewModel : ObservableObject
 {
     @Published var selectCharacter:CharacterInfo
-    @Published var items:[Item]
+    @Published var items:[Item] = [Item]()
     init()
     {
-        PoEData.shared.getCharactersItems()
         self.selectCharacter = PoEData.shared.account.selectedCharacter
-        self.items = PoEData.shared.account.selectedCharasterItems
-        print(self.items)
+        PoEData.shared.getCharactersItems()
+        {_ in
+            self.items = PoEData.shared.account.selectedCharasterItems
+            print(self.items)
+        }
     }
-    func test()
-    {
-        print(selectCharacter)
-    }
+    
 }

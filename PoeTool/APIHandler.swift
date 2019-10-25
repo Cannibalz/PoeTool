@@ -63,7 +63,7 @@ class PoEData : NSObject
             Completion(statusCode)
         }
     }
-    func getCharactersItems()
+    func getCharactersItems(completion:@escaping(Bool)->())
     {
         let characterName = self.account.selectedCharacter.id
         let accountName = self.account.Name
@@ -74,13 +74,15 @@ class PoEData : NSObject
             let data = Body.data
             do
             {
+                print(data)
                 let items = try JSONDecoder().decode([Item].self, from: data)
                 self.account.selectedCharasterItems = items
+                print(items)
+                completion(true)
             }
             catch
             {
-                return
-                print(error)
+                print("error occured in getCharacters Items function:\(error)")
             }
         }
     }
