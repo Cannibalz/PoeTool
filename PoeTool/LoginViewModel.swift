@@ -16,7 +16,11 @@ class LoginViewModel: ObservableObject
             self.accName = accName
             self.POESESSID = POESESSID
             self.wannaStore = wannaStore
-            self.accountAuth()
+            if !PoEinstance.isLogged
+            {
+                //self.accountAuth()
+            }
+            
         }
     }
     func accountAuth()

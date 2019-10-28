@@ -35,7 +35,7 @@ struct characterCell: View
                     
                 VStack(alignment: .leading)
                 {
-                    Text(characterInfo.id).fontWeight(.heavy)
+                    Text(characterInfo.id).fontWeight(.medium)
                     Text(characterInfo.className).fontWeight(.light)
                     Text("\(characterInfo.level)").fontWeight(.light)
                     Text(characterInfo.league).fontWeight(.light)
@@ -52,8 +52,6 @@ struct CharacterSelectView: View
     @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
     {
-        NavigationView
-        {
             VStack
             {
                 NavigationLink(destination: CharacterDetailView(), tag: 1, selection: $selected){EmptyView()}
@@ -82,10 +80,9 @@ struct CharacterSelectView: View
                     }
                 }
                 leaguePicker(viewModel: viewModel)
-            }//.navigationBarTitle(Text("Characters"))
-        }
-        .padding(.top, -10.0)
-        .navigationBarBackButtonHidden(true)
+                }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
+        
+
     }
     func selectCharacter(chara:CharacterInfo)
     {

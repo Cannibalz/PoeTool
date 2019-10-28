@@ -17,10 +17,28 @@ struct CharacterDetailView:View
     //@ObservedObject var viewModel = CharacterDetailViewModel(Detail:character)
     var body: some View
     {
-        VStack
-        {
-            Text(viewModel.selectCharacter.className)
-        }
+                VStack
+                {
+                    ZStack
+                    {
+                        VStack(spacing:23)
+                        {
+                            ForEach(0..<21){_ in Divider()}
+                        }
+                        HStack(spacing:23)
+                        {
+                            ForEach(0..<15){_ in Divider()}
+                        }
+                        VStack
+                        {
+                            Text(viewModel.selectCharacter.className)
+                        }
+                    }
+                    .frame(width: 350.0, height: 500.0)
+                }
+        .padding(.top).edgesIgnoringSafeArea(.all)
+        //.navigationBarItems(leading:Button(action: {}, label: {Text("123")}))
+                .navigationBarTitle(Text(viewModel.selectCharacter.id).font(.system(size: 10)), displayMode: .inline)
     }
 }
 

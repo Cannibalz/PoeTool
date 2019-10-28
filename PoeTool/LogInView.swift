@@ -6,8 +6,6 @@
 //  Copyright © 2019 KaFn. All rights reserved.
 //
 import SwiftUI
-
-
 struct loadingCircle: View
 {
     @State var spin = false
@@ -80,9 +78,8 @@ struct LogInView: View {
                         Text("cancel")
                     }
                 }
+            }.navigationBarTitle(Text(""),displayMode: .inline)
             }
-            
-        }
     }
 }
 #if DEBUG

@@ -21,6 +21,7 @@ struct Account {
 class PoEData : NSObject
 {
     static let shared = PoEData()
+    var isLogged : Bool = false
     var charaters : [CharacterInfo] = [CharacterInfo]()
     var account = Account()
     var APIRequestCancellable: Cancellable?
@@ -59,6 +60,7 @@ class PoEData : NSObject
             if statusCode == 200
             {
                 self.establishAccount(characterData: Body.data,name:accName,POESESSID:POESESSID)
+                self.isLogged = true
             }
             Completion(statusCode)
         }
