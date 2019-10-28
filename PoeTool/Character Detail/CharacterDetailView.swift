@@ -17,28 +17,56 @@ struct CharacterDetailView:View
     //@ObservedObject var viewModel = CharacterDetailViewModel(Detail:character)
     var body: some View
     {
+        List{
+            
+        
+        VStack
+        {
+            ZStack
+            {
+                VStack(spacing:34)
+                {
+                    ForEach(0..<7){_ in Divider()}
+                }
+                HStack(spacing:34)
+                {
+                    ForEach(0..<9){_ in Divider()}
+                }
                 VStack
                 {
-                    ZStack
-                    {
-                        VStack(spacing:23)
-                        {
-                            ForEach(0..<21){_ in Divider()}
-                        }
-                        HStack(spacing:23)
-                        {
-                            ForEach(0..<15){_ in Divider()}
-                        }
-                        VStack
-                        {
-                            Text(viewModel.selectCharacter.className)
-                        }
-                    }
-                    .frame(width: 350.0, height: 500.0)
+                    Text("Equipment")
                 }
-        .padding(.top).edgesIgnoringSafeArea(.all)
+            }.frame(width: 272, height: 204)
+            Divider()
+            ZStack
+            {
+                VStack(spacing:34)
+                {
+                    ForEach(0..<3){_ in Divider()}
+                }
+                HStack(spacing:34)
+                {
+                    ForEach(0..<6){_ in Divider()}
+                }
+            }.frame(width: 170, height: 68)
+            Divider()
+            ZStack
+            {
+                VStack(spacing:30)
+                {
+                    ForEach(0..<6){_ in Divider()}
+                }
+                HStack(spacing:30)
+                {
+                    ForEach(0..<13){_ in Divider()}
+                }
+            }.frame(width:30*12,height: 30*5)
+            
+            }
+        
         //.navigationBarItems(leading:Button(action: {}, label: {Text("123")}))
-                .navigationBarTitle(Text(viewModel.selectCharacter.id).font(.system(size: 10)), displayMode: .inline)
+    .navigationBarTitle(Text(viewModel.selectCharacter.id).font(.system(size: 10)), displayMode: .inline)
+        }
     }
 }
 
