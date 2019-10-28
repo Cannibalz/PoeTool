@@ -79,7 +79,7 @@ struct LogInView: View {
                     }
                 }
             }.navigationBarTitle(Text(""),displayMode: .inline)
-            }
+        }
     }
 }
 #if DEBUG

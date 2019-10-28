@@ -49,9 +49,12 @@ struct CharacterSelectView: View
 {
     @State private var leagueIndex = 0
     @State private var selected : Int? = 0
+    @State var menuOpen: Bool = false
     @ObservedObject var viewModel = CharacterSelectViewModel()
     var body : some View
     {
+        ZStack
+        {
             VStack
             {
                 NavigationLink(destination: CharacterDetailView(), tag: 1, selection: $selected){EmptyView()}
@@ -80,13 +83,21 @@ struct CharacterSelectView: View
                     }
                 }
                 leaguePicker(viewModel: viewModel)
-                }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
-        .navigationBarItems(trailing: Text("Log out"))
+            }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
+            SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+        }
+        .navigationBarItems(trailing: Button(action:
+        {
+            self.openMenu()
+        }, label: {Image(systemName: "info.circle")}))
     }
     func selectCharacter(chara:CharacterInfo)
     {
         PoEData.shared.account.selectedCharacter = chara
         print(chara.id)
+    }
+    func openMenu() {
+        self.menuOpen.toggle()
     }
 }
 #if DEBUG

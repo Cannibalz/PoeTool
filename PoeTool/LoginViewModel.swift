@@ -18,7 +18,7 @@ class LoginViewModel: ObservableObject
             self.wannaStore = wannaStore
             if !PoEinstance.isLogged
             {
-                //self.accountAuth()
+                self.accountAuth()
             }
             
         }
