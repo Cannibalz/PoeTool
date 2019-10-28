@@ -32,12 +32,9 @@ struct CharacterDetailView:View
                 {
                     ForEach(0..<9){_ in Divider()}
                 }
-                VStack
-                {
-                    Text("Equipment")
-                }
+                Text("Equipment").position(x: 190, y: 50)
+                
             }.frame(width: 272, height: 204)
-            Divider()
             ZStack
             {
                 VStack(spacing:34)
@@ -49,7 +46,6 @@ struct CharacterDetailView:View
                     ForEach(0..<6){_ in Divider()}
                 }
             }.frame(width: 170, height: 68)
-            Divider()
             ZStack
             {
                 VStack(spacing:30)
