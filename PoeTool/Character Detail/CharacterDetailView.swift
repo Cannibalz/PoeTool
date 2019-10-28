@@ -22,19 +22,7 @@ struct CharacterDetailView:View
         
         VStack
         {
-            ZStack
-            {
-                VStack(spacing:34)
-                {
-                    ForEach(0..<7){_ in Divider()}
-                }
-                HStack(spacing:34)
-                {
-                    ForEach(0..<9){_ in Divider()}
-                }
-                Text("Equipment").position(x: 190, y: 50)
-                
-            }.frame(width: 272, height: 204)
+            EquipmentlView()
             ZStack
             {
                 VStack(spacing:34)

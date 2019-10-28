@@ -18,7 +18,6 @@ class CharacterDetailViewModel : ObservableObject
         PoEData.shared.getCharactersItems()
         {_ in
             self.items = PoEData.shared.account.selectedCharasterItems
-            print(self.items)
         }
     }
     
