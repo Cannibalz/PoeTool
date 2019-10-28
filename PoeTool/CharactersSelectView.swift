@@ -81,8 +81,7 @@ struct CharacterSelectView: View
                 }
                 leaguePicker(viewModel: viewModel)
                 }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
-        
-
+        .navigationBarItems(trailing: Text("Log out"))
     }
     func selectCharacter(chara:CharacterInfo)
     {
