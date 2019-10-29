@@ -10,6 +10,15 @@ import Foundation
 import Combine
 import CoreFoundation
 import CoreGraphics
+enum inventoryID
+{
+    enum Equipments:String
+    {
+        case Helm = "Helm"
+        case BodyArmour = "BodyArmour"
+    }
+}
+
 struct Account {
     var charaters : [CharacterInfo] = [CharacterInfo]()
     var Name : String = ""
@@ -75,11 +84,16 @@ class PoEData : NSObject
         {Body in
             let data = Body.data
             var characterDetail : CharacterDetail
+            var characterWithItems : CharacterWithItems
             do
             {
                 print(data)
                 characterDetail = try JSONDecoder().decode(CharacterDetail.self, from: data)
-                self.account.selectedCharasterItems = characterDetail.items
+                characterWithItems = characterDetail.character as! CharacterWithItems
+                for item in characterDetail.items
+                {
+//                    if item.inventoryID ==
+                }
                 print(characterDetail.items)
             }
             catch
