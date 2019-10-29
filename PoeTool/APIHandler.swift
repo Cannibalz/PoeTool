@@ -10,13 +10,25 @@ import Foundation
 import Combine
 import CoreFoundation
 import CoreGraphics
-enum inventoryID
+enum invID:String
 {
     enum Equipments:String
     {
         case Helm = "Helm"
         case BodyArmour = "BodyArmour"
+        case Weapon = "Weapon"
+        case Weapon2 = "Weapon2"
+        case Offhand = "Offhand"
+        case Offhand2 = "Offhand2"
+        case Ring = "Ring"
+        case Ring2 = "Ring2"
+        case Amulet = "Amulet"
+        case Gloves = "Gloves"
+        case Boots = "Boots"
+        case Belt = "Belt"
     }
+    case Flask = "Flask"
+    case MainInventory = "MainInventory"
 }
 
 struct Account {
@@ -89,11 +101,11 @@ class PoEData : NSObject
             {
                 print(data)
                 characterDetail = try JSONDecoder().decode(CharacterDetail.self, from: data)
-                characterWithItems = characterDetail.character as! CharacterWithItems
-                for item in characterDetail.items
-                {
-//                    if item.inventoryID ==
-                }
+//                characterWithItems = characterDetail.character as! CharacterWithItems
+//                for item in characterDetail.items
+//                {
+//
+//                }
                 print(characterDetail.items)
             }
             catch
