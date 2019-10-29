@@ -6,7 +6,7 @@
 import SwiftUI
 import Combine
 
-class CharacterSelectViewModel : ObservableObject
+class CharactersListViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
     @Published var leagueIndex = Int(0)

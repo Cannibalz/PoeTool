@@ -11,8 +11,9 @@ class LoginViewModel: ObservableObject
     var PoEinstance = PoEData.shared
     init()
     {
-        if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID"), let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")
+        if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID")
         {
+            let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")
             self.accName = accName
             self.POESESSID = POESESSID
             self.wannaStore = wannaStore
@@ -42,12 +43,12 @@ class LoginViewModel: ObservableObject
     {
         if wannaStore
         {
-            if let accName : String = self.accName, let POESSID : String = self.POESESSID
-            {
-                UserDefaults.standard.set(accName, forKey: "accName")
-                UserDefaults.standard.set(POESSID, forKey: "POESESSID")
-                UserDefaults.standard.set(true ,forKey:"wannaStore")
-            }
+            let accName : String = self.accName
+            let POESSID : String = self.POESESSID
+            UserDefaults.standard.set(accName, forKey: "accName")
+            UserDefaults.standard.set(POESSID, forKey: "POESESSID")
+            UserDefaults.standard.set(true ,forKey:"wannaStore")
+            
         }
     }
 }

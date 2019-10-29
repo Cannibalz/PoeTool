@@ -55,7 +55,7 @@ class PoEData : NSObject
     {
         do
         {
-            var chars = try JSONDecoder().decode([CharacterInfo].self, from: characterData)
+            let chars = try JSONDecoder().decode([CharacterInfo].self, from: characterData)
             self.account.charaters = chars
             self.account.Name = name
             self.account.POESESSID = POESESSID
@@ -96,7 +96,7 @@ class PoEData : NSObject
         {Body in
             let data = Body.data
             var characterDetail : CharacterDetail
-            var characterWithItems : CharacterWithItems
+            //var characterWithItems : CharacterWithItems
             do
             {
                 print(data)

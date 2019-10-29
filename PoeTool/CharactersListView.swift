@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 struct leaguePicker: View
 {
-    @ObservedObject var viewModel : CharacterSelectViewModel
+    @ObservedObject var viewModel : CharactersListViewModel
     var body : some View
     {
         Picker(selection: $viewModel.leagueIndex, label: Text("League"))
@@ -45,12 +45,12 @@ struct characterCell: View
     }
 }
 
-struct CharacterSelectView: View
+struct CharactersListView: View
 {
     @State private var leagueIndex = 0
     @State private var selected : Int? = 0
     @State var menuOpen: Bool = false
-    @ObservedObject var viewModel = CharacterSelectViewModel()
+    @ObservedObject var viewModel = CharactersListViewModel()
     var body : some View
     {
         ZStack
@@ -101,10 +101,10 @@ struct CharacterSelectView: View
     }
 }
 #if DEBUG
-struct CharacterSelectView_Previews: PreviewProvider {
+struct CharactersListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CharacterSelectView()
+        CharactersListView()
     }
 }
 #endif
