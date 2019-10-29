@@ -18,6 +18,10 @@ class CharactersListViewModel : ObservableObject
         print(account.selectedCharacter)
         print("POESESSID:",account.POESESSID)
     }
+//    init(name:String,POESESSID:String)
+//    {
+//        
+//    }
     deinit {
         
     }

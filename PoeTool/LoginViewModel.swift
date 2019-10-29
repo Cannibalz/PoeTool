@@ -8,6 +8,7 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
+    @Published var nextViewModel = CharactersListViewModel()
     var PoEinstance = PoEData.shared
     init()
     {
