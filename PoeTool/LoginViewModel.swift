@@ -8,7 +8,7 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
-    @Published var nextViewModel = CharactersListViewModel()
+    var nextViewModel : CharactersListViewModel?
     var PoEinstance = PoEData.shared
     init()
     {
@@ -29,6 +29,8 @@ class LoginViewModel: ObservableObject
     {
         isLoading = true
         //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        print(self.accName)
+        print(self.POESESSID)
         PoEinstance.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
         {statusCode in
             if statusCode == 200

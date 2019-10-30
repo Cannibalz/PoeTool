@@ -50,7 +50,7 @@ struct LogInView: View {
                     Toggle(isOn: $viewModel.wannaStore) {
                         Text("Remeber me")
                     }.frame(width: 200.0)
-                    NavigationLink(destination: CharactersListView(), isActive: $viewModel.authed, label:
+                    NavigationLink(destination:CharactersListView(), isActive: $viewModel.authed, label:
                     {
                         Button(action: {
                             self.viewModel.accountAuth()

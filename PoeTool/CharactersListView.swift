@@ -13,9 +13,9 @@ struct leaguePicker: View
     {
         Picker(selection: $viewModel.leagueIndex, label: Text("League"))
         {
-            ForEach(0..<viewModel.account.leagues.count)
+            ForEach(0..<viewModel.leagues.count)
             { index in
-                Text(self.viewModel.account.leagues[index]).tag(index)
+                Text(self.viewModel.leagues[index]).tag(index)
             }
         }.padding(.bottom, 30.0).pickerStyle(SegmentedPickerStyle())
     }
@@ -35,7 +35,7 @@ struct characterCell: View
                     
                 VStack(alignment: .leading)
                 {
-                    Text(characterInfo.id).fontWeight(.medium)
+                    Text(characterInfo.name).fontWeight(.medium)
                     Text(characterInfo.className).fontWeight(.light)
                     Text("\(characterInfo.level)").fontWeight(.light)
                     Text(characterInfo.league).fontWeight(.light)
@@ -55,31 +55,30 @@ struct CharactersListView: View
     {
         ZStack
         {
+            
             VStack
             {
                 NavigationLink(destination: CharacterDetailView(), tag: 1, selection: $selected){EmptyView()}
-                List
+                List(viewModel.charactersInfo,id:\.id)
                 {
-                    ForEach(viewModel.account.charaters)
-                    {chara in
-                        if self.viewModel.account.leagues[self.viewModel.leagueIndex] == "All"
-                        {
-                            characterCell(characterInfo: chara)
-                            .gesture(TapGesture().onEnded
-                            {dunnowtf in
-                                self.selectCharacter(chara:chara)
-                                self.selected = 1
-                            })
-                        }
-                        else if chara.league == self.viewModel.account.leagues[self.viewModel.leagueIndex]
-                        {
-                            characterCell(characterInfo: chara)
-                            .gesture(TapGesture().onEnded
-                            {dunnowtf in
-                                self.selectCharacter(chara:chara)
-                                self.selected = 1
-                            })
-                        }
+                    (chara) in
+                    if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
+                    {
+                        characterCell(characterInfo: chara)
+                        .gesture(TapGesture().onEnded
+                        {dunnowtf in
+                            self.selectCharacter(chara:chara)
+                            self.selected = 1
+                        })
+                    }
+                    else if chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
+                    {
+                        characterCell(characterInfo: chara)
+                        .gesture(TapGesture().onEnded
+                        {dunnowtf in
+                            self.selectCharacter(chara:chara)
+                            self.selected = 1
+                        })
                     }
                 }
                 leaguePicker(viewModel: viewModel)
@@ -104,7 +103,7 @@ struct CharactersListView: View
 struct CharactersListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CharactersListView()
+        CharactersListView(viewModel: CharactersListViewModel())
     }
 }
 #endif

@@ -4,45 +4,37 @@
 //
 
 import Foundation
-class CharacterInfo : Codable,Identifiable
+struct CharacterInfo : Codable,Identifiable
 {
-    
-    var id : String = ""
+    var id = UUID()
+    var name : String = ""
     var league : String = ""
     var className : String = ""
     var level : Int = 0
     private enum CodingKeys : String, CodingKey {
-        case id = "name", league, className = "class", level
-    }
-    public init(id:String, league:String, className:String, level:Int)
-    {
-        self.id = id
-        self.league = league
-        self.className = className
-        self.level = level
+        case name = "name", league, className = "class", level
     }
 }
-class CharacterWithItems : CharacterInfo
-{
-    var Equipments : [String:Item]?
-    var Flasks : [Item]?
-    var MainInventory : [Item]?
-    public init(characterDetail:CharacterDetail)
-    {
-        super.init(id: characterDetail.character.id, league: characterDetail.character.league, className: characterDetail.character.className, level: characterDetail.character.level)
-        
-    }
-    
-    required init(from decoder: Decoder) throws {
-        do
-        {
-            try! super.init(from: decoder)
-            
-        }
-    }
-    
-    
-}
+//class CharacterWithItems : CharacterInfo
+//{
+//    var Equipments : [String:Item]?
+//    var Flasks : [Item]?
+//    var MainInventory : [Item]?
+//    public init(characterDetail:CharacterDetail)
+//    {
+//        super.init(name: characterDetail.character.name, league: characterDetail.character.league, className: characterDetail.character.className, level: characterDetail.character.level)
+//
+//    }
+//
+//    required init(from decoder: Decoder) throws {
+//        do
+//        {
+//            try! super.init(from: decoder)
+//
+//        }
+//    }
+//
+//}
 struct CharacterDetail: Codable {
     let items: [Item]
     let character: CharacterInfo

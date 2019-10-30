@@ -52,7 +52,7 @@ struct CharacterDetailView:View
                     }
                 
                 //.navigationBarItems(leading:Button(action: {}, label: {Text("123")}))
-            .navigationBarTitle(Text(viewModel.selectCharacter.id).font(.system(size: 10)), displayMode: .inline)
+            .navigationBarTitle(Text(viewModel.selectCharacter.name).font(.system(size: 10)), displayMode: .inline)
                 }
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
         }

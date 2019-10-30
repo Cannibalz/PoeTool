@@ -36,7 +36,7 @@ struct Account {
     var Name : String = ""
     var leagues : [String] = [""]
     var POESESSID = ""
-    var selectedCharacter : CharacterInfo = CharacterInfo(id: "Error", league: "Error", className: "Error", level: 0)
+    var selectedCharacter : CharacterInfo = CharacterInfo(name: "Error", league: "Error", className: "Error", level: 0)
     var selectedCharasterItems = [Item]()
 }
 class PoEData : NSObject
@@ -45,31 +45,41 @@ class PoEData : NSObject
     var isLogged : Bool = false
     var charaters : [CharacterInfo] = [CharacterInfo]()
     var account = Account()
+    init(name:String,POESESSID:String)
+    {
+        self.account.Name = name
+        self.account.POESESSID = POESESSID
+    }
     var APIRequestCancellable: Cancellable?
     {
         didSet{oldValue?.cancel()}
     }
     private override init(){
     }
-    func establishAccount(characterData:Data,name:String,POESESSID:String)
+    func createList(Completion:@escaping ([CharacterInfo],[String])->())
     {
-        do
+        let urlString = "https://www.pathofexile.com/character-window/get-characters?accountName=\(self.account.Name)"
+        var characters = [CharacterInfo]()
+        var set = [String]()
+        getData(url: urlString, POESESSID: self.account.POESESSID)
         {
-            let chars = try JSONDecoder().decode([CharacterInfo].self, from: characterData)
-            self.account.charaters = chars
-            self.account.Name = name
-            self.account.POESESSID = POESESSID
-            var set = [String]()
-            set.append("All")
-            for char in chars
+            Body in
+            do
             {
-                set.append(char.league)
+                characters = try JSONDecoder().decode([CharacterInfo].self, from: Body.data)
+                set = [String]()
+                set.append("All")
+                for char in characters
+                {
+                    set.append(char.league)
+                }
+                set = set.removingDuplicates()
+                Completion(characters,set)
             }
-            self.account.leagues = set.removingDuplicates()
-        }
-        catch
-        {
-            print(error)
+            catch
+            {
+                print(error)
+            }
         }
     }
     func isValid(accName:String,POESESSID:String,Completion:@escaping(Int)->())
@@ -80,13 +90,13 @@ class PoEData : NSObject
             let statusCode = (Body.response as! HTTPURLResponse).statusCode
             if statusCode == 200
             {
-                self.establishAccount(characterData: Body.data,name:accName,POESESSID:POESESSID)
+                //self.establishAccount(characterData: Body.data,name:accName,POESESSID:POESESSID)
                 self.isLogged = true
             }
             Completion(statusCode)
         }
     }
-    func getCharactersItems(completion:@escaping(Bool)->())
+    func getCharactersItems(completion data:@escaping(Bool)->())
     {
         let characterName = self.account.selectedCharacter.id
         let accountName = self.account.Name

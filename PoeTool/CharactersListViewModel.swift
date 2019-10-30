@@ -10,18 +10,18 @@ class CharactersListViewModel : ObservableObject
 {
     @Published var selectedLeague = String()
     @Published var leagueIndex = Int(0)
-    @Published var account : Account
+    @Published var charactersInfo : [CharacterInfo] = [CharacterInfo]()
+    @Published var leagues : [String] = [String]()
     //@Published var showingCharacters : [CharacterInfo]
     init()
     {
-        self.account = PoEData.shared.account
-        print(account.selectedCharacter)
-        print("POESESSID:",account.POESESSID)
+        PoEData.shared.createList
+        {(characters,set) in
+            self.charactersInfo = characters
+            self.leagues = set
+        }
+        print(self.leagues)
     }
-//    init(name:String,POESESSID:String)
-//    {
-//        
-//    }
     deinit {
         
     }
