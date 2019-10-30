@@ -12,9 +12,9 @@ class CharacterDetailViewModel : ObservableObject
 {
     @Published var selectCharacter:CharacterInfo
     @Published var items:[Item] = [Item]()
-    init()
+    init(char:CharacterInfo)
     {
-        self.selectCharacter = PoEData.shared.account.selectedCharacter
+        self.selectCharacter = CharacterInfo()
         PoEData.shared.getCharactersItems()
         {_ in
             self.items = PoEData.shared.account.selectedCharasterItems

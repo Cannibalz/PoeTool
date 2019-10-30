@@ -90,10 +90,13 @@ class PoEData : NSObject
             let statusCode = (Body.response as! HTTPURLResponse).statusCode
             if statusCode == 200
             {
+                self.account.Name = accName
+                self.account.POESESSID = POESESSID
                 //self.establishAccount(characterData: Body.data,name:accName,POESESSID:POESESSID)
                 self.isLogged = true
             }
             Completion(statusCode)
+            
         }
     }
     func getCharactersItems(completion data:@escaping(Bool)->())

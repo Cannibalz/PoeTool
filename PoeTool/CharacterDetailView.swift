@@ -13,9 +13,8 @@ import Combine
 
 struct CharacterDetailView:View
 {
-    @ObservedObject var viewModel = CharacterDetailViewModel()
-    @State var menuOpen: Bool = false
-    //@ObservedObject var viewModel = CharacterDetailViewModel(Detail:character)
+    @ObservedObject var viewModel : CharacterDetailViewModel
+    @State var menuOpen = false
     var body: some View
     {
         ZStack
@@ -63,9 +62,11 @@ struct CharacterDetailView:View
 }
 
 #if DEBUG
+var viewModel = CharacterDetailViewModel(char: CharacterInfo())
 struct CharacterDetailView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        CharacterDetailView()
+        CharacterDetailView(viewModel: viewModel)
     }
 }
 #endif

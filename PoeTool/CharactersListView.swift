@@ -16,6 +16,7 @@ struct leaguePicker: View
             ForEach(0..<viewModel.leagues.count)
             { index in
                 Text(self.viewModel.leagues[index]).tag(index)
+//                Text("\(index)")
             }
         }.padding(.bottom, 30.0).pickerStyle(SegmentedPickerStyle())
     }
@@ -25,8 +26,8 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-//        NavigationLink(destination:CharacterDetailView())
-//        {
+        NavigationLink(destination:CharacterDetailView(viewModel: CharacterDetailViewModel(char: characterInfo)))
+        {
             HStack
             {
                 Image(characterInfo.className)
@@ -41,7 +42,7 @@ struct characterCell: View
                     Text(characterInfo.league).fontWeight(.light)
                 }
             }
-//        }
+        }
     }
 }
 
@@ -50,7 +51,8 @@ struct CharactersListView: View
     @State private var leagueIndex = 0
     @State private var selected : Int? = 0
     @State var menuOpen: Bool = false
-    @ObservedObject var viewModel = CharactersListViewModel()
+    @ObservedObject var viewModel = CharactersListViewModel(isLogged:PoEData.shared.isLogged)
+    @State var nextViewModel : CharacterDetailViewModel?
     var body : some View
     {
         ZStack
@@ -58,30 +60,35 @@ struct CharactersListView: View
             
             VStack
             {
-                NavigationLink(destination: CharacterDetailView(), tag: 1, selection: $selected){EmptyView()}
-                List(viewModel.charactersInfo,id:\.id)
+                NavigationLink(destination: CharacterDetailView(viewModel: nextViewModel!), tag: 1, selection: $selected){EmptyView()}
+                List
                 {
-                    (chara) in
-                    if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
-                    {
-                        characterCell(characterInfo: chara)
-                        .gesture(TapGesture().onEnded
-                        {dunnowtf in
-                            self.selectCharacter(chara:chara)
-                            self.selected = 1
-                        })
-                    }
-                    else if chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
-                    {
-                        characterCell(characterInfo: chara)
-                        .gesture(TapGesture().onEnded
-                        {dunnowtf in
-                            self.selectCharacter(chara:chara)
-                            self.selected = 1
-                        })
+                    ForEach(viewModel.charactersInfo)
+                    {(chara) in
+                        if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
+                        {
+                            characterCell(characterInfo: chara)
+                            .gesture(TapGesture().onEnded
+                            {dunnowtf in
+                                self.selectCharacter(chara:chara)
+                                self.selected = 1
+                            })
+                        }
+                        else if chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
+                        {
+                            characterCell(characterInfo: chara)
+                            .gesture(TapGesture().onEnded
+                            {dunnowtf in
+                                self.selectCharacter(chara:chara)
+                                self.selected = 1
+                            })
+                        }
                     }
                 }
-                leaguePicker(viewModel: viewModel)
+                if viewModel.charactersInfo.count > 0
+                {
+                    leaguePicker(viewModel: viewModel)
+                }
             }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
         }
@@ -92,8 +99,8 @@ struct CharactersListView: View
     }
     func selectCharacter(chara:CharacterInfo)
     {
-        PoEData.shared.account.selectedCharacter = chara
-        print(chara.id)
+        self.nextViewModel = CharacterDetailViewModel(char: chara)
+        self.selected = 1
     }
     func openMenu() {
         self.menuOpen.toggle()
@@ -103,7 +110,7 @@ struct CharactersListView: View
 struct CharactersListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CharactersListView(viewModel: CharactersListViewModel())
+        CharactersListView(viewModel: CharactersListViewModel(isLogged: true))
     }
 }
 #endif
