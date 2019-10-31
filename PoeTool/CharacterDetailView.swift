@@ -52,10 +52,11 @@ struct CharacterDetailView:View
                             ForEach(0..<13){_ in Divider()}
                         }
                     }.frame(width:30*12,height: 30*5)
-                    
-                    }
-                
-                //.navigationBarItems(leading:Button(action: {}, label: {Text("123")}))
+            }
+            .navigationBarItems(trailing: Button(action:
+            {
+                self.openMenu()
+                }, label: {Image(systemName: "info.circle")}))
             .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
                 }
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
