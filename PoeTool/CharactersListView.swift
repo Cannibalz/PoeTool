@@ -26,8 +26,6 @@ struct characterCell: View
     var characterInfo : CharacterInfo
     var body : some View
     {
-        NavigationLink(destination:CharacterDetailView(viewModel: CharacterDetailViewModel(char: characterInfo)))
-        {
             HStack
             {
                 Image(characterInfo.className)
@@ -42,7 +40,7 @@ struct characterCell: View
                     Text(characterInfo.league).fontWeight(.light)
                 }
             }
-        }
+        
     }
 }
 
@@ -51,8 +49,9 @@ struct CharactersListView: View
     @State private var leagueIndex = 0
     @State private var selected : Int? = 0
     @State var menuOpen: Bool = false
+    @State var selectedChar : CharacterInfo? = nil
+    @State var nextView = CharacterDetailView()
     @ObservedObject var viewModel = CharactersListViewModel(isLogged:PoEData.shared.isLogged)
-    @State var nextViewModel : CharacterDetailViewModel?
     var body : some View
     {
         ZStack
@@ -60,7 +59,7 @@ struct CharactersListView: View
             
             VStack
             {
-                NavigationLink(destination: CharacterDetailView(viewModel: nextViewModel!), tag: 1, selection: $selected){EmptyView()}
+                    NavigationLink(destination: nextView, tag: 1, selection: $selected){EmptyView()}
                 List
                 {
                     ForEach(viewModel.charactersInfo)
@@ -73,6 +72,7 @@ struct CharactersListView: View
                                 self.selectCharacter(chara:chara)
                                 self.selected = 1
                             })
+                        
                         }
                         else if chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
                         {
@@ -91,16 +91,22 @@ struct CharactersListView: View
                 }
             }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-        }
+        }.onAppear(perform: {
+            self.viewModel.inThisView = true
+        })
+        .onDisappear(perform: {
+            self.viewModel.inThisView = false
+        })
         .navigationBarItems(trailing: Button(action:
         {
             self.openMenu()
-        }, label: {Image(systemName: "info.circle")}))
+            }, label: {Image(systemName: "info.circle")}))
     }
     func selectCharacter(chara:CharacterInfo)
     {
-        self.nextViewModel = CharacterDetailViewModel(char: chara)
+        self.nextView.viewModel.selectCharacter = chara
         self.selected = 1
+        
     }
     func openMenu() {
         self.menuOpen.toggle()

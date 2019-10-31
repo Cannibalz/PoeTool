@@ -12,6 +12,7 @@ class CharactersListViewModel : ObservableObject
     @Published var leagueIndex = Int(0)
     @Published var charactersInfo : [CharacterInfo] = [CharacterInfo]()
     @Published var leagues : [String] = [String]()
+    @Published var inThisView = false
     var selectedCharacter : CharacterInfo = CharacterInfo()
     init()
     {
@@ -21,8 +22,9 @@ class CharactersListViewModel : ObservableObject
     {
         print(PoEData.shared.account.Name)
         print(PoEData.shared.account.POESESSID)
-        if isLogged
+        if isLogged && inThisView
         {
+            print(leagues)
             PoEData.shared.createList
             {(characters,set) in
                 self.charactersInfo = characters

@@ -14,6 +14,11 @@ import Combine
 struct CharacterDetailView:View
 {
     @ObservedObject var viewModel : CharacterDetailViewModel
+    init()
+    {
+        self.viewModel = CharacterDetailViewModel()
+        //self.viewModel = CharacterDetailViewModel(char: charInfo)
+    }
     @State var menuOpen = false
     var body: some View
     {
@@ -51,9 +56,15 @@ struct CharacterDetailView:View
                     }
                 
                 //.navigationBarItems(leading:Button(action: {}, label: {Text("123")}))
-            .navigationBarTitle(Text(viewModel.selectCharacter.name).font(.system(size: 10)), displayMode: .inline)
+            .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
                 }
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+        }.onAppear{
+            self.viewModel.getItems()
+        }
+        .onDisappear
+        {
+            
         }
     }
     func openMenu() {
@@ -62,11 +73,11 @@ struct CharacterDetailView:View
 }
 
 #if DEBUG
-var viewModel = CharacterDetailViewModel(char: CharacterInfo())
+var char = CharacterInfo()
 struct CharacterDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CharacterDetailView(viewModel: viewModel)
+        CharacterDetailView()
     }
 }
 #endif

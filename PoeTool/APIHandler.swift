@@ -99,9 +99,9 @@ class PoEData : NSObject
             
         }
     }
-    func getCharactersItems(completion data:@escaping(Bool)->())
+    func getCharactersItems(name:String,completion data:@escaping(Bool)->())
     {
-        let characterName = self.account.selectedCharacter.id
+        let characterName = name
         let accountName = self.account.Name
         let POESESSID = self.account.POESESSID
         let urlString = String( "https://www.pathofexile.com/character-window/get-items?accountName=\(accountName)&character=\(characterName)")
