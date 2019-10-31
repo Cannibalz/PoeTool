@@ -15,10 +15,6 @@ class CharacterDetailViewModel : ObservableObject
     init(char:CharacterInfo)
     {
         self.selectCharacter = char
-//            PoEData.shared.getCharactersItems()
-//            {_ in
-//                self.items = PoEData.shared.account.selectedCharasterItems
-//            }
     }
     init(){}
     func getItems()

@@ -12,6 +12,10 @@ class LoginViewModel: ObservableObject
     var PoEinstance = PoEData.shared
     init()
     {
+        
+    }
+    func viewOnApper()
+    {
         if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID")
         {
             let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")

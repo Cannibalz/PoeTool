@@ -80,6 +80,12 @@ struct LogInView: View {
                 }
             }.navigationBarTitle(Text(""),displayMode: .inline)
         }
+        .onAppear(perform: {
+            self.viewModel.viewOnApper()
+        })
+        .onDisappear(perform: {
+            
+        })
     }
 }
 #if DEBUG

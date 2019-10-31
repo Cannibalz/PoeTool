@@ -65,6 +65,7 @@ struct CharactersListView: View
                     ForEach(viewModel.charactersInfo)
                     {(chara) in
                         if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
+                            || chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
                         {
                             characterCell(characterInfo: chara)
                             .gesture(TapGesture().onEnded
@@ -74,15 +75,6 @@ struct CharactersListView: View
                             })
                         
                         }
-                        else if chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
-                        {
-                            characterCell(characterInfo: chara)
-                            .gesture(TapGesture().onEnded
-                            {dunnowtf in
-                                self.selectCharacter(chara:chara)
-                                self.selected = 1
-                            })
-                        }
                     }
                 }
                 if viewModel.charactersInfo.count > 0
@@ -91,16 +83,14 @@ struct CharactersListView: View
                 }
             }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-        }.onAppear(perform: {
-            self.viewModel.inThisView = true
-        })
-        .onDisappear(perform: {
-            self.viewModel.inThisView = false
-        })
+        }
         .navigationBarItems(trailing: Button(action:
         {
             self.openMenu()
             }, label: {Image(systemName: "info.circle")}))
+        .onAppear(perform: {
+            self.viewModel.viewOnApper()
+        })
     }
     func selectCharacter(chara:CharacterInfo)
     {
