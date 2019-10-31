@@ -12,6 +12,7 @@ class CharacterDetailViewModel : ObservableObject
 {
     @Published var selectCharacter:CharacterInfo?
     @Published var items:[Item] = [Item]()
+    @Published var mainInventory:[Item] = [Item]()
     init(char:CharacterInfo)
     {
         self.selectCharacter = char
@@ -20,9 +21,19 @@ class CharacterDetailViewModel : ObservableObject
     func getItems()
     {
         PoEData.shared.getCharactersItems(name:selectCharacter!.name)
-        {_ in
-            self.items = PoEData.shared.account.selectedCharasterItems
-            print(self.items)
+        {Detail in
+            self.items = Detail.items
+            print(self.items.count)
+            var tempMainInventory = [Item]()
+            self.items.forEach
+            {item in
+                if item.inventoryID == "MainInventory"
+                {
+                    tempMainInventory.append(item)
+                }
+            }
+            self.mainInventory = tempMainInventory
+            print(tempMainInventory.count)
         }
     }
 }

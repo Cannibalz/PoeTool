@@ -44,7 +44,8 @@ struct CharacterDetail: Codable {
         case character = "character"
     }
 }
-struct Item: Codable {
+struct Item: Codable,Identifiable {
+    let uuID = UUID()
     let verified: Bool
     let w: Int
     let h: Int

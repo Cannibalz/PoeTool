@@ -43,15 +43,21 @@ struct CharacterDetailView:View
                     }.frame(width: 170, height: 68)
                     ZStack
                     {
-                        VStack(spacing:30)
+                        VStack(spacing:20)
                         {
                             ForEach(0..<6){_ in Divider()}
                         }
-                        HStack(spacing:30)
+                        HStack(spacing:20)
                         {
                             ForEach(0..<13){_ in Divider()}
                         }
-                    }.frame(width:30*12,height: 30*5)
+                        ForEach(self.viewModel.mainInventory)
+                        {item in
+                            URLImage(URL(string: item.icon)!,processors: [Resize(size: CGSize(width: item.w*20, height: item.h*20), scale: UIScreen.main.scale)],content:{$0.image.resizable().aspectRatio(contentMode: .fill).clipped()}).frame(width:CGFloat(item.w*20),height: CGFloat(item.h*20))
+                                .position(x: CGFloat(item.x*20), y: CGFloat(item.y*20))
+                        }
+                        
+                    }.frame(width:20*12,height: 20*5)
             }
             .navigationBarItems(trailing: Button(action:
             {

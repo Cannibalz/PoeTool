@@ -99,7 +99,7 @@ class PoEData : NSObject
             
         }
     }
-    func getCharactersItems(name:String,completion data:@escaping(Bool)->())
+    func getCharactersItems(name:String,completion items:@escaping(CharacterDetail)->())
     {
         let characterName = name
         let accountName = self.account.Name
@@ -112,14 +112,8 @@ class PoEData : NSObject
             //var characterWithItems : CharacterWithItems
             do
             {
-                print(data)
                 characterDetail = try JSONDecoder().decode(CharacterDetail.self, from: data)
-//                characterWithItems = characterDetail.character as! CharacterWithItems
-//                for item in characterDetail.items
-//                {
-//
-//                }
-                print(characterDetail.items)
+                items(characterDetail)
             }
             catch
             {
