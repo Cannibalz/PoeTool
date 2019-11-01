@@ -26,12 +26,12 @@ struct gridBackgroundView: View
         {
             HStack(spacing: (cellSize-0.5)) { //直線
                 ForEach(0..<w+1) { _ in
-                    Divider().foregroundColor(.white).background(Color.white)
+                    Divider().foregroundColor(.white).background(Color("GridColor"))
                 }
             }
             VStack(spacing: (cellSize-0.5)) { //橫線
                 ForEach(0..<h+1) { _ in
-                    Divider().foregroundColor(.white).background(Color.white)
+                    Divider().foregroundColor(.white).background(Color("GridColor"))
                 }
             }
             
