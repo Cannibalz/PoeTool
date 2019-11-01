@@ -21,6 +21,12 @@ class CharacterDetailViewModel : ObservableObject
         self.selectCharacter = char
     }
     init(){}
+    func clearItmes()
+    {
+        self.mainInventory = [Item]()
+        self.Flask = [Item]()
+        self.Equipment = [Item]()
+    }
     func getItems()
     {
         PoEData.shared.getCharactersItems(name:selectCharacter!.name)

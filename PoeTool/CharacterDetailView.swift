@@ -26,12 +26,12 @@ struct gridBackgroundView: View
         {
             HStack(spacing: (cellSize-0.5)) { //直線
                 ForEach(0..<w+1) { _ in
-                    Divider()
+                    Divider().foregroundColor(.white).background(Color.white)
                 }
             }
             VStack(spacing: (cellSize-0.5)) { //橫線
                 ForEach(0..<h+1) { _ in
-                    Divider()
+                    Divider().foregroundColor(.white).background(Color.white)
                 }
             }
             
@@ -95,11 +95,11 @@ struct CharacterDetailView: View {
             .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
         }.onAppear {
-                    self.viewModel.getItems()
-                }
-                .onDisappear {
-
-                }
+            self.viewModel.getItems()
+        }
+        .onDisappear {
+            self.viewModel.clearItmes()
+        }
     }
 
     func openMenu() {
