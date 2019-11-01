@@ -46,7 +46,7 @@ struct characterCell: View
 
 struct CharactersListView: View
 {
-    @State private var leagueIndex = 0
+    @State private var leagueIndex = 2
     @State private var selected : Int? = 0
     @State var menuOpen: Bool = false
     @State var selectedChar : CharacterInfo? = nil

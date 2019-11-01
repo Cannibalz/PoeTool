@@ -47,8 +47,8 @@ struct CharacterDetail: Codable {
 struct Item: Codable,Identifiable {
     let uuID = UUID()
     let verified: Bool
-    let w: Int
-    let h: Int
+    var w: Int
+    var h: Int
     let ilvl: Int
     let icon: String
     let id: String
@@ -61,8 +61,8 @@ struct Item: Codable,Identifiable {
     let explicitMods: [String]?
     let flavourText: [String]?
     let frameType: Int
-    let x: Int
-    let y: Int
+    var x: Int
+    var y: Int
     let inventoryID: String
     let socketedItems: [SocketedItem]?
     let descrText: String?

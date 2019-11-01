@@ -40,6 +40,7 @@ public struct CoreImageFilterProcessor: ImageProcessing {
 
         let bounds = CGRect(x: 0, y: 0, width: input.width, height: input.height)
         guard let resultImage = self.context.createCGImage(outputImage, from: bounds, format: .RGBA8, colorSpace: input.colorSpace) else {
+            
             print("Failed to render final image with Core Image filter: '\(name)'")
             return input
         }

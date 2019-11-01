@@ -17,6 +17,6 @@ extension CGContext {
 
         let contextSize = size ?? CGSize(width: image.width, height: image.height)
 
-        return CGContext(data: nil, width: Int(contextSize.width), height: Int(contextSize.height), bitsPerComponent: image.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: image.bitmapInfo.rawValue)
+        return CGContext(data: nil, width: Int(contextSize.width), height: Int(contextSize.height), bitsPerComponent: image.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue).rawValue)
     }
 }
