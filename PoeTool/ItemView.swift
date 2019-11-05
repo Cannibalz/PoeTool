@@ -62,6 +62,6 @@ struct itemDetailView: View
 {
     var body:some View
     {
-        Text("1").background(Color.yellow)
+        Text("123\n456\n789").background(Color.yellow)
     }
 }
