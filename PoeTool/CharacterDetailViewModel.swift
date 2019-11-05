@@ -105,6 +105,7 @@ class CharacterDetailViewModel : ObservableObject
             self.mainInventory = tempMainInventory
             self.Flask = tempFlask
             self.Equipment = tempEquipment
+            print(self.Equipment[0])
         }
     }
 }

@@ -9,52 +9,38 @@
 import Foundation
 import SwiftUI
 import Combine
-
-struct gridBackgroundView: View
-{
-    var cellSize : CGFloat
-    var w,h : Int
-    init(cellSize:CGFloat,w:Int,h:Int)
-    {
-        self.cellSize = cellSize
-        self.w = w
-        self.h = h
+enum PressState{
+    case inactive
+    case pressing
+    case dragging(translation:CGSize)
+    
+    var translation: CGSize{
+        switch self{
+        case .inactive, .pressing:
+            return .zero
+        case .dragging(let translation):
+            return translation
+        }
     }
-    var body: some View
-    {
-        ZStack
-        {
-            HStack(spacing: (cellSize-0.5)) { //直線
-                ForEach(0..<w+1) { _ in
-                    Divider().foregroundColor(.white).background(Color("GridColor"))
-                }
-            }
-            VStack(spacing: (cellSize-0.5)) { //橫線
-                ForEach(0..<h+1) { _ in
-                    Divider().foregroundColor(.white).background(Color("GridColor"))
-                }
-            }
+    var isActive: Bool{
+        switch self{
+        case .inactive:
+            return false
+        case .pressing, .dragging:
+            return true
+        }
+    }
+    var isDragging: Bool{
+        switch self{
+        case .inactive, .pressing:
+            return false
+        case .dragging:
+            return true
             
         }
     }
 }
 
-struct itemView: View
-{
-    var item : Item
-    var cellSize : Int
-    init(_ item:Item, cellSize:Int)
-    {
-        self.item = item
-        self.cellSize = cellSize
-    }
-    var body: some View
-    {
-        URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
-        .frame(width: CGFloat(item.w * cellSize), height: CGFloat(item.h * cellSize))
-        .offset(x: CGFloat(item.x*cellSize), y: CGFloat(item.y*cellSize))
-    }
-}
 struct CharacterDetailView: View {
     @ObservedObject var viewModel: CharacterDetailViewModel
     let cellSize : CGFloat = 30
@@ -62,24 +48,41 @@ struct CharacterDetailView: View {
         self.viewModel = CharacterDetailViewModel()
         //self.viewModel = CharacterDetailViewModel(char: charInfo)
     }
-
+    @GestureState var pressState = PressState.inactive
+    @State var viewState = CGSize.zero
     @State var menuOpen = false
+    @State var showDetail = false
+    
     var body: some View {
+        let longPress = LongPressGesture(minimumDuration: 0)
+            .sequenced(before: DragGesture())
+            .updating($pressState){ value, state, _ in
+                self.showDetail = true
+            }.onEnded{ value in
+                self.showDetail = false
+            }
+        return(
         ZStack {
             VStack {
                 ZStack(alignment:.topLeading){
-                    gridBackgroundView(cellSize: 30, w: 8, h: 6)
+                    gridBackgroundView(cellSize: 50, w: 8, h: 6)
                         ForEach(self.viewModel.Equipment){item in
-                            itemView(item,cellSize:30)
+                            itemView(item,cellSize:50).gesture(LongPressGesture(minimumDuration: 1)
+                            .sequenced(before: DragGesture())
+                                .updating(self.$pressState){ value, state, _ in
+                                self.showDetail = true
+                            }.onEnded{ value in
+                                self.showDetail = false
+                            })
                         }
-                    }.frame(width: 30 * 8, height: 30 * 6)
+                    }.frame(width: 50 * 8, height: 50 * 6)
                 
                     ZStack(alignment: .topLeading) {
-                    gridBackgroundView(cellSize: 30, w: 5, h: 2)
+                    gridBackgroundView(cellSize: 50, w: 5, h: 2)
                     ForEach(self.viewModel.Flask){item in
-                            itemView(item,cellSize:30)
+                            itemView(item,cellSize:50)
                         }
-                    }.frame(width: 30 * 5, height: 30 * 2)
+                    }.frame(width: 50 * 5, height: 50 * 2)
                     ZStack(alignment: .topLeading) {
                         gridBackgroundView(cellSize: 30, w: 12, h: 5)
                         ForEach(self.viewModel.mainInventory) {item in
@@ -94,12 +97,13 @@ struct CharacterDetailView: View {
             }))
             .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+            
         }.onAppear {
             self.viewModel.getItems()
         }
         .onDisappear {
             self.viewModel.clearItmes()
-        }
+        })
     }
 
     func openMenu() {

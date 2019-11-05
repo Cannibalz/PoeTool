@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		321C9169B427519A2A2774A1 /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9F38AEA76D98BB521164 /* CharactersListViewModel.swift */; };
 		321C94C6DF0D1E411F9AAA50 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9A57AE38CC2A0900A07B /* CharacterDetailView.swift */; };
-		321C97C3E5D643538706482E /* EquipmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C91CDC271D0B865FDC206 /* EquipmentView.swift */; };
+		321C97C3E5D643538706482E /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C91CDC271D0B865FDC206 /* ItemView.swift */; };
 		321C98BCAC7EF31F843F0F64 /* JsonCodableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */; };
 		321C994ED935E9A48982FF68 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C91AE4A6594CD1645A20C /* CharacterDetailViewModel.swift */; };
 		321C9C37341A737BBC4AD4AF /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C977A3326BC83FA4FFD1B /* CharactersListView.swift */; };
@@ -84,7 +84,7 @@
 
 /* Begin PBXFileReference section */
 		321C91AE4A6594CD1645A20C /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
-		321C91CDC271D0B865FDC206 /* EquipmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquipmentView.swift; sourceTree = "<group>"; };
+		321C91CDC271D0B865FDC206 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		321C977A3326BC83FA4FFD1B /* CharactersListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersListView.swift; sourceTree = "<group>"; };
 		321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonCodableStruct.swift; sourceTree = "<group>"; };
 		321C9A57AE38CC2A0900A07B /* CharacterDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 			children = (
 				321C91AE4A6594CD1645A20C /* CharacterDetailViewModel.swift */,
 				321C9A57AE38CC2A0900A07B /* CharacterDetailView.swift */,
-				321C91CDC271D0B865FDC206 /* EquipmentView.swift */,
+				321C91CDC271D0B865FDC206 /* ItemView.swift */,
 			);
 			name = CharacterDetail;
 			sourceTree = "<group>";
@@ -593,7 +593,7 @@
 				321C994ED935E9A48982FF68 /* CharacterDetailViewModel.swift in Sources */,
 				989415A223681B1200E6BF85 /* CoreDataFetchIndexDescription.swift in Sources */,
 				321C94C6DF0D1E411F9AAA50 /* CharacterDetailView.swift in Sources */,
-				321C97C3E5D643538706482E /* EquipmentView.swift in Sources */,
+				321C97C3E5D643538706482E /* ItemView.swift in Sources */,
 				989415A123681B1200E6BF85 /* CoreDataEntityDescription.swift in Sources */,
 				989415A423681B1200E6BF85 /* DefaultPlaceholder.swift in Sources */,
 				989415AB23681B1200E6BF85 /* ImageProcessorGroup.swift in Sources */,

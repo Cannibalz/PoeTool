@@ -56,7 +56,6 @@ struct CharactersListView: View
     {
         ZStack
         {
-            
             VStack
             {
                     NavigationLink(destination: nextView, tag: 1, selection: $selected){EmptyView()}
@@ -83,6 +82,7 @@ struct CharactersListView: View
                 }
             }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+            
         }
         .navigationBarItems(trailing: Button(action:
         {
