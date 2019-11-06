@@ -168,19 +168,20 @@ struct CharacterDetailView: View
     func createBorder(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData]) -> some View
     {
         let p = preferences.first(where: { $0.viewIdx == self.activeIdx })
-        print("activeIdx:\(self.activeIdx)")
         let aTopLeading = p?.topLeading
         let aBottomTrailing = p?.bottomTrailing
-
+        let x = p?.x
+        let y = p?.y
         let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
         let bottomTrailing = aBottomTrailing != nil ? geometry[aBottomTrailing!] : .zero
+        
 
         return RoundedRectangle(cornerRadius: 15)
             .stroke(lineWidth: 3.0)
             .foregroundColor(Color.green)
             .frame(width: bottomTrailing.x - topLeading.x, height: bottomTrailing.y - topLeading.y)
             .fixedSize()
-            .offset(x: topLeading.x, y: topLeading.y)
+            .offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
             .animation(.easeInOut(duration: 1.0))
     }
 }
