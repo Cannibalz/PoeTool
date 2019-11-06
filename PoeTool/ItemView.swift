@@ -14,7 +14,7 @@ import Combine
 
 struct itemPreferenceData
 {
-    let viewIdx: Int
+    let viewIdx: UUID
     var topLeading: Anchor<CGPoint>?
     var bottomTrailing: Anchor<CGPoint>?
 }
@@ -63,8 +63,8 @@ struct itemView: View
 {
     let item : Item
     let cellSize : Int
-    let index : Int
-    @Binding var actived : Int
+    let index : UUID
+    @Binding var actived : UUID
 //    init(_ item:Item, cellSize:Int)
 //    {
 //        self.item = item
