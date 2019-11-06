@@ -9,49 +9,42 @@
 import Combine
 import SwiftUI
 
-class CharacterDetailViewModel : ObservableObject
-{
-    @Published var selectCharacter:CharacterInfo?
-    @Published var items:[Item] = [Item]()
-    @Published var mainInventory:[Item] = [Item]()
-    @Published var Flask:[Item] = [Item]()
-    @Published var Equipment:[Item] = [Item]()
-    init(char:CharacterInfo)
-    {
+class CharacterDetailViewModel: ObservableObject {
+    @Published var selectCharacter: CharacterInfo?
+    @Published var items: [Item] = [Item]()
+    @Published var mainInventory: [Item] = [Item]()
+    @Published var Flask: [Item] = [Item]()
+    @Published var Equipment: [Item] = [Item]()
+
+    init(char: CharacterInfo) {
         self.selectCharacter = char
     }
-    init(){}
-    func clearItmes()
-    {
+
+    init() {
+    }
+
+    func clearItmes() {
         self.mainInventory = [Item]()
         self.Flask = [Item]()
         self.Equipment = [Item]()
     }
-    func getItems()
-    {
-        PoEData.shared.getCharactersItems(name:selectCharacter!.name)
-        {Detail in
+
+    func getItems() {
+        PoEData.shared.getCharactersItems(name: selectCharacter!.name) { Detail in
             self.items = Detail.items
             print(self.items.count)
             var tempMainInventory = [Item]()
             var tempFlask = [Item]()
             var tempEquipment = [Item]()
-            
-            self.items.forEach
-            {item in
-                if item.inventoryID == "MainInventory"
-                {
+
+            self.items.forEach { item in
+                if item.inventoryID == "MainInventory" {
                     tempMainInventory.append(item)
-                }
-                else if item.inventoryID == "Flask"
-                {
+                } else if item.inventoryID == "Flask" {
                     tempFlask.append(item)
-                }
-                else
-                {
+                } else {
                     var tempItem = item
-                    switch item.inventoryID
-                    {
+                    switch item.inventoryID {
                     case "Helm":
                         tempItem.x = 3
                         tempItem.y = 0

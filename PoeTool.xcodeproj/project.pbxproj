@@ -63,6 +63,7 @@
 		989415BB23681B1200E6BF85 /* CircleActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159723681B1200E6BF85 /* CircleActivityView.swift */; };
 		989415BC23681B1200E6BF85 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159823681B1200E6BF85 /* CircleProgressView.swift */; };
 		98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2EE982356E65F00C7F06C /* LoginViewModel.swift */; };
+		98EA8819237296CF00B1E53A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EA8818237296CF00B1E53A /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		9894159723681B1200E6BF85 /* CircleActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityView.swift; sourceTree = "<group>"; };
 		9894159823681B1200E6BF85 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		98A2EE982356E65F00C7F06C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		98EA8818237296CF00B1E53A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 				9887FC5A23535DB8005D7AD1 /* Preview Content */,
 				9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */,
 				321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */,
+				98EA8818237296CF00B1E53A /* Extensions.swift */,
 			);
 			path = PoeTool;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				989415A223681B1200E6BF85 /* CoreDataFetchIndexDescription.swift in Sources */,
 				321C94C6DF0D1E411F9AAA50 /* CharacterDetailView.swift in Sources */,
 				321C97C3E5D643538706482E /* ItemView.swift in Sources */,
+				98EA8819237296CF00B1E53A /* Extensions.swift in Sources */,
 				989415A123681B1200E6BF85 /* CoreDataEntityDescription.swift in Sources */,
 				989415A423681B1200E6BF85 /* DefaultPlaceholder.swift in Sources */,
 				989415AB23681B1200E6BF85 /* ImageProcessorGroup.swift in Sources */,

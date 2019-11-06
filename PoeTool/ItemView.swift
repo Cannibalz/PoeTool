@@ -12,7 +12,24 @@ import Foundation
 import SwiftUI
 import Combine
 
+struct itemPreferenceData
+{
+    let viewIdx: Int
+    var topLeading: Anchor<CGPoint>?
+    var bottomTrailing: Anchor<CGPoint>?
+}
 
+struct itemPreferenceKey: PreferenceKey
+{
+    typealias Value = [itemPreferenceData]
+
+    static var defaultValue: [itemPreferenceData] = []
+
+    static func reduce(value: inout [itemPreferenceData], nextValue: () -> [itemPreferenceData])
+    {
+        value.append(contentsOf: nextValue())
+    }
+}
 struct gridBackgroundView: View
 {
     var cellSize : CGFloat
@@ -44,18 +61,26 @@ struct gridBackgroundView: View
 
 struct itemView: View
 {
-    var item : Item
-    var cellSize : Int
-    init(_ item:Item, cellSize:Int)
-    {
-        self.item = item
-        self.cellSize = cellSize
-    }
+    let item : Item
+    let cellSize : Int
+    let index : Int
+    @Binding var actived : Int
+//    init(_ item:Item, cellSize:Int)
+//    {
+//        self.item = item
+//        self.cellSize = cellSize
+//    }
     var body: some View
     {
         URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
         .frame(width: CGFloat(item.w * cellSize), height: CGFloat(item.h * cellSize))
         .offset(x: CGFloat(item.x*cellSize), y: CGFloat(item.y*cellSize))
+            
+        .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.index, topLeading: $0)] })
+        .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
+            value[0].bottomTrailing = anchor
+        })
+            .onTapGesture { self.actived = self.index }
     }
 }
 struct itemDetailView: View
