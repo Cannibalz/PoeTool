@@ -8,7 +8,38 @@
 
 import Combine
 import SwiftUI
+struct cellProperty:ExpressibleByStringLiteral,Equatable
+{
+    var id : Int
+    var name : String
+    var w,h : Int
+    let cellSize : CGFloat
+    public static func == (lhs: cellProperty, rhs: cellProperty) -> Bool {
+        return true
+    }
+    public init(stringLiteral value: String)
+    {
+        let components = value.components(separatedBy: ",")
+        if components.count == 4
+        {
+            self.name = components[0]
+            self.w = Int(NumberFormatter().number(from: components[1]) ?? 0)
+            self.h = Int(NumberFormatter().number(from: components[2]) ?? 0)
+            self.cellSize = CGFloat(NumberFormatter().number(from: components[3]) ?? 0)
+        }
+    }
+}
+enum itemCategory : cellProperty{
+    
+    case Equipment = "Equipment,8,6,50"
+    case Flask = "Flask,5,2,50"
+    case mainInventroy = "mainInventroy,12,5,30"
 
+    static var allCases: [itemCategory]
+    {
+        return [.Equipment, .Flask, .mainInventroy]
+    }
+}
 class CharacterDetailViewModel: ObservableObject {
     @Published var selectCharacter: CharacterInfo?
     @Published var items: [Item] = [Item]()
@@ -16,11 +47,6 @@ class CharacterDetailViewModel: ObservableObject {
     @Published var Flask: [Item] = [Item]()
     @Published var Equipment: [Item] = [Item]()
     @Published var catagoryItmes = [String:[Item]]()
-    enum itemCategory : String, CaseIterable {
-        case mainInventroy = "mainInventroy"
-        case Flask = "Flask"
-        case Equipment = "Equipment"
-    }
     init(char: CharacterInfo) {
         self.selectCharacter = char
     }
@@ -100,9 +126,9 @@ class CharacterDetailViewModel: ObservableObject {
                     tempEquipment.append(tempItem)
                 }
             }
+            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue)
             self.catagoryItmes.updateValue(tempMainInventory, forKey: itemCategory.mainInventroy.rawValue)
             self.catagoryItmes.updateValue(tempFlask, forKey:itemCategory.Flask.rawValue)
-            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue)
             //print(self.Equipment[0])
         }
     }

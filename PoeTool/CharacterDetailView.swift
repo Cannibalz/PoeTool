@@ -101,6 +101,17 @@ struct CharacterDetailView: View
             {
                 VStack
                 {
+                    ForEach(0..<1)
+                    { number in
+                        ZStack(alignment: .topLeading)
+                        {
+                            gridBackgroundView(cellSize: 50, w: 8, h: 6)
+                            ForEach(self.viewModel.catagoryItmes[itemCategory.allCases[number].rawValue] ?? [])
+                            { item in
+                                itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
+                            }
+                        }.frame(width: 50 * 8, height: 50 * 6)
+                    }
                     ZStack(alignment: .topLeading)
                     {
                         gridBackgroundView(cellSize: 50, w: 8, h: 6)
