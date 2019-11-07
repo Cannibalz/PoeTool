@@ -15,7 +15,12 @@ class CharacterDetailViewModel: ObservableObject {
     @Published var mainInventory: [Item] = [Item]()
     @Published var Flask: [Item] = [Item]()
     @Published var Equipment: [Item] = [Item]()
-
+    @Published var catagoryItmes = [String:[Item]]()
+    enum itemCategory : String, CaseIterable {
+        case mainInventroy = "mainInventroy"
+        case Flask = "Flask"
+        case Equipment = "Equipment"
+    }
     init(char: CharacterInfo) {
         self.selectCharacter = char
     }
@@ -95,9 +100,9 @@ class CharacterDetailViewModel: ObservableObject {
                     tempEquipment.append(tempItem)
                 }
             }
-            self.mainInventory = tempMainInventory
-            self.Flask = tempFlask
-            self.Equipment = tempEquipment
+            self.catagoryItmes.updateValue(tempMainInventory, forKey: itemCategory.mainInventroy.rawValue)
+            self.catagoryItmes.updateValue(tempFlask, forKey:itemCategory.Flask.rawValue)
+            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue)
             //print(self.Equipment[0])
         }
     }

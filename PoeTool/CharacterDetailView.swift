@@ -106,7 +106,7 @@ struct CharacterDetailView: View
                         gridBackgroundView(cellSize: 50, w: 8, h: 6)
                         ForEach(self.viewModel.Equipment)
                         { item in
-                            itemView(item: item, cellSize: 50, index: item.uuID, actived: self.$activeIdx).gesture(longPressDrag)
+                            itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
                         }
                     }.frame(width: 50 * 8, height: 50 * 6)
                     ZStack(alignment: .topLeading)
@@ -114,7 +114,7 @@ struct CharacterDetailView: View
                         gridBackgroundView(cellSize: 50, w: 5, h: 2)
                         ForEach(self.viewModel.Flask)
                         { item in
-                            itemView(item: item, cellSize: 50, index: item.uuID, actived: self.$activeIdx)
+                            itemView(item: item, cellSize: 50, actived: self.$activeIdx)
                         }
                     }.frame(width: 50 * 5, height: 50 * 2)
                     ZStack(alignment: .topLeading)
@@ -122,7 +122,7 @@ struct CharacterDetailView: View
                         gridBackgroundView(cellSize: 30, w: 12, h: 5)
                         ForEach(self.viewModel.mainInventory)
                         { item in
-                            itemView(item: item, cellSize: 30, index: item.uuID, actived: self.$activeIdx)
+                            itemView(item: item, cellSize: 30, actived: self.$activeIdx)
                         }
                     }.frame(width: 30 * 12, height: 30 * 5)
                 }

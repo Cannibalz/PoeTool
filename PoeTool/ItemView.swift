@@ -65,7 +65,6 @@ struct itemView: View
 {
     let item : Item
     let cellSize : Int
-    let index : UUID
     @Binding var actived : UUID
 //    init(_ item:Item, cellSize:Int)
 //    {
@@ -78,11 +77,11 @@ struct itemView: View
         .frame(width: CGFloat(item.w * cellSize), height: CGFloat(item.h * cellSize))
         .offset(x: CGFloat(item.x*cellSize), y: CGFloat(item.y*cellSize))
             
-            .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.index, topLeading: $0,x: CGFloat(self.item.x*self.cellSize),y:CGFloat(self.item.y*self.cellSize))] })
+            .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.item.uuID, topLeading: $0,x: CGFloat(self.item.x*self.cellSize),y:CGFloat(self.item.y*self.cellSize))] })
         .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
             value[0].bottomTrailing = anchor
         })
-            .onTapGesture { self.actived = self.index }
+            .onTapGesture { self.actived = self.item.uuID }
     }
 }
 struct itemDetailView: View

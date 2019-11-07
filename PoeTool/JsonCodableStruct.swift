@@ -15,26 +15,8 @@ struct CharacterInfo : Codable,Identifiable
         case name = "name", league, className = "class", level
     }
 }
-//class CharacterWithItems : CharacterInfo
-//{
-//    var Equipments : [String:Item]?
-//    var Flasks : [Item]?
-//    var MainInventory : [Item]?
-//    public init(characterDetail:CharacterDetail)
-//    {
-//        super.init(name: characterDetail.character.name, league: characterDetail.character.league, className: characterDetail.character.className, level: characterDetail.character.level)
-//
-//    }
-//
-//    required init(from decoder: Decoder) throws {
-//        do
-//        {
-//            try! super.init(from: decoder)
-//
-//        }
-//    }
-//
-//}
+
+
 struct CharacterDetail: Codable {
     let items: [Item]
     let character: CharacterInfo
