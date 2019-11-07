@@ -193,6 +193,13 @@
 			name = "Settings ";
 			sourceTree = "<group>";
 		};
+		9823539B2373A76A0094C29E /* Tooltips */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tooltips;
+			sourceTree = "<group>";
+		};
 		9841F52223602A0A0003BD01 /* CharactersList */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +241,7 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				9823539B2373A76A0094C29E /* Tooltips */,
 				9894156823681B1200E6BF85 /* URLImage */,
 				9809CE3D2366C7AE00950DF3 /* Settings  */,
 				9841F52323602A4C0003BD01 /* Login */,

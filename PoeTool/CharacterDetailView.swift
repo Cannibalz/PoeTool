@@ -182,7 +182,7 @@ struct CharacterDetailView: View
             .frame(width: bottomTrailing.x - topLeading.x, height: bottomTrailing.y - topLeading.y)
             .fixedSize()
             .offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
-            .animation(.easeInOut(duration: 1.0))
+            .animation(nil)
     }
 }
 
