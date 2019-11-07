@@ -141,10 +141,6 @@ class CharacterDetailViewModel: ObservableObject
             self.catagoryItems.append(tempEquipment)
             self.catagoryItems.append(tempFlask)
             self.catagoryItems.append(tempMainInventory)
-//            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue.name)
-//            self.catagoryItmes.updateValue(tempMainInventory, forKey: itemCategory.mainInventroy.rawValue.name)
-//            self.catagoryItmes.updateValue(tempFlask, forKey: itemCategory.Flask.rawValue.name)
-            // print(self.Equipment[0])
         }
     }
 }

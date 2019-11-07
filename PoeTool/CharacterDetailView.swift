@@ -105,7 +105,7 @@ struct CharacterDetailView: View
                 {
                     if self.viewModel.catagoryItems.count > 0
                     {
-                        ForEach(0 ..< self.viewModel.catagoryItems.count)
+                        ForEach(0 ..< itemCategory.allCases.count)
                         { number in
                             ZStack(alignment: .topLeading)
                             {
@@ -118,31 +118,6 @@ struct CharacterDetailView: View
                             .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
                         }
                     }
-
-//                    ZStack(alignment: .topLeading)
-//                    {
-//                        gridBackgroundView(cellSize: 50, w: 8, h: 6)
-//                        ForEach(self.viewModel.Equipment)
-//                        { item in
-//                            itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
-//                        }
-//                    }.frame(width: 50 * 8, height: 50 * 6)
-//                    ZStack(alignment: .topLeading)
-//                    {
-//                        gridBackgroundView(cellSize: 50, w: 5, h: 2)
-//                        ForEach(self.viewModel.Flask)
-//                        { item in
-//                            itemView(item: item, cellSize: 50, actived: self.$activeIdx)
-//                        }
-//                    }.frame(width: 50 * 5, height: 50 * 2)
-//                    ZStack(alignment: .topLeading)
-//                    {
-//                        gridBackgroundView(cellSize: 30, w: 12, h: 5)
-//                        ForEach(self.viewModel.mainInventory)
-//                        { item in
-//                            itemView(item: item, cellSize: 30, actived: self.$activeIdx)
-//                        }
-//                    }.frame(width: 30 * 12, height: 30 * 5)
                 }
                 .backgroundPreferenceValue(itemPreferenceKey.self)
                 { preferences in
