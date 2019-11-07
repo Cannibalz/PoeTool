@@ -8,29 +8,27 @@
 
 import Combine
 import SwiftUI
-struct cellProperty:ExpressibleByStringLiteral,Equatable
+struct cellProperty: ExpressibleByStringLiteral, Equatable
 {
-    var id : Int
-    var name : String
-    var w,h : Int
-    let cellSize : CGFloat
-    public static func == (lhs: cellProperty, rhs: cellProperty) -> Bool {
+    let name: String
+    let w, h: CGFloat
+    let cellSize: CGFloat
+    public static func == (lhs: cellProperty, rhs: cellProperty) -> Bool
+    {
         return true
     }
     public init(stringLiteral value: String)
     {
         let components = value.components(separatedBy: ",")
-        if components.count == 4
-        {
-            self.name = components[0]
-            self.w = Int(NumberFormatter().number(from: components[1]) ?? 0)
-            self.h = Int(NumberFormatter().number(from: components[2]) ?? 0)
-            self.cellSize = CGFloat(NumberFormatter().number(from: components[3]) ?? 0)
-        }
+        name = components[0]
+        w = CGFloat(truncating: NumberFormatter().number(from: components[1]) ?? 0)
+        h = CGFloat(truncating: NumberFormatter().number(from: components[2]) ?? 0)
+        cellSize = CGFloat(truncating: NumberFormatter().number(from: components[3]) ?? 0)
     }
 }
-enum itemCategory : cellProperty{
-    
+
+enum itemCategory: cellProperty
+{
     case Equipment = "Equipment,8,6,50"
     case Flask = "Flask,5,2,50"
     case mainInventroy = "mainInventroy,12,5,30"
@@ -40,42 +38,56 @@ enum itemCategory : cellProperty{
         return [.Equipment, .Flask, .mainInventroy]
     }
 }
-class CharacterDetailViewModel: ObservableObject {
+
+class CharacterDetailViewModel: ObservableObject
+{
     @Published var selectCharacter: CharacterInfo?
     @Published var items: [Item] = [Item]()
     @Published var mainInventory: [Item] = [Item]()
     @Published var Flask: [Item] = [Item]()
     @Published var Equipment: [Item] = [Item]()
-    @Published var catagoryItmes = [String:[Item]]()
-    init(char: CharacterInfo) {
-        self.selectCharacter = char
+    @Published var catagoryItems = [[Item]]()
+    init(char: CharacterInfo)
+    {
+        selectCharacter = char
     }
 
-    init() {
+    init()
+    {
     }
 
-    func clearItmes() {
-        self.mainInventory = [Item]()
-        self.Flask = [Item]()
-        self.Equipment = [Item]()
+    func clearItmes()
+    {
+        mainInventory = [Item]()
+        Flask = [Item]()
+        Equipment = [Item]()
     }
 
-    func getItems() {
-        PoEData.shared.getCharactersItems(name: selectCharacter!.name) { Detail in
+    func getItems()
+    {
+        PoEData.shared.getCharactersItems(name: selectCharacter!.name)
+        { Detail in
             self.items = Detail.items
             print(self.items.count)
             var tempMainInventory = [Item]()
             var tempFlask = [Item]()
             var tempEquipment = [Item]()
 
-            self.items.forEach { item in
-                if item.inventoryID == "MainInventory" {
+            self.items.forEach
+            { item in
+                if item.inventoryID == "MainInventory"
+                {
                     tempMainInventory.append(item)
-                } else if item.inventoryID == "Flask" {
+                }
+                else if item.inventoryID == "Flask"
+                {
                     tempFlask.append(item)
-                } else {
+                }
+                else
+                {
                     var tempItem = item
-                    switch item.inventoryID {
+                    switch item.inventoryID
+                    {
                     case "Helm":
                         tempItem.x = 3
                         tempItem.y = 0
@@ -126,10 +138,13 @@ class CharacterDetailViewModel: ObservableObject {
                     tempEquipment.append(tempItem)
                 }
             }
-            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue)
-            self.catagoryItmes.updateValue(tempMainInventory, forKey: itemCategory.mainInventroy.rawValue)
-            self.catagoryItmes.updateValue(tempFlask, forKey:itemCategory.Flask.rawValue)
-            //print(self.Equipment[0])
+            self.catagoryItems.append(tempEquipment)
+            self.catagoryItems.append(tempFlask)
+            self.catagoryItems.append(tempMainInventory)
+//            self.catagoryItmes.updateValue(tempEquipment, forKey: itemCategory.Equipment.rawValue.name)
+//            self.catagoryItmes.updateValue(tempMainInventory, forKey: itemCategory.mainInventroy.rawValue.name)
+//            self.catagoryItmes.updateValue(tempFlask, forKey: itemCategory.Flask.rawValue.name)
+            // print(self.Equipment[0])
         }
     }
 }

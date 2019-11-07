@@ -49,10 +49,12 @@ enum PressState
         }
     }
 }
+
 class Index
 {
     static var num = 0
 }
+
 struct CharacterDetailView: View
 {
     @ObservedObject var viewModel: CharacterDetailViewModel
@@ -101,41 +103,46 @@ struct CharacterDetailView: View
             {
                 VStack
                 {
-                    ForEach(0..<1)
-                    { number in
-                        ZStack(alignment: .topLeading)
-                        {
-                            gridBackgroundView(cellSize: 50, w: 8, h: 6)
-                            ForEach(self.viewModel.catagoryItmes[itemCategory.allCases[number].rawValue] ?? [])
-                            { item in
-                                itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
+                    if self.viewModel.catagoryItems.count > 0
+                    {
+                        ForEach(0 ..< self.viewModel.catagoryItems.count)
+                        { number in
+                            ZStack(alignment: .topLeading)
+                            {
+                                gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
+                                ForEach(self.viewModel.catagoryItems[number])
+                                { item in
+                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx).gesture(longPressDrag)
+                                }
                             }
-                        }.frame(width: 50 * 8, height: 50 * 6)
+                            .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
+                        }
                     }
-                    ZStack(alignment: .topLeading)
-                    {
-                        gridBackgroundView(cellSize: 50, w: 8, h: 6)
-                        ForEach(self.viewModel.Equipment)
-                        { item in
-                            itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
-                        }
-                    }.frame(width: 50 * 8, height: 50 * 6)
-                    ZStack(alignment: .topLeading)
-                    {
-                        gridBackgroundView(cellSize: 50, w: 5, h: 2)
-                        ForEach(self.viewModel.Flask)
-                        { item in
-                            itemView(item: item, cellSize: 50, actived: self.$activeIdx)
-                        }
-                    }.frame(width: 50 * 5, height: 50 * 2)
-                    ZStack(alignment: .topLeading)
-                    {
-                        gridBackgroundView(cellSize: 30, w: 12, h: 5)
-                        ForEach(self.viewModel.mainInventory)
-                        { item in
-                            itemView(item: item, cellSize: 30, actived: self.$activeIdx)
-                        }
-                    }.frame(width: 30 * 12, height: 30 * 5)
+
+//                    ZStack(alignment: .topLeading)
+//                    {
+//                        gridBackgroundView(cellSize: 50, w: 8, h: 6)
+//                        ForEach(self.viewModel.Equipment)
+//                        { item in
+//                            itemView(item: item, cellSize: 50, actived: self.$activeIdx).gesture(longPressDrag)
+//                        }
+//                    }.frame(width: 50 * 8, height: 50 * 6)
+//                    ZStack(alignment: .topLeading)
+//                    {
+//                        gridBackgroundView(cellSize: 50, w: 5, h: 2)
+//                        ForEach(self.viewModel.Flask)
+//                        { item in
+//                            itemView(item: item, cellSize: 50, actived: self.$activeIdx)
+//                        }
+//                    }.frame(width: 50 * 5, height: 50 * 2)
+//                    ZStack(alignment: .topLeading)
+//                    {
+//                        gridBackgroundView(cellSize: 30, w: 12, h: 5)
+//                        ForEach(self.viewModel.mainInventory)
+//                        { item in
+//                            itemView(item: item, cellSize: 30, actived: self.$activeIdx)
+//                        }
+//                    }.frame(width: 30 * 12, height: 30 * 5)
                 }
                 .backgroundPreferenceValue(itemPreferenceKey.self)
                 { preferences in
@@ -185,7 +192,6 @@ struct CharacterDetailView: View
         let y = p?.y
         let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
         let bottomTrailing = aBottomTrailing != nil ? geometry[aBottomTrailing!] : .zero
-        
 
         return RoundedRectangle(cornerRadius: 15)
             .stroke(lineWidth: 3.0)
