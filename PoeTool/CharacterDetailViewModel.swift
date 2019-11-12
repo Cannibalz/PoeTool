@@ -43,10 +43,8 @@ class CharacterDetailViewModel: ObservableObject
 {
     @Published var selectCharacter: CharacterInfo?
     @Published var items: [Item] = [Item]()
-    @Published var mainInventory: [Item] = [Item]()
-    @Published var Flask: [Item] = [Item]()
-    @Published var Equipment: [Item] = [Item]()
     @Published var catagoryItems = [[Item]]()
+    @Published var dragState = PressState.inactive
     init(char: CharacterInfo)
     {
         selectCharacter = char
@@ -58,9 +56,7 @@ class CharacterDetailViewModel: ObservableObject
 
     func clearItmes()
     {
-        mainInventory = [Item]()
-        Flask = [Item]()
-        Equipment = [Item]()
+        catagoryItems = [[Item]]()
     }
 
     func getItems()
@@ -142,5 +138,9 @@ class CharacterDetailViewModel: ObservableObject
             self.catagoryItems.append(tempFlask)
             self.catagoryItems.append(tempMainInventory)
         }
+    }
+    func setDragGesture()->LongPressGesture
+    {
+        return LongPressGesture()
     }
 }

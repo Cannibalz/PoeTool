@@ -34,12 +34,6 @@ struct gridBackgroundView: View
 {
     var cellSize: CGFloat
     var w, h: CGFloat
-//    init(cellSize:Int,w:Int,h:Int)
-//    {
-//        self.cellSize = cellSize
-//        self.w = w
-//        self.h = h
-//    }
     var body: some View
     {
         ZStack
@@ -77,16 +71,14 @@ struct itemView: View
         URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
             .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
             .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
-
             .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.item.uuID, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
             .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                 value[0].bottomTrailing = anchor
             })
-            //.onTapGesture { self.actived = self.item.uuID }
+            .onTapGesture { self.actived = self.item.uuID }
             
     }
 }
-
 struct itemDetailView: View
 {
     var body: some View
