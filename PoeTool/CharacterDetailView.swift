@@ -24,7 +24,7 @@ struct CharacterDetailView: View
     @GestureState var dragState = PressState.inactive
     @State var viewState: CGSize?
     @State var menuOpen = false
-    @State var showDetail = false
+    @State var showDetail = true
     @State private var activeIdx: UUID = UUID()
     var TTgesture = ToolTipGesture()
 
@@ -69,7 +69,7 @@ struct CharacterDetailView: View
                                 gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
                                 ForEach(self.viewModel.catagoryItems[number])
                                 { item in
-                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx)//.gesture(longPressDrag)
+                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                                 }
                             }
                             .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
@@ -80,13 +80,15 @@ struct CharacterDetailView: View
                 { preferences in
                     GeometryReader
                     { geometry in
-                        ZStack(alignment: .topLeading)
+                        if !self.showDetail
                         {
                             self.createBorder(geometry, preferences)
-                            itemToolTipView().offset(
-                            x: self.dragState.translation?.width ?? 0,
-                            y: self.dragState.translation?.height ?? 0).frame(alignment: .topLeading).position(x: 125, y: 50)
-                        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        }
+                        else if self.showDetail
+                        {
+                            EmptyView()
+                        }
+                        
                     }
                 }
                 .navigationBarItems(trailing: Button(action: {
@@ -129,6 +131,7 @@ struct CharacterDetailView: View
         let bottomTrailing = aBottomTrailing != nil ? geometry[aBottomTrailing!] : .zero
 
         return ZStack(alignment: .topLeading){
+            itemToolTipView().offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.yellow.offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
             RoundedRectangle(cornerRadius: 15)
             .stroke(lineWidth: 3.0)
             .foregroundColor(Color.green)
@@ -136,8 +139,7 @@ struct CharacterDetailView: View
             .fixedSize()
             .offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
             .animation(nil)
-            itemToolTipView().offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
-        }
+        }.frame(alignment: .topLeading)
     }
 }
 

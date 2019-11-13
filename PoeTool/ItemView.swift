@@ -61,6 +61,7 @@ struct itemView: View
     let item: Item
     let cellSize: CGFloat
     @Binding var actived: UUID
+    @Binding var isShowing: Bool
 //    init(_ item:Item, cellSize:Int)
 //    {
 //        self.item = item
@@ -76,6 +77,10 @@ struct itemView: View
                 value[0].bottomTrailing = anchor
 
             })
-            .onTapGesture { self.actived = self.item.uuID }
+            .onTapGesture
+            {
+                self.actived = self.item.uuID
+                self.isShowing = !self.isShowing
+            }
     }
 }
