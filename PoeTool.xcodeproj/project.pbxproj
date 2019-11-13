@@ -26,6 +26,8 @@
 		9887FC5F23535DB8005D7AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */; };
 		9887FC6A23535DB8005D7AD1 /* PoeToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC6923535DB8005D7AD1 /* PoeToolTests.swift */; };
 		9887FC7523535DB8005D7AD1 /* PoeToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC7423535DB8005D7AD1 /* PoeToolUITests.swift */; };
+		98884D24237A9ADE004B61A3 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98884D23237A9ADE004B61A3 /* ToolTipView.swift */; };
+		98884D26237A9AED004B61A3 /* ToolTipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98884D25237A9AED004B61A3 /* ToolTipViewModel.swift */; };
 		9894159923681B1200E6BF85 /* URLImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156923681B1200E6BF85 /* URLImageService.swift */; };
 		9894159A23681B1200E6BF85 /* FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156B23681B1200E6BF85 /* FileIndex.swift */; };
 		9894159B23681B1200E6BF85 /* RemoteFileCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156C23681B1200E6BF85 /* RemoteFileCacheService.swift */; };
@@ -109,6 +111,8 @@
 		9887FC7023535DB8005D7AD1 /* PoeToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoeToolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9887FC7423535DB8005D7AD1 /* PoeToolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoeToolUITests.swift; sourceTree = "<group>"; };
 		9887FC7623535DB8005D7AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98884D23237A9ADE004B61A3 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
+		98884D25237A9AED004B61A3 /* ToolTipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipViewModel.swift; sourceTree = "<group>"; };
 		9894156923681B1200E6BF85 /* URLImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImageService.swift; sourceTree = "<group>"; };
 		9894156B23681B1200E6BF85 /* FileIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileIndex.swift; sourceTree = "<group>"; };
 		9894156C23681B1200E6BF85 /* RemoteFileCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteFileCacheService.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 		9823539B2373A76A0094C29E /* Tooltips */ = {
 			isa = PBXGroup;
 			children = (
+				98884D23237A9ADE004B61A3 /* ToolTipView.swift */,
+				98884D25237A9AED004B61A3 /* ToolTipViewModel.swift */,
 			);
 			path = Tooltips;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				989415B623681B1200E6BF85 /* ImageProxy.swift in Sources */,
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
 				989415AE23681B1200E6BF85 /* ImageLoaderService.swift in Sources */,
+				98884D26237A9AED004B61A3 /* ToolTipViewModel.swift in Sources */,
 				989415B323681B1200E6BF85 /* ImageLoaderObserver.swift in Sources */,
 				9887FC5723535DB6005D7AD1 /* LogInView.swift in Sources */,
 				989415AD23681B1200E6BF85 /* ImageLoadHandler.swift in Sources */,
@@ -580,6 +587,7 @@
 				9894159923681B1200E6BF85 /* URLImageService.swift in Sources */,
 				9894159F23681B1200E6BF85 /* Version.swift in Sources */,
 				989415B723681B1200E6BF85 /* DownloadProgressWrapper.swift in Sources */,
+				98884D24237A9ADE004B61A3 /* ToolTipView.swift in Sources */,
 				989415B023681B1200E6BF85 /* LoadingState.swift in Sources */,
 				989415BC23681B1200E6BF85 /* CircleProgressView.swift in Sources */,
 				989415B223681B1200E6BF85 /* URLSessionDownloadDelegateWrapper.swift in Sources */,

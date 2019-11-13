@@ -69,20 +69,13 @@ struct itemView: View
     var body: some View
     {
         URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
-            .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
             .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
+            .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
             .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.item.uuID, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
             .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                 value[0].bottomTrailing = anchor
+
             })
             .onTapGesture { self.actived = self.item.uuID }
-            
-    }
-}
-struct itemDetailView: View
-{
-    var body: some View
-    {
-        Text("123\n456\n789").background(Color.yellow)
     }
 }

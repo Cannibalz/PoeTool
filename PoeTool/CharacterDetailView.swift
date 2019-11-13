@@ -10,51 +10,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-enum PressState
-{
-    case inactive
-    case pressing
-    case dragging(translation: CGSize)
-
-    var translation: CGSize?
-    {
-        switch self
-        {
-        case .inactive, .pressing:
-            return nil
-        case let .dragging(translation):
-            return translation
-        }
-    }
-
-    var isActive: Bool
-    {
-        switch self
-        {
-        case .inactive:
-            return false
-        case .pressing, .dragging:
-            return true
-        }
-    }
-
-    var isDragging: Bool
-    {
-        switch self
-        {
-        case .inactive, .pressing:
-            return false
-        case .dragging:
-            return true
-        }
-    }
-}
-
-class Index
-{
-    static var num = 0
-}
-
 struct CharacterDetailView: View
 {
     @ObservedObject var viewModel: CharacterDetailViewModel
@@ -71,6 +26,8 @@ struct CharacterDetailView: View
     @State var menuOpen = false
     @State var showDetail = false
     @State private var activeIdx: UUID = UUID()
+    var TTgesture = ToolTipGesture()
+
     var body: some View
     {
         let minimumLongPressDuration = 0.1
@@ -112,7 +69,7 @@ struct CharacterDetailView: View
                                 gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
                                 ForEach(self.viewModel.catagoryItems[number])
                                 { item in
-                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx).gesture(longPressDrag)
+                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx)//.gesture(longPressDrag)
                                 }
                             }
                             .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
@@ -123,9 +80,12 @@ struct CharacterDetailView: View
                 { preferences in
                     GeometryReader
                     { geometry in
-                        ZStack
+                        ZStack(alignment: .topLeading)
                         {
                             self.createBorder(geometry, preferences)
+                            itemToolTipView().offset(
+                            x: self.dragState.translation?.width ?? 0,
+                            y: self.dragState.translation?.height ?? 0).frame(alignment: .topLeading).position(x: 125, y: 50)
                         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     }
                 }
@@ -136,12 +96,12 @@ struct CharacterDetailView: View
                 }))
                 .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
                 SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-                GeometryReader
-                { _ in
-                    itemDetailView().offset(
-                        x: self.dragState.translation?.width ?? 640,
-                        y: self.dragState.translation?.height ?? 640).frame(alignment: .topLeading).position(x: 125, y: 50)
-                }.frame(alignment: .center)
+//                GeometryReader
+//                { _ in
+//                    itemToolTipView().offset(
+//                        x: self.dragState.translation?.width ?? 640,
+//                        y: self.dragState.translation?.height ?? 640).frame(alignment: .topLeading).position(x: 125, y: 50)
+//                }.frame(alignment: .center)
             }
             .onAppear
             {
@@ -168,13 +128,16 @@ struct CharacterDetailView: View
         let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
         let bottomTrailing = aBottomTrailing != nil ? geometry[aBottomTrailing!] : .zero
 
-        return RoundedRectangle(cornerRadius: 15)
+        return ZStack(alignment: .topLeading){
+            RoundedRectangle(cornerRadius: 15)
             .stroke(lineWidth: 3.0)
             .foregroundColor(Color.green)
             .frame(width: bottomTrailing.x - topLeading.x, height: bottomTrailing.y - topLeading.y)
             .fixedSize()
             .offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
             .animation(nil)
+            itemToolTipView().offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
+        }
     }
 }
 
