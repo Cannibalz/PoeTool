@@ -78,8 +78,8 @@ struct itemView: View
             .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
             .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                 value[0].bottomTrailing = anchor
-
             })
+                .background(Color.blue.opacity(0.1).offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize))
             if item.stackSize != 1 && item.stackSize != nil
             {
                 Text("\(item.stackSize!)").font(.system(size: 10)).bold()

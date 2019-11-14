@@ -150,6 +150,6 @@ class CharacterDetailViewModel: ObservableObject
         let x = p?.x
         let y = p?.y
         let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        return itemToolTipView(item: p!.item).offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.luminanceToAlpha(Color.gray)().offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
+        return itemToolTipView(item: p!.item).offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.black.opacity(0.5).offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
     }
 }

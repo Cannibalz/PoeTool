@@ -28,8 +28,8 @@ struct itemToolTipView: View
             ForEach(item.explicitMods?.indices ?? 0..<0)
             { i in
                 Text(self.item.explicitMods![i]).foregroundColor(Color.blue)
-            }
+            }.font(.system(size: 16))
             
-        }.foregroundColor(Color("GridColor")).frame(width: 400, alignment: .center)
+        }.foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)
     }
 }
