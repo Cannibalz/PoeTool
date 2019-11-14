@@ -20,14 +20,12 @@ struct CharacterDetailView: View
         viewModel = CharacterDetailViewModel()
         // self.viewModel = CharacterDetailViewModel(char: charInfo)
     }
-
     @GestureState var dragState = PressState.inactive
     @State var viewState: CGSize?
     @State var menuOpen = false
     @State var showDetail = true
     @State private var activeIdx: UUID = UUID()
     var TTgesture = ToolTipGesture()
-
     var body: some View
     {
         let minimumLongPressDuration = 0.1
@@ -76,21 +74,6 @@ struct CharacterDetailView: View
                         }
                     }
                 }
-                .backgroundPreferenceValue(itemPreferenceKey.self)
-                { preferences in
-                    GeometryReader
-                    { geometry in
-                        if !self.showDetail
-                        {
-                            self.createBorder(geometry, preferences)
-                        }
-                        else if self.showDetail
-                        {
-                            EmptyView()
-                        }
-                        
-                    }
-                }
                 .navigationBarItems(trailing: Button(action: {
                     self.openMenu()
                     }, label: {
@@ -98,13 +81,22 @@ struct CharacterDetailView: View
                 }))
                 .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
                 SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-//                GeometryReader
-//                { _ in
-//                    itemToolTipView().offset(
-//                        x: self.dragState.translation?.width ?? 640,
-//                        y: self.dragState.translation?.height ?? 640).frame(alignment: .topLeading).position(x: 125, y: 50)
-//                }.frame(alignment: .center)
             }
+            .overlayPreferenceValue(itemPreferenceKey.self)
+            { preferences in
+                GeometryReader
+                { geometry in
+                    if !self.showDetail
+                    {
+                        self.viewModel.createBorder(geometry, preferences,activeIdx: self.activeIdx)
+                    }
+                    else if self.showDetail
+                    {
+                        EmptyView()
+                    }
+                }
+            }
+        
             .onAppear
             {
                 self.viewModel.getItems()
@@ -114,33 +106,11 @@ struct CharacterDetailView: View
                 self.viewModel.clearItmes()
         })
     }
-
     func openMenu()
     {
         menuOpen.toggle()
     }
 
-    func createBorder(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData]) -> some View
-    {
-        let p = preferences.first(where: { $0.viewIdx == self.activeIdx })
-        let aTopLeading = p?.topLeading
-        let aBottomTrailing = p?.bottomTrailing
-        let x = p?.x
-        let y = p?.y
-        let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        let bottomTrailing = aBottomTrailing != nil ? geometry[aBottomTrailing!] : .zero
-
-        return ZStack(alignment: .topLeading){
-            itemToolTipView().offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.yellow.offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
-            RoundedRectangle(cornerRadius: 15)
-            .stroke(lineWidth: 3.0)
-            .foregroundColor(Color.green)
-            .frame(width: bottomTrailing.x - topLeading.x, height: bottomTrailing.y - topLeading.y)
-            .fixedSize()
-            .offset(x: topLeading.x + (x ?? 0), y: topLeading.y + (y ?? 0))
-            .animation(nil)
-        }.frame(alignment: .topLeading)
-    }
 }
 
 #if DEBUG

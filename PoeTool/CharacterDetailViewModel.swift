@@ -143,4 +143,13 @@ class CharacterDetailViewModel: ObservableObject
     {
         return LongPressGesture()
     }
+    func createBorder(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData],activeIdx : UUID) -> some View
+    {
+        let p = preferences.first(where: { $0.viewIdx == activeIdx })
+        let aTopLeading = p?.topLeading
+        let x = p?.x
+        let y = p?.y
+        let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
+        return itemToolTipView().offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.gray.offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
+    }
 }

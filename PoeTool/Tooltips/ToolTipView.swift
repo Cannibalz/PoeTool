@@ -12,8 +12,9 @@ import Combine
 
 struct itemToolTipView: View
 {
+    //let item : Item
     var body: some View
     {
-        Text("123\n456\n789")
+        Text("123\n456\n789").foregroundColor(Color("GridColor"))
     }
 }
