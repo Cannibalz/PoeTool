@@ -50,6 +50,8 @@ struct Item: Codable,Identifiable {
     let descrText: String?
     let utilityMods: [String]?
     let shaper: Bool?
+    let stackSize : Int?
+    let maxStackSize: Int?
     let implicitMods: [String]?
     let corrupted: Bool?
     let enchantMods: [String]?
@@ -82,6 +84,8 @@ struct Item: Codable,Identifiable {
         case corrupted = "corrupted"
         case enchantMods = "enchantMods"
         case craftedMods = "craftedMods"
+        case stackSize = "stackSize"
+        case maxStackSize = "maxStackSize"
     }
 }
 

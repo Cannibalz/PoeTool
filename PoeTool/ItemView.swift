@@ -70,7 +70,9 @@ struct itemView: View
 //    }
     var body: some View
     {
-        URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
+        ZStack(alignment:.topLeading)
+        {
+            URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
             .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
             .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
             .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
@@ -78,11 +80,16 @@ struct itemView: View
                 value[0].bottomTrailing = anchor
 
             })
+            if item.stackSize != 1 && item.stackSize != nil
+            {
+                Text("\(item.stackSize!)").font(.system(size: 10)).bold()
+                .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
+            }
+        }
             .onTapGesture
         {
             self.actived = self.item.uuID
             self.isShowing = !self.isShowing
         }
-        
     }
 }
