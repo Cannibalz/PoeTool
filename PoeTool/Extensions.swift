@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 extension Int
 {
     mutating func returnAndPlusOne()->Int
@@ -15,5 +15,27 @@ extension Int
         let temp = self
         self += 1
         return temp
+    }
+}
+
+extension Color
+{
+    static func frameTypeColor(_ frameType : Int)->Color
+    {
+        switch frameType
+        {
+            case 0:
+                return Color.white
+            case 1:
+                return Color.blue
+            case 2:
+                return Color.yellow
+            case 3:
+                return Color.orange
+            case 4:
+                return Color.green
+            default:
+                return Color.white
+        }
     }
 }

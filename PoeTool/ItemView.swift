@@ -11,7 +11,7 @@ import SwiftUI
 
 struct itemPreferenceData
 {
-    let viewIdx: UUID
+    let item : Item
     var topLeading: Anchor<CGPoint>?
     var bottomTrailing: Anchor<CGPoint>?
     var x: CGFloat
@@ -73,7 +73,7 @@ struct itemView: View
         URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
             .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
             .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
-            .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(viewIdx: self.item.uuID, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
+            .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
             .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                 value[0].bottomTrailing = anchor
 

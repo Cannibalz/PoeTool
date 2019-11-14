@@ -14,13 +14,12 @@ struct CharacterDetailView: View
 {
     @ObservedObject var viewModel: CharacterDetailViewModel
     let cellSize: CGFloat = 30
-
     init()
     {
         viewModel = CharacterDetailViewModel()
         // self.viewModel = CharacterDetailViewModel(char: charInfo)
     }
-    @GestureState var dragState = PressState.inactive
+    //@GestureState var dragState = PressState.inactive
     @State var viewState: CGSize?
     @State var menuOpen = false
     @State var showDetail = true
@@ -28,32 +27,7 @@ struct CharacterDetailView: View
     var TTgesture = ToolTipGesture()
     var body: some View
     {
-        let minimumLongPressDuration = 0.1
-        let longPressDrag = LongPressGesture(minimumDuration: minimumLongPressDuration)
-            .sequenced(before: DragGesture())
-            .updating($dragState)
-        { value, state, _ in
-            switch value
-            {
-            // Long press begins.
-            case .first(true):
-                state = .pressing
-            // Long press confirmed, dragging may begin.
-            case .second(true, let drag):
-                state = .dragging(translation: drag?.translation ?? CGSize.zero)
-            // Dragging ended or the long press cancelled.
-            default:
-                state = .inactive
-            }
-        }
-        .onEnded
-        { value in
-            guard case .second(true, let drag?) = value else
-            {
-                return
-            }
-        }
-        return (
+     
             ZStack(alignment: .topLeading)
             {
                 VStack
@@ -104,7 +78,8 @@ struct CharacterDetailView: View
             .onDisappear
             {
                 self.viewModel.clearItmes()
-        })
+                self.showDetail = true
+            }
     }
     func openMenu()
     {

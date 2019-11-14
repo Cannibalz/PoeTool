@@ -10,11 +10,26 @@ import Foundation
 import SwiftUI
 import Combine
 
+
+
 struct itemToolTipView: View
 {
-    //let item : Item
+    let item : Item
     var body: some View
     {
-        Text("123\n456\n789").foregroundColor(Color("GridColor"))
+        VStack
+        {
+            VStack
+            {
+                Text(item.name)
+                Text(item.typeLine)
+            }.foregroundColor(Color.frameTypeColor(item.frameType))
+            Divider().foregroundColor(Color("GridColor")).colorInvert()
+            ForEach(item.explicitMods?.indices ?? 0..<0)
+            { i in
+                Text(self.item.explicitMods![i]).foregroundColor(Color.blue)
+            }
+            
+        }.foregroundColor(Color("GridColor")).frame(width: 400, alignment: .center)
     }
 }
