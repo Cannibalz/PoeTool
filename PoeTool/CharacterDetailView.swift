@@ -14,11 +14,13 @@ struct CharacterDetailView: View
 {
     @ObservedObject var viewModel: CharacterDetailViewModel
     let cellSize: CGFloat = 30
+
     init()
     {
         viewModel = CharacterDetailViewModel()
         // self.viewModel = CharacterDetailViewModel(char: charInfo)
     }
+
     //@GestureState var dragState = PressState.inactive
     @State var viewState: CGSize?
     @State var menuOpen = false
@@ -27,60 +29,67 @@ struct CharacterDetailView: View
     var TTgesture = ToolTipGesture()
     var body: some View
     {
-     
-            ZStack(alignment: .topLeading)
+
+        ZStack(alignment: .topLeading)
+        {
+            VStack
             {
-                VStack
+                if self.viewModel.catagoryItems.count > 0
                 {
-                    if self.viewModel.catagoryItems.count > 0
-                    {
-                        ForEach(0 ..< itemCategory.allCases.count)
-                        { number in
-                            ZStack(alignment: .topLeading)
-                            {
-                                gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
-                                ForEach(self.viewModel.catagoryItems[number])
-                                { item in
-                                    itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
-                                }
+                    ForEach(0..<itemCategory.allCases.count)
+                    { number in
+                        ZStack(alignment: .topLeading)
+                        {
+                            gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
+                            ForEach(self.viewModel.catagoryItems[number])
+                            { item in
+                                itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                             }
-                            .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
                         }
+                                .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
                     }
                 }
-                .navigationBarItems(trailing: Button(action: {
-                    self.openMenu()
+            }
+                    .navigationBarItems(trailing: Button(action: {
+                        self.openMenu()
                     }, label: {
                         Image(systemName: "info.circle")
-                }))
-                .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
-                SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-            }
-            .overlayPreferenceValue(itemPreferenceKey.self)
-            { preferences in
-                GeometryReader
-                { geometry in
-                    if !self.showDetail
-                    {
-                        self.viewModel.createBorder(geometry, preferences,activeIdx: self.activeIdx)
-                    }
-                    else if self.showDetail
-                    {
-                        EmptyView()
+                    }))
+                    .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
+            SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+        }
+                .overlayPreferenceValue(itemPreferenceKey.self)
+                { preferences in
+                    GeometryReader
+                    { geometry in
+                        if !self.showDetail
+                        {
+                            self.viewModel.createBorder(geometry, preferences, activeIdx: self.activeIdx)
+                        }
+                        //                    else if self.showDetail
+                        //                    {
+                        //                        EmptyView()
+                        //                    }
                     }
                 }
-            }
-        
-            .onAppear
-            {
-                self.viewModel.getItems()
-            }
-            .onDisappear
-            {
-                self.viewModel.clearItmes()
-                self.showDetail = true
-            }
+                .onTapGesture {
+                    print("13")
+                    if !self.showDetail
+                    {
+                        self.showDetail = true
+                    }
+                }
+                .onAppear
+                {
+                    self.viewModel.getItems()
+                }
+                .onDisappear
+                {
+                    self.viewModel.clearItmes()
+                    self.showDetail = true
+                }
     }
+
     func openMenu()
     {
         menuOpen.toggle()
@@ -89,13 +98,13 @@ struct CharacterDetailView: View
 }
 
 #if DEBUG
-    var char = CharacterInfo()
+var char = CharacterInfo()
 
-    struct CharacterDetailView_Previews: PreviewProvider
+struct CharacterDetailView_Previews: PreviewProvider
+{
+    static var previews: some View
     {
-        static var previews: some View
-        {
-            CharacterDetailView()
-        }
+        CharacterDetailView()
     }
+}
 #endif

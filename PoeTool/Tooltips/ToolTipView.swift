@@ -24,12 +24,33 @@ struct itemToolTipView: View
                 Text(item.name)
                 Text(item.typeLine)
             }.foregroundColor(Color.frameTypeColor(item.frameType))
-            Divider().foregroundColor(Color("GridColor")).colorInvert()
+            Divider().background(Color.frameTypeColor(item.frameType))
+            ForEach(item.properties?.indices ?? 0..<0)
+            { i in
+                self.propString(prop: self.item.properties![i])
+            }
             ForEach(item.explicitMods?.indices ?? 0..<0)
             { i in
                 Text(self.item.explicitMods![i]).foregroundColor(Color.blue)
             }.font(.system(size: 16))
             
         }.foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)
+    }
+    func propString(prop:Property) -> Text
+    {
+        var valueString = ""
+        if prop.values.count > 0
+        {
+            let value = prop.values[0][0]
+            switch value
+            {
+            case .integer(let int):
+                valueString = ": \(int)"
+            case .string(let str):
+                valueString = ": \(str)"
+            }
+            
+        }
+        return Text("\(prop.name)\(valueString)")
     }
 }

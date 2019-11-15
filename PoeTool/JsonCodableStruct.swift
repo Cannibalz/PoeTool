@@ -107,6 +107,7 @@ struct Property: Codable {
 }
 
 enum Value: Codable {
+    
     case integer(Int)
     case string(String)
 
