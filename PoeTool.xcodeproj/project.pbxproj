@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		321C994ED935E9A48982FF68 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C91AE4A6594CD1645A20C /* CharacterDetailViewModel.swift */; };
 		321C9C37341A737BBC4AD4AF /* CharactersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C977A3326BC83FA4FFD1B /* CharactersListView.swift */; };
 		321C9D12BF79B2E6E37381C6 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9CBFDDC18D4887686CAE /* ArrayExtension.swift */; };
+		58C88F0548AD4C28B535CA0B /* Pods_PoeTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E4DD963D0BE77969634A3F /* Pods_PoeTool.framework */; };
+		8EAB3071B2087C7C3BAD8DEE /* Pods_PoeTool_PoeToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD68C62FAE5A0ABC1E53C63 /* Pods_PoeTool_PoeToolUITests.framework */; };
 		9809CE3F2366C7CA00950DF3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809CE3E2366C7CA00950DF3 /* SettingsView.swift */; };
 		9809CE412366C7DA00950DF3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809CE402366C7DA00950DF3 /* SettingsViewModel.swift */; };
 		9885E468235D96BD00241F9C /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9885E467235D96BD00241F9C /* APIHandler.swift */; };
@@ -64,8 +66,10 @@
 		989415BA23681B1200E6BF85 /* CircleProgressShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159623681B1200E6BF85 /* CircleProgressShape.swift */; };
 		989415BB23681B1200E6BF85 /* CircleActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159723681B1200E6BF85 /* CircleActivityView.swift */; };
 		989415BC23681B1200E6BF85 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159823681B1200E6BF85 /* CircleProgressView.swift */; };
+		989EBA5F238224AA00E77B38 /* adBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989EBA5E238224AA00E77B38 /* adBannerView.swift */; };
 		98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2EE982356E65F00C7F06C /* LoginViewModel.swift */; };
 		98EA8819237296CF00B1E53A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EA8818237296CF00B1E53A /* Extensions.swift */; };
+		B94891EE010CF70E45E6C380 /* Pods_PoeToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EA262EDFFF9072C05ECBC /* Pods_PoeToolTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,10 @@
 		321C9A57AE38CC2A0900A07B /* CharacterDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		321C9CBFDDC18D4887686CAE /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		321C9F38AEA76D98BB521164 /* CharactersListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersListViewModel.swift; sourceTree = "<group>"; };
+		4E5EA262EDFFF9072C05ECBC /* Pods_PoeToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53437D8BDE37475ADEF05975 /* Pods-PoeToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeToolTests.release.xcconfig"; path = "Target Support Files/Pods-PoeToolTests/Pods-PoeToolTests.release.xcconfig"; sourceTree = "<group>"; };
+		5547803CF92CE8157CF7F671 /* Pods-PoeToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeToolTests.debug.xcconfig"; path = "Target Support Files/Pods-PoeToolTests/Pods-PoeToolTests.debug.xcconfig"; sourceTree = "<group>"; };
+		632AA803A90D3E265CC4761E /* Pods-PoeTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool.debug.xcconfig"; path = "Target Support Files/Pods-PoeTool/Pods-PoeTool.debug.xcconfig"; sourceTree = "<group>"; };
 		9809CE3E2366C7CA00950DF3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9809CE402366C7DA00950DF3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9885E467235D96BD00241F9C /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
@@ -149,8 +157,14 @@
 		9894159623681B1200E6BF85 /* CircleProgressShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressShape.swift; sourceTree = "<group>"; };
 		9894159723681B1200E6BF85 /* CircleActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityView.swift; sourceTree = "<group>"; };
 		9894159823681B1200E6BF85 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		989EBA5E238224AA00E77B38 /* adBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adBannerView.swift; sourceTree = "<group>"; };
 		98A2EE982356E65F00C7F06C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		98EA8818237296CF00B1E53A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9AAA7EED399AC29E2A36C952 /* Pods-PoeTool-PoeToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool-PoeToolUITests.debug.xcconfig"; path = "Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD6A669D84B7F6B23B3D325E /* Pods-PoeTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool.release.xcconfig"; path = "Target Support Files/Pods-PoeTool/Pods-PoeTool.release.xcconfig"; sourceTree = "<group>"; };
+		BB3BFB5BCB165387791BB01D /* Pods-PoeTool-PoeToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool-PoeToolUITests.release.xcconfig"; path = "Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C9E4DD963D0BE77969634A3F /* Pods_PoeTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD68C62FAE5A0ABC1E53C63 /* Pods_PoeTool_PoeToolUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoeTool_PoeToolUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58C88F0548AD4C28B535CA0B /* Pods_PoeTool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94891EE010CF70E45E6C380 /* Pods_PoeToolTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EAB3071B2087C7C3BAD8DEE /* Pods_PoeTool_PoeToolUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +203,19 @@
 				321C91CDC271D0B865FDC206 /* ItemView.swift */,
 			);
 			name = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		8FBA02E724338A4F899164E5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				632AA803A90D3E265CC4761E /* Pods-PoeTool.debug.xcconfig */,
+				AD6A669D84B7F6B23B3D325E /* Pods-PoeTool.release.xcconfig */,
+				9AAA7EED399AC29E2A36C952 /* Pods-PoeTool-PoeToolUITests.debug.xcconfig */,
+				BB3BFB5BCB165387791BB01D /* Pods-PoeTool-PoeToolUITests.release.xcconfig */,
+				5547803CF92CE8157CF7F671 /* Pods-PoeToolTests.debug.xcconfig */,
+				53437D8BDE37475ADEF05975 /* Pods-PoeToolTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		9809CE3D2366C7AE00950DF3 /* Settings  */ = {
@@ -231,6 +261,8 @@
 				9887FC6823535DB8005D7AD1 /* PoeToolTests */,
 				9887FC7323535DB8005D7AD1 /* PoeToolUITests */,
 				9887FC4D23535DB6005D7AD1 /* Products */,
+				8FBA02E724338A4F899164E5 /* Pods */,
+				EB34BF613CF2AF9D5A08740F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,6 +279,7 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				989EBA5D2382249100E77B38 /* GoogldAD */,
 				9823539B2373A76A0094C29E /* Tooltips */,
 				9894156823681B1200E6BF85 /* URLImage */,
 				9809CE3D2366C7AE00950DF3 /* Settings  */,
@@ -433,6 +466,24 @@
 			path = Circle;
 			sourceTree = "<group>";
 		};
+		989EBA5D2382249100E77B38 /* GoogldAD */ = {
+			isa = PBXGroup;
+			children = (
+				989EBA5E238224AA00E77B38 /* adBannerView.swift */,
+			);
+			path = GoogldAD;
+			sourceTree = "<group>";
+		};
+		EB34BF613CF2AF9D5A08740F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9E4DD963D0BE77969634A3F /* Pods_PoeTool.framework */,
+				DFD68C62FAE5A0ABC1E53C63 /* Pods_PoeTool_PoeToolUITests.framework */,
+				4E5EA262EDFFF9072C05ECBC /* Pods_PoeToolTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,9 +491,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9887FC7923535DB8005D7AD1 /* Build configuration list for PBXNativeTarget "PoeTool" */;
 			buildPhases = (
+				1C15545DA2E90CC7BBF104C4 /* [CP] Check Pods Manifest.lock */,
 				9887FC4823535DB5005D7AD1 /* Sources */,
 				9887FC4923535DB5005D7AD1 /* Frameworks */,
 				9887FC4A23535DB5005D7AD1 /* Resources */,
+				902184F0F7809D485A22D5E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -457,6 +510,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9887FC7C23535DB8005D7AD1 /* Build configuration list for PBXNativeTarget "PoeToolTests" */;
 			buildPhases = (
+				C3E24C13AE32104719E18028 /* [CP] Check Pods Manifest.lock */,
 				9887FC6123535DB8005D7AD1 /* Sources */,
 				9887FC6223535DB8005D7AD1 /* Frameworks */,
 				9887FC6323535DB8005D7AD1 /* Resources */,
@@ -475,9 +529,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9887FC7F23535DB8005D7AD1 /* Build configuration list for PBXNativeTarget "PoeToolUITests" */;
 			buildPhases = (
+				AC98086DA8FE88920A21104C /* [CP] Check Pods Manifest.lock */,
 				9887FC6C23535DB8005D7AD1 /* Sources */,
 				9887FC6D23535DB8005D7AD1 /* Frameworks */,
 				9887FC6E23535DB8005D7AD1 /* Resources */,
+				6D4D2C13D170D6B073A730AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -559,6 +615,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C15545DA2E90CC7BBF104C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PoeTool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D4D2C13D170D6B073A730AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		902184F0F7809D485A22D5E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeTool/Pods-PoeTool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PoeTool/Pods-PoeTool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PoeTool/Pods-PoeTool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC98086DA8FE88920A21104C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PoeTool-PoeToolUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3E24C13AE32104719E18028 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PoeToolTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9887FC4823535DB5005D7AD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -600,6 +759,7 @@
 				989415B123681B1200E6BF85 /* ImageLoaderCallbacks.swift in Sources */,
 				989415A823681B1200E6BF85 /* CoreImageFilterProcessor.swift in Sources */,
 				989415BA23681B1200E6BF85 /* CircleProgressShape.swift in Sources */,
+				989EBA5F238224AA00E77B38 /* adBannerView.swift in Sources */,
 				9809CE412366C7DA00950DF3 /* SettingsViewModel.swift in Sources */,
 				989415A323681B1200E6BF85 /* CoreDataAttributeDescription.swift in Sources */,
 				321C9169B427519A2A2774A1 /* CharactersListViewModel.swift in Sources */,
@@ -780,6 +940,7 @@
 		};
 		9887FC7A23535DB8005D7AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 632AA803A90D3E265CC4761E /* Pods-PoeTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -800,6 +961,7 @@
 		};
 		9887FC7B23535DB8005D7AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD6A669D84B7F6B23B3D325E /* Pods-PoeTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -820,6 +982,7 @@
 		};
 		9887FC7D23535DB8005D7AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5547803CF92CE8157CF7F671 /* Pods-PoeToolTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -842,6 +1005,7 @@
 		};
 		9887FC7E23535DB8005D7AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53437D8BDE37475ADEF05975 /* Pods-PoeToolTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -864,6 +1028,7 @@
 		};
 		9887FC8023535DB8005D7AD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AAA7EED399AC29E2A36C952 /* Pods-PoeTool-PoeToolUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -884,6 +1049,7 @@
 		};
 		9887FC8123535DB8005D7AD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB3BFB5BCB165387791BB01D /* Pods-PoeTool-PoeToolUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

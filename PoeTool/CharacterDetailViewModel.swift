@@ -31,7 +31,7 @@ enum itemCategory: cellProperty
 {
     case Equipment = "Equipment,8,6,50"
     case Flask = "Flask,5,2,50"
-    case mainInventroy = "mainInventroy,12,5,30"
+    case mainInventroy = "mainInventroy,12,5,33"
 
     static var allCases: [itemCategory]
     {
@@ -147,9 +147,18 @@ class CharacterDetailViewModel: ObservableObject
     {
         let p = preferences.first(where: { $0.item.uuID == activeIdx })
         let aTopLeading = p?.topLeading
-        let x = p?.x
-        let y = p?.y
-        let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        return itemToolTipView(item: p!.item).offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)).background(Color.black.opacity(0.5).offset(x: topLeading.x + (x ?? 640), y: topLeading.y + (y ?? 640)))
+        var x = p?.x
+        var y = p?.y
+        var topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
+        print(geometry.size)
+        print("x : \(String(describing: x))")
+        if(x!+350 > 414)
+        {
+            x = geometry.size.width-350
+            print("too large")
+        }
+        var iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/).background(Color.black.opacity(0.7).offset(x: /*topLeading.x + */(x ?? 640), y: topLeading.y /*+ (y ?? 640)*/))
+        print(iTTV.size())
+        return iTTV
     }
 }

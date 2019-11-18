@@ -9,7 +9,6 @@
 import Combine
 import Foundation
 import SwiftUI
-
 struct CharacterDetailView: View
 {
     @ObservedObject var viewModel: CharacterDetailViewModel
@@ -34,6 +33,7 @@ struct CharacterDetailView: View
         {
             VStack
             {
+                Banner()
                 if self.viewModel.catagoryItems.count > 0
                 {
                     ForEach(0..<itemCategory.allCases.count)
@@ -49,6 +49,7 @@ struct CharacterDetailView: View
                                 .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
                     }
                 }
+                
             }
                     .navigationBarItems(trailing: Button(action: {
                         self.openMenu()
@@ -66,14 +67,9 @@ struct CharacterDetailView: View
                         {
                             self.viewModel.createBorder(geometry, preferences, activeIdx: self.activeIdx)
                         }
-                        //                    else if self.showDetail
-                        //                    {
-                        //                        EmptyView()
-                        //                    }
                     }
                 }
                 .onTapGesture {
-                    print("13")
                     if !self.showDetail
                     {
                         self.showDetail = true

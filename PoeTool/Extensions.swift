@@ -17,7 +17,13 @@ extension Int
         return temp
     }
 }
+extension View
+{
+    func size()
+    {
 
+    }
+}
 extension Color
 {
     static func frameTypeColor(_ frameType : Int)->Color
