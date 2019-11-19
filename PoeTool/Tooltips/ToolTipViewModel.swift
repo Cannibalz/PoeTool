@@ -13,11 +13,35 @@ import SwiftUI
 
 class ToolTipViewModel: ObservableObject
 {
-    @Published var viewSize = CGSize.zero
-    
-    func geoBackgroundView()-> some View
+    var viewSize = CGSize.zero
+    var viewHeight = CGFloat(0)
+    var viewY = CGFloat(0)
+    @Published var yOffset : CGFloat?
+    var needToOffset = true
+    func readSize(geoProxy:GeometryProxy)-> some View
     {
-        return EmptyView()
+        if needToOffset
+        {
+            self.viewSize = geoProxy.size
+            self.viewHeight = geoProxy.size.height
+            self.viewY = geoProxy.frame(in: .global).maxY
+            print("geo frame position in global : \(geoProxy.frame(in: .global))")
+            print("geo frame position in local : \(geoProxy.frame(in: .local))")
+            print(viewY)
+            print("geo size:\(geoProxy.size)")
+            if viewY > 717
+            {
+                yOffset = CGFloat(717) - viewY
+                print("yOff:\(yOffset)")
+            }
+            else
+            {
+                yOffset = nil
+            }
+            self.needToOffset = false
+        }
+        
+        return Color.black.opacity(0.7)
     }
     
     func propText(prop: Property) -> Text
@@ -75,4 +99,5 @@ class ToolTipViewModel: ObservableObject
     {
         return Divider().background(Color.frameTypeColor(frameType))
     }
+    
 }

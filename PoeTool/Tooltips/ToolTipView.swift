@@ -13,6 +13,7 @@ import SwiftUI
 struct itemToolTipView: View
 {
     @ObservedObject var viewModel = ToolTipViewModel()
+    @State var size = CGSize.zero
     let item: Item
     var body: some View
     {
@@ -20,31 +21,38 @@ struct itemToolTipView: View
         {
             VStack
             {
-                Text(item.name)
-                Text(item.typeLine)
-            }.foregroundColor(Color.frameTypeColor(item.frameType))
-            viewModel.coloredDivider(self.item.frameType)
-            ForEach(item.properties?.indices ?? 0 ..< 0)
-            { i in
-                self.viewModel.propText(prop: self.item.properties![i])
-            }
-            if item.properties?.count ?? 0 > 0
-            {
+                VStack
+                {
+                    Text(item.name)
+                    Text(item.typeLine)
+                }.foregroundColor(Color.frameTypeColor(item.frameType))
                 viewModel.coloredDivider(self.item.frameType)
+                ForEach(item.properties?.indices ?? 0 ..< 0)
+                { i in
+                    self.viewModel.propText(prop: self.item.properties![i])
+                }
+                if item.properties?.count ?? 0 > 0
+                {
+                    viewModel.coloredDivider(self.item.frameType)
+                }
+                if item.requirements?.count ?? 0 > 0
+                {
+                    viewModel.reqsText(reqs: self.item.requirements!)
+                    viewModel.coloredDivider(self.item.frameType)
+                }
+                ForEach(item.explicitMods?.indices ?? 0 ..< 0)
+                { i in
+                    Text(self.item.explicitMods![i]).foregroundColor(Color.blue)
+                }.font(.system(size: 16))
             }
-            if item.requirements?.count ?? 0 > 0
-            {
-                viewModel.reqsText(reqs: self.item.requirements!)
-                viewModel.coloredDivider(self.item.frameType)
-            }
-            ForEach(item.explicitMods?.indices ?? 0 ..< 0)
-            { i in
-                Text(self.item.explicitMods![i]).foregroundColor(Color.blue)
-            }.font(.system(size: 16))
+            .offset(x: 0, y: viewModel.yOffset ?? 0)
+            .foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)
+            .background(
+                GeometryReader
+                { geoProxy in
+                    self.viewModel.readSize(geoProxy: geoProxy)
+                }.offset(x: 0, y: viewModel.yOffset ?? 0)
+            )
         }
-        .background(EmptyView())
-        .foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)
     }
-
-    
 }

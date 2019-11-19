@@ -156,8 +156,8 @@ class CharacterDetailViewModel: ObservableObject
             x = geometry.size.width-350
             print("too large")
         }
-        var iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/).background(Color.black.opacity(0.7).offset(x: /*topLeading.x + */(x ?? 640), y: topLeading.y /*+ (y ?? 640)*/))
-        print(iTTV.size())
+        var iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/)
+        print("geo in cdv\(test.viewModel.yOffset)")
         return iTTV
     }
 }
