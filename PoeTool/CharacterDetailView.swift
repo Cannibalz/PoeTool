@@ -29,7 +29,7 @@ struct CharacterDetailView: View
                     { number in
                         ZStack(alignment: .topLeading)
                         {
-                            gridBackgroundView(cellSize: itemCategory.seqCases[number].rawValue.cellSize, w: itemCategory.seqCases[number].rawValue.w, h: itemCategory.seqCases[number].rawValue.h)
+                        gridBackgroundView(cellProperty:itemCategory.seqCases[number].rawValue)
                             ForEach(self.viewModel.catagoryItems[number])
                             { item in
                                 itemView(item: item, cellSize: itemCategory.seqCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
@@ -67,6 +67,7 @@ struct CharacterDetailView: View
         .onAppear
         {
             self.viewModel.getItems()
+            print(itemCategory.Equipment.rawValue)
         }
         .onDisappear
         {

@@ -23,7 +23,15 @@ struct cellProperty: ExpressibleByStringLiteral, Equatable
         name = components[0]
         w = CGFloat(truncating: NumberFormatter().number(from: components[1]) ?? 0)
         h = CGFloat(truncating: NumberFormatter().number(from: components[2]) ?? 0)
-        cellSize = CGFloat(truncating: NumberFormatter().number(from: components[3]) ?? 0)
+        if w == 5
+        {
+            cellSize = Screen.Width/8
+        }
+        else
+        {
+            cellSize = Screen.Width/CGFloat(truncating: NumberFormatter().number(from: components[1]) ?? 0)
+        }
+
     }
 }
 
@@ -36,6 +44,10 @@ enum itemCategory: cellProperty
     static var seqCases: [itemCategory]
     {
         return [.Equipment, .Flask, .mainInventroy]
+    }
+    static var stringValue:String
+    {
+        return self.stringValue
     }
 }
 

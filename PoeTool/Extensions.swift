@@ -48,6 +48,6 @@ extension Color
 }
 struct Screen
 {
-    static let Width = UIScreen.main.bounds.width
-    static let Height = UIScreen.main.bounds.height
+    static let Width = UIScreen.main.bounds.width - 10
+    static let Height = UIScreen.main.bounds.height - 10
 }

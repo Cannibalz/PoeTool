@@ -32,22 +32,21 @@ struct itemPreferenceKey: PreferenceKey
 
 struct gridBackgroundView: View
 {
-    var cellSize: CGFloat
-    var w, h: CGFloat
+    var cellProperty : cellProperty
     var body: some View
     {
         ZStack
         {
-            HStack(spacing: cellSize - 0.5)
+            HStack(spacing: cellProperty.cellSize - 0.5)
             { // 直線
-                ForEach(0 ..< Int(w) + 1)
+                ForEach(0 ..< Int(cellProperty.w) + 1)
                 { _ in
                     Divider().foregroundColor(.white).background(Color("GridColor"))
                 }
             }
-            VStack(spacing: cellSize - 0.5)
+            VStack(spacing: cellProperty.cellSize - 0.5)
             { // 橫線
-                ForEach(0 ..< Int(h) + 1)
+                ForEach(0 ..< Int(cellProperty.h) + 1)
                 { _ in
                     Divider().foregroundColor(.white).background(Color("GridColor"))
                 }
