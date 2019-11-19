@@ -13,8 +13,6 @@ import SwiftUI
 
 class ToolTipViewModel: ObservableObject
 {
-    var viewSize = CGSize.zero
-    var viewHeight = CGFloat(0)
     var viewY = CGFloat(0)
     @Published var yOffset : CGFloat?
     var needToOffset = true
@@ -22,17 +20,10 @@ class ToolTipViewModel: ObservableObject
     {
         if needToOffset
         {
-            self.viewSize = geoProxy.size
-            self.viewHeight = geoProxy.size.height
             self.viewY = geoProxy.frame(in: .global).maxY
-            print("geo frame position in global : \(geoProxy.frame(in: .global))")
-            print("geo frame position in local : \(geoProxy.frame(in: .local))")
-            print(viewY)
-            print("geo size:\(geoProxy.size)")
             if viewY > 717
             {
                 yOffset = CGFloat(717) - viewY
-                print("yOff:\(yOffset)")
             }
             else
             {

@@ -151,13 +151,12 @@ class CharacterDetailViewModel: ObservableObject
         var topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
         print(geometry.size)
         print("x : \(String(describing: x))")
-        if(x!+350 > 414)
+        if(x!+365 > 400)
         {
-            x = geometry.size.width-350
+            x = geometry.size.width-365
             print("too large")
         }
         var iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/)
-        print("geo in cdv\(test.viewModel.yOffset)")
         return iTTV
     }
 }
