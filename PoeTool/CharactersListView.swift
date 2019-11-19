@@ -87,7 +87,7 @@ struct CharactersListView: View
         .navigationBarItems(trailing: Button(action:
         {
             self.openMenu()
-            }, label: {Image(systemName: "info.circle")}))
+            }, label: {Image(systemName: "line.horizontal.3")}))
         .onAppear(perform: {
             self.viewModel.viewOnApper()
         })

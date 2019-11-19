@@ -31,7 +31,7 @@ enum itemCategory: cellProperty
 {
     case Equipment = "Equipment,8,6,50"
     case Flask = "Flask,5,2,50"
-    case mainInventroy = "mainInventroy,12,5,33"
+    case mainInventroy = "mainInventroy,12,5,30"
 
     static var allCases: [itemCategory]
     {
@@ -44,7 +44,6 @@ class CharacterDetailViewModel: ObservableObject
     @Published var selectCharacter: CharacterInfo?
     @Published var items: [Item] = [Item]()
     @Published var catagoryItems = [[Item]]()
-    @Published var dragState = PressState.inactive
     init(char: CharacterInfo)
     {
         selectCharacter = char
