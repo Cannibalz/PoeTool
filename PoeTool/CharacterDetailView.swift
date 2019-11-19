@@ -25,17 +25,17 @@ struct CharacterDetailView: View
                 Banner()
                 if self.viewModel.catagoryItems.count > 0
                 {
-                    ForEach(0 ..< itemCategory.allCases.count)
+                    ForEach(0 ..< itemCategory.seqCases.count)
                     { number in
                         ZStack(alignment: .topLeading)
                         {
-                            gridBackgroundView(cellSize: itemCategory.allCases[number].rawValue.cellSize, w: itemCategory.allCases[number].rawValue.w, h: itemCategory.allCases[number].rawValue.h)
+                            gridBackgroundView(cellSize: itemCategory.seqCases[number].rawValue.cellSize, w: itemCategory.seqCases[number].rawValue.w, h: itemCategory.seqCases[number].rawValue.h)
                             ForEach(self.viewModel.catagoryItems[number])
                             { item in
-                                itemView(item: item, cellSize: itemCategory.allCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
+                                itemView(item: item, cellSize: itemCategory.seqCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                             }
                         }
-                        .frame(width: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.w, height: itemCategory.allCases[number].rawValue.cellSize * itemCategory.allCases[number].rawValue.h)
+                        .frame(width: itemCategory.seqCases[number].rawValue.cellSize * itemCategory.seqCases[number].rawValue.w, height: itemCategory.seqCases[number].rawValue.cellSize * itemCategory.seqCases[number].rawValue.h)
                     }
                 }
             }

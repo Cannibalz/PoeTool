@@ -11,7 +11,7 @@ import SwiftUI
 
 struct itemPreferenceData
 {
-    let item : Item
+    let item: Item
     var topLeading: Anchor<CGPoint>?
     var bottomTrailing: Anchor<CGPoint>?
     var x: CGFloat
@@ -70,23 +70,23 @@ struct itemView: View
 //    }
     var body: some View
     {
-        ZStack(alignment:.topLeading)
+        ZStack(alignment: .topLeading)
         {
             URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
-            .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
-            .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
-            .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
-            .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
-                value[0].bottomTrailing = anchor
-            })
+                .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
+                .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
+                .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
+                .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
+                    value[0].bottomTrailing = anchor
+                })
                 .background(Color.blue.opacity(0.1).offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize))
             if item.stackSize != 1 && item.stackSize != nil
             {
                 Text("\(item.stackSize!)").font(.system(size: 10)).bold()
-                .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
+                    .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
             }
         }
-            .onTapGesture
+        .onTapGesture
         {
             self.actived = self.item.uuID
             self.isShowing = !self.isShowing

@@ -33,7 +33,7 @@ enum itemCategory: cellProperty
     case Flask = "Flask,5,2,50"
     case mainInventroy = "mainInventroy,12,5,30"
 
-    static var allCases: [itemCategory]
+    static var seqCases: [itemCategory]
     {
         return [.Equipment, .Flask, .mainInventroy]
     }
@@ -63,7 +63,6 @@ class CharacterDetailViewModel: ObservableObject
         PoEData.shared.getCharactersItems(name: selectCharacter!.name)
         { Detail in
             self.items = Detail.items
-            print(self.items.count)
             var tempMainInventory = [Item]()
             var tempFlask = [Item]()
             var tempEquipment = [Item]()
@@ -147,16 +146,14 @@ class CharacterDetailViewModel: ObservableObject
         let p = preferences.first(where: { $0.item.uuID == activeIdx })
         let aTopLeading = p?.topLeading
         var x = p?.x
-        var y = p?.y
-        var topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        print(geometry.size)
-        print("x : \(String(describing: x))")
+//        var y = p?.y
+        print("screen size: \(geometry.size)")
+        let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
         if(x!+365 > 400)
         {
             x = geometry.size.width-365
-            print("too large")
         }
-        var iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/)
+        let iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/)
         return iTTV
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 extension Int
 {
     mutating func returnAndPlusOne()->Int
@@ -44,4 +45,9 @@ extension Color
                 return Color.white
         }
     }
+}
+struct Screen
+{
+    static let Width = UIScreen.main.bounds.width
+    static let Height = UIScreen.main.bounds.height
 }
