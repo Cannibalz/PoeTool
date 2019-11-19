@@ -10,54 +10,69 @@ import Combine
 import Foundation
 import SwiftUI
 
-enum PressState
+
+class ToolTipViewModel: ObservableObject
 {
-    case inactive
-    case pressing
-    case dragging(translation: CGSize)
-
-    var translation: CGSize?
+    @Published var viewSize = CGSize.zero
+    
+    func geoBackgroundView()-> some View
     {
-        switch self
+        return EmptyView()
+    }
+    
+    func propText(prop: Property) -> Text
+    {
+        var valueString = ""
+        var name = prop.name
+        for i in 0 ..< prop.values.count
         {
-        case .inactive, .pressing:
-            return nil
-        case let .dragging(translation):
-            return translation
+            let value = prop.values[i][0]
+            var tempString = ""
+            switch value
+            {
+            case let .integer(int):
+                tempString = "\(int)"
+            case let .string(str):
+                tempString = "\(str)"
+            }
+            if name.contains("%\(i)")
+            {
+                name = name.replacingOccurrences(of: "%\(i)", with: tempString, options: .literal, range: nil)
+            }
+            else
+            {
+                valueString = ": \(tempString)"
+            }
         }
+        return Text("\(name)\(valueString)")
     }
 
-    var isActive: Bool
+    func reqsText(reqs: [Property]) -> Text
     {
-        switch self
+        var reqsString = "Requires "
+        for i in 0 ..< reqs.count
         {
-        case .inactive:
-            return false
-        case .pressing, .dragging:
-            return true
+            for j in 0 ..< reqs[i].values.count
+            {
+                switch reqs[i].values[j][0]
+                {
+                case let .string(str):
+                    reqsString += str
+                case let .integer(int):
+                    reqsString += "\(int)"
+                }
+            }
+            reqsString += " \(reqs[i].name)"
+            if i != reqs.count - 1
+            {
+                reqsString += ", "
+            }
         }
+        return Text(reqsString)
     }
 
-    var isDragging: Bool
+    func coloredDivider(_ frameType: Int) -> some View
     {
-        switch self
-        {
-        case .inactive, .pressing:
-            return false
-        case .dragging:
-            return true
-        }
-    }
-}
-
-class ToolTipGesture: ObservableObject
-{
-//    @GestureState var dragState = PressState.inactive
-//    @GestureState var dragState = CGSize.zero
-    let minimumLongPressDuration = 0.1
-    var longPressDrag = LongPressGesture(minimumDuration: 0.1)
-    init()
-    {
-        
+        return Divider().background(Color.frameTypeColor(frameType))
     }
 }

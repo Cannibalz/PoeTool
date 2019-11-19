@@ -1,0 +1,6 @@
+framework module Pods_PoeTool {
+  umbrella header "Pods-PoeTool-umbrella.h"
+
+  export *
+  module * { export * }
+}
