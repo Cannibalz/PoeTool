@@ -43,7 +43,8 @@ extension UIViewController: GADBannerViewDelegate {
         print("ok ad")
     }
 
-    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError)
+    {
         print("fail ad")
         print(error)
     }

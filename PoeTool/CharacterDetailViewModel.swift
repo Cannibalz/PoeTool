@@ -67,7 +67,10 @@ class CharacterDetailViewModel: ObservableObject
 
     func clearItmes()
     {
+        selectCharacter = nil
+        items = [Item]()
         catagoryItems = [[Item]]()
+        
     }
 
     func getItems()
@@ -148,10 +151,6 @@ class CharacterDetailViewModel: ObservableObject
             self.catagoryItems.append(tempFlask)
             self.catagoryItems.append(tempMainInventory)
         }
-    }
-    func setDragGesture()->LongPressGesture
-    {
-        return LongPressGesture()
     }
     func createBorder(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData],activeIdx : UUID) -> some View
     {

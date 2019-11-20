@@ -16,6 +16,7 @@ struct CharacterDetailView: View
     @State var menuOpen = false
     @State var showDetail = true
     @State private var activeIdx: UUID = UUID()
+    @Binding var chara : CharacterInfo
     var body: some View
     {
         ZStack(alignment: .topLeading)
@@ -44,7 +45,7 @@ struct CharacterDetailView: View
                 }, label: {
                     Image(systemName: "line.horizontal.3")
             }))
-            .navigationBarTitle(Text(viewModel.selectCharacter!.name).font(.system(size: 10)), displayMode: .inline)
+            .navigationBarTitle(Text((viewModel.selectCharacter ?? CharacterInfo()).name).font(.system(size: 10)), displayMode: .inline)
             SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
         }
         .overlayPreferenceValue(itemPreferenceKey.self)
