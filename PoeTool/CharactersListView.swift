@@ -49,8 +49,7 @@ struct CharactersListView: View
     @State private var leagueIndex = 2
     @State private var selected: Int? = 0
     @State var menuOpen: Bool = false
-    @State var selectedChar: CharacterInfo?
-    //@State var nextView = CharacterDetailView()
+    @State var selectedChar: CharacterInfo = CharacterInfo()
     @ObservedObject var viewModel = CharactersListViewModel(isLogged: PoEData.shared.isLogged)
     var body: some View
     {
@@ -58,7 +57,7 @@ struct CharactersListView: View
         {
             VStack
             {
-                NavigationLink(destination: nextView, tag: 1, selection: $selected) { EmptyView() }
+                //NavigationLink(destination: CharacterDetailView(chara: $selectedChar), tag: 1, selection: $selected) { EmptyView() }
                 List
                 {
                     ForEach(viewModel.charactersInfo)
@@ -66,13 +65,10 @@ struct CharactersListView: View
                         if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
                             || chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
                         {
-                            characterCell(characterInfo: chara)
-                                .gesture(TapGesture().onEnded
-                                    { _ in
-                                        self.selectCharacter(chara: chara)
-                                        self.selected = 1
-                                        print("Tap \(chara), selected:\(self.selected)")
-                                })
+                            NavigationLink(destination: CharacterDetailView(chara: chara))
+                            {
+                                characterCell(characterInfo: chara)
+                            }
                         }
                     }
                 }
@@ -99,7 +95,8 @@ struct CharactersListView: View
 
     func selectCharacter(chara: CharacterInfo)
     {
-        nextView.viewModel.selectCharacter = chara
+        self.$selectedChar.wrappedValue = chara
+        print(self.selectedChar)
         self.selected = 1
     }
 

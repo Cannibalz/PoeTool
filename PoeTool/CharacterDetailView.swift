@@ -16,7 +16,7 @@ struct CharacterDetailView: View
     @State var menuOpen = false
     @State var showDetail = true
     @State private var activeIdx: UUID = UUID()
-    @Binding var chara : CharacterInfo
+    var chara : CharacterInfo
     var body: some View
     {
         ZStack(alignment: .topLeading)
@@ -67,7 +67,7 @@ struct CharacterDetailView: View
         }
         .onAppear
         {
-            self.viewModel.getItems()
+            self.viewModel.getItems(name: self.chara.name)
             print(itemCategory.Equipment.rawValue)
         }
         .onDisappear
@@ -84,13 +84,13 @@ struct CharacterDetailView: View
 }
 
 #if DEBUG
-    var char = CharacterInfo()
-
+    
     struct CharacterDetailView_Previews: PreviewProvider
     {
+        static var previewChar = CharacterInfo()
         static var previews: some View
         {
-            CharacterDetailView()
+            CharacterDetailView(chara: previewChar)
         }
     }
 #endif

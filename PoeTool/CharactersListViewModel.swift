@@ -20,8 +20,6 @@ class CharactersListViewModel : ObservableObject
     }
     init(isLogged:Bool)
     {
-        
-        
         print("is Logged ? :\(isLogged)")
     }
     deinit {

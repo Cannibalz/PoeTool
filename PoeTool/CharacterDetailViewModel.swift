@@ -59,6 +59,7 @@ class CharacterDetailViewModel: ObservableObject
     init(char: CharacterInfo)
     {
         selectCharacter = char
+        print("select Character : \(char)")
     }
 
     init()
@@ -73,9 +74,9 @@ class CharacterDetailViewModel: ObservableObject
         
     }
 
-    func getItems()
+    func getItems(name:String)
     {
-        PoEData.shared.getCharactersItems(name: selectCharacter!.name)
+        PoEData.shared.getCharactersItems(name: name)
         { Detail in
             self.items = Detail.items
             var tempMainInventory = [Item]()
