@@ -74,6 +74,7 @@ class PoEData : NSObject
                     set.append(char.league)
                 }
                 set = set.removingDuplicates()
+                self.isLogged = true
                 Completion(characters,set)
             }
             catch
@@ -98,6 +99,11 @@ class PoEData : NSObject
             Completion(statusCode)
             
         }
+    }
+    func ValidByUserDefault()
+    {
+        self.account.Name = UserDefaults.standard.string(forKey: "accName")!
+        self.account.POESESSID = UserDefaults.standard.string(forKey: "POESESSID")!
     }
     func getCharactersItems(name:String,completion items:@escaping(CharacterDetail)->())
     {
@@ -135,5 +141,11 @@ class PoEData : NSObject
         {body in
             completion(body)
         })
+    }
+    func cancel()
+    {
+
+        self.APIRequestCancellable?.cancel()
+        print("Requset Cancelled")
     }
 }

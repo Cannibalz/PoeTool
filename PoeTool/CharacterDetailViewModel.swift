@@ -76,6 +76,7 @@ class CharacterDetailViewModel: ObservableObject
 
     func getItems(name:String)
     {
+        //catagoryItems = [[Item]]()
         PoEData.shared.getCharactersItems(name: name)
         { Detail in
             self.items = Detail.items

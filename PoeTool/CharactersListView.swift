@@ -89,7 +89,7 @@ struct CharactersListView: View
         })
         .onDisappear
         {
-            
+           //PoEData.shared.cancel()
         }
     }
 

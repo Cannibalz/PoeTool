@@ -68,12 +68,12 @@ struct CharacterDetailView: View
         .onAppear
         {
             self.viewModel.getItems(name: self.chara.name)
-            print(itemCategory.Equipment.rawValue)
         }
         .onDisappear
         {
-            self.viewModel.clearItmes()
-            self.showDetail = true
+            //self.viewModel.clearItmes()
+            //self.showDetail = true
+            PoEData.shared.cancel()
         }
     }
 
