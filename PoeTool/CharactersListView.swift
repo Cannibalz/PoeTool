@@ -46,7 +46,7 @@ struct characterCell: View
 
 struct CharactersListView: View
 {
-    @State private var leagueIndex = 2
+    @State private var leagueIndex = 0
     @State private var selected: Int? = 0
     @State var menuOpen: Bool = false
     @State var selectedChar: CharacterInfo = CharacterInfo()
@@ -57,12 +57,24 @@ struct CharactersListView: View
         {
             VStack
             {
-                //NavigationLink(destination: CharacterDetailView(chara: $selectedChar), tag: 1, selection: $selected) { EmptyView() }
+                if self.viewModel.leagues.count > 0
+                {
+                    if self.viewModel.leagueIndex != 0
+                    {
+                        Spacer()
+                        NavigationLink(destination:StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
+                        {
+                            Text("  Stashs of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.white).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.white, lineWidth: 2))
+                        }
+                    }
+                }
                 List
                 {
+
                     ForEach(viewModel.charactersInfo)
                     { chara in
-                        if self.viewModel.leagues[self.viewModel.leagueIndex] == "All"
+                        if self.viewModel.leagueIndex == 0
                             || chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
                         {
                             NavigationLink(destination: CharacterDetailView(chara: chara))
@@ -89,17 +101,14 @@ struct CharactersListView: View
         })
         .onDisappear
         {
-            print("leave list view")
-           //PoEData.shared.cancel()
         }
-    
     }
 
     func selectCharacter(chara: CharacterInfo)
     {
-        self.$selectedChar.wrappedValue = chara
-        print(self.selectedChar)
-        self.selected = 1
+        $selectedChar.wrappedValue = chara
+        print(selectedChar)
+        selected = 1
     }
 
     func openMenu()

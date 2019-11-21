@@ -16,6 +16,7 @@ struct CharacterDetailView: View
     @State var menuOpen = false
     @State var showDetail = true
     @State private var activeIdx: UUID = UUID()
+    var banner : some View = Banner()
     var chara : CharacterInfo
     var body: some View
     {
@@ -23,7 +24,7 @@ struct CharacterDetailView: View
         {
             VStack
             {
-                Banner()
+                //banner
                 if self.viewModel.catagoryItems.count > 0
                 {
                     ForEach(0 ..< itemCategory.seqCases.count)
@@ -71,6 +72,7 @@ struct CharacterDetailView: View
         }
         .onDisappear
         {
+            self.banner.hidden()
             //self.viewModel.clearItmes()
             self.showDetail = true
             //PoEData.shared.cancel()

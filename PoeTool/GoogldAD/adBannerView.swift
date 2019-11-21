@@ -11,7 +11,6 @@ import GoogleMobileAds
 import UIKit
 
 final private class BannerVC: UIViewControllerRepresentable  {
-
     func makeUIViewController(context: Context) -> UIViewController {
         let view = GADBannerView(adSize: kGADAdSizeBanner)
         let bannerID = "ca-app-pub-6350469884811471/5623374887"
@@ -21,7 +20,6 @@ final private class BannerVC: UIViewControllerRepresentable  {
         viewController.view.addSubview(view)
         viewController.view.frame = CGRect(origin: .zero, size: kGADAdSizeBanner.size)
         view.load(GADRequest())
-
         return viewController
     }
 

@@ -149,3 +149,26 @@ class PoEData : NSObject
         print("Requset Cancelled")
     }
 }
+
+// Stashs
+extension PoEData
+{
+    func getStash(leagueName: String,completion: @escaping (Stash)->())
+    {
+        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=0"
+        getData(url: urlString, POESESSID: self.account.POESESSID)
+        { Body in
+            let data = Body.data
+            var stashs : Stash
+            do
+            {
+                stashs = try JSONDecoder().decode(Stash.self, from: data)
+                completion(stashs)
+            }
+            catch
+            {
+                print("error in getStash: \(error)")
+            }
+        }
+    }
+}

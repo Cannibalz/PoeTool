@@ -18,14 +18,6 @@ class LoginViewModel: ObservableObject
     {
         if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID")
         {
-//            let wannaStore:Bool = UserDefaults.standard.bool(forKey: "wannaStore")
-//            self.accName = accName
-//            self.POESESSID = POESESSID
-//            self.wannaStore = wannaStore
-//            if !PoEinstance.isLogged
-//            {
-//                self.accountAuth()
-//            }
             PoEData.shared.ValidByUserDefault()
             self.authed = true
             

@@ -160,13 +160,12 @@ class CharacterDetailViewModel: ObservableObject
         let aTopLeading = p?.topLeading
         var x = p?.x
 //        var y = p?.y
-        print("screen size: \(geometry.size)")
         let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        if(x!+365 > 400)
+        if(x!+365 > geometry.size.width)
         {
             x = geometry.size.width-365
         }
-        let iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? 640), y: topLeading.y /*+ (y ?? 640)*/)
+        let iTTV = itemToolTipView(item: p!.item).offset(x: /*topLeading.x + */ (x ?? Screen.Width+30), y: topLeading.y /*+ (y ?? 640)*/)
         return iTTV
     }
 }

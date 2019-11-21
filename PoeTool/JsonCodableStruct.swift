@@ -191,7 +191,10 @@ enum Colour: String, Codable {
     case i = "I"
     case s = "S"
 }
-
+struct tabsColour : Codable
+{
+    let r, g, b : Int
+}
 // MARK: - Hybrid
 struct Hybrid: Codable {
     let isVaalGem: Bool

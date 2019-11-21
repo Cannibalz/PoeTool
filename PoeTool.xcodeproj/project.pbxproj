@@ -18,6 +18,10 @@
 		8EAB3071B2087C7C3BAD8DEE /* Pods_PoeTool_PoeToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD68C62FAE5A0ABC1E53C63 /* Pods_PoeTool_PoeToolUITests.framework */; };
 		9809CE3F2366C7CA00950DF3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809CE3E2366C7CA00950DF3 /* SettingsView.swift */; };
 		9809CE412366C7DA00950DF3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809CE402366C7DA00950DF3 /* SettingsViewModel.swift */; };
+		980C64E223866D830074484A /* StashsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E123866D830074484A /* StashsView.swift */; };
+		980C64E423866D940074484A /* StashsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E323866D940074484A /* StashsViewModel.swift */; };
+		980C64E6238672F00074484A /* StashsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E5238672F00074484A /* StashsJSON.swift */; };
+		980C64E8238675170074484A /* StashsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E7238675170074484A /* StashsAPI.swift */; };
 		9885E468235D96BD00241F9C /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9885E467235D96BD00241F9C /* APIHandler.swift */; };
 		9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */; };
 		9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */; };
@@ -103,6 +107,10 @@
 		632AA803A90D3E265CC4761E /* Pods-PoeTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool.debug.xcconfig"; path = "Target Support Files/Pods-PoeTool/Pods-PoeTool.debug.xcconfig"; sourceTree = "<group>"; };
 		9809CE3E2366C7CA00950DF3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9809CE402366C7DA00950DF3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		980C64E123866D830074484A /* StashsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsView.swift; sourceTree = "<group>"; };
+		980C64E323866D940074484A /* StashsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsViewModel.swift; sourceTree = "<group>"; };
+		980C64E5238672F00074484A /* StashsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsJSON.swift; sourceTree = "<group>"; };
+		980C64E7238675170074484A /* StashsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsAPI.swift; sourceTree = "<group>"; };
 		9885E467235D96BD00241F9C /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		9887FC4C23535DB6005D7AD1 /* PoeTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +235,17 @@
 			name = "Settings ";
 			sourceTree = "<group>";
 		};
+		980C64E023865BF80074484A /* Stashs */ = {
+			isa = PBXGroup;
+			children = (
+				980C64E123866D830074484A /* StashsView.swift */,
+				980C64E323866D940074484A /* StashsViewModel.swift */,
+				980C64E5238672F00074484A /* StashsJSON.swift */,
+				980C64E7238675170074484A /* StashsAPI.swift */,
+			);
+			path = Stashs;
+			sourceTree = "<group>";
+		};
 		9823539B2373A76A0094C29E /* Tooltips */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +298,7 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				980C64E023865BF80074484A /* Stashs */,
 				989EBA5D2382249100E77B38 /* GoogldAD */,
 				9823539B2373A76A0094C29E /* Tooltips */,
 				9894156823681B1200E6BF85 /* URLImage */,
@@ -741,10 +761,12 @@
 				9885E468235D96BD00241F9C /* APIHandler.swift in Sources */,
 				989415A023681B1200E6BF85 /* CoreDataModelDescription.swift in Sources */,
 				98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */,
+				980C64E423866D940074484A /* StashsViewModel.swift in Sources */,
 				321C9D12BF79B2E6E37381C6 /* ArrayExtension.swift in Sources */,
 				989415AC23681B1200E6BF85 /* ImageProcessingService.swift in Sources */,
 				9894159923681B1200E6BF85 /* URLImageService.swift in Sources */,
 				9894159F23681B1200E6BF85 /* Version.swift in Sources */,
+				980C64E6238672F00074484A /* StashsJSON.swift in Sources */,
 				989415B723681B1200E6BF85 /* DownloadProgressWrapper.swift in Sources */,
 				98884D24237A9ADE004B61A3 /* ToolTipView.swift in Sources */,
 				989415B023681B1200E6BF85 /* LoadingState.swift in Sources */,
@@ -755,6 +777,8 @@
 				989415AA23681B1200E6BF85 /* Resize.swift in Sources */,
 				9894159A23681B1200E6BF85 /* FileIndex.swift in Sources */,
 				9809CE3F2366C7CA00950DF3 /* SettingsView.swift in Sources */,
+				980C64E223866D830074484A /* StashsView.swift in Sources */,
+				980C64E8238675170074484A /* StashsAPI.swift in Sources */,
 				989415B923681B1200E6BF85 /* ProgressView.swift in Sources */,
 				989415B123681B1200E6BF85 /* ImageLoaderCallbacks.swift in Sources */,
 				989415A823681B1200E6BF85 /* CoreImageFilterProcessor.swift in Sources */,
