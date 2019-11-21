@@ -10,12 +10,13 @@ import Foundation
 
 class StashsViewModel : ObservableObject
 {
-    var stashs = [Stash]()
+    @Published var stashs = [Stash]()
     func getStashs(leagueName:String)
     {
         PoEData.shared.getStash(leagueName: leagueName)
-        { stashs in
-            print(stashs)
+        { stash in
+            self.stashs.append(stash)
+            print(self.stashs.count)
         }
     }
 }

@@ -72,7 +72,7 @@ struct CharacterDetailView: View
         }
         .onDisappear
         {
-            self.banner.hidden()
+            //self.banner.hidden()
             //self.viewModel.clearItmes()
             self.showDetail = true
             //PoEData.shared.cancel()
