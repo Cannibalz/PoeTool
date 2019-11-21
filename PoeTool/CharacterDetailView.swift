@@ -72,8 +72,8 @@ struct CharacterDetailView: View
         .onDisappear
         {
             //self.viewModel.clearItmes()
-            //self.showDetail = true
-            PoEData.shared.cancel()
+            self.showDetail = true
+            //PoEData.shared.cancel()
         }
     }
 

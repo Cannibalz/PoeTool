@@ -89,8 +89,10 @@ struct CharactersListView: View
         })
         .onDisappear
         {
+            print("leave list view")
            //PoEData.shared.cancel()
         }
+    
     }
 
     func selectCharacter(chara: CharacterInfo)

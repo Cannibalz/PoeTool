@@ -39,4 +39,5 @@ class CharactersListViewModel : ObservableObject
             created = true
         }
     }
+    
 }
