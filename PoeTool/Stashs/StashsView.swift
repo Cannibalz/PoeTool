@@ -13,8 +13,7 @@ struct StashsView: View
 {
     var leagueName: String
     @ObservedObject var viewModel = StashsViewModel()
-    var cellSize = CGFloat(40)
-    var gap = CGFloat(2.9411)
+    var cellSize = CGFloat(30.127)
     var currencyTabWidth = CGFloat(575)
     var body: some View
     {
