@@ -45,10 +45,10 @@ enum itemCategory: cellProperty
     {
         return [.Equipment, .Flask, .mainInventroy]
     }
-    static var stringValue:String
-    {
-        return self.stringValue
-    }
+//    static var stringValue:String
+//    {
+//        return self.stringValue
+//    }
 }
 
 class CharacterDetailViewModel: ObservableObject

@@ -10,6 +10,7 @@ import Foundation
 
 struct Stash: Codable {
     let numTabs: Int
+    let currencyLayout : [String: CurrencyLayout]
     let tabs: [Tab]
     let items: [Item]
 }
@@ -21,4 +22,9 @@ struct Tab: Codable {
     let hidden, selected: Bool
     let colour: tabsColour
     let srcL, srcC, srcR: String
+}
+struct CurrencyLayout: Codable {
+    let x, y: Double
+    let w, h: Int
+    let hidden: Bool?
 }
