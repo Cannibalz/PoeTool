@@ -13,9 +13,9 @@ class StashsViewModel : ObservableObject
     @Published var tabsIndex = Int(0)
     @Published var stashs = [Stash]()
     @Published var tabs : [Tab] = [Tab]()
-    func getStash(leagueName:String)
+    func stashInit(leagueName:String)
     {
-        PoEData.shared.stashInit(leagueName: leagueName)
+        PoEData.shared.getStash(leagueName: leagueName, tabIndex: 0, needTabsInfo: 1)
         { stash in
             self.stashs.append(stash)
             self.tabs = stash.tabs

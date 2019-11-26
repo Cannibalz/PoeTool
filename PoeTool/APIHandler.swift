@@ -153,9 +153,9 @@ class PoEData : NSObject
 // Stashs
 extension PoEData
 {
-    func stashInit(leagueName: String,completion: @escaping (Stash)->())
+    func getStash(leagueName: String, tabIndex:Int, needTabsInfo:Int,completion: @escaping (Stash)->())
     {
-        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=2"
+        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=0"
         getData(url: urlString, POESESSID: self.account.POESESSID)
         { Body in
             var data = Body.data
@@ -174,6 +174,7 @@ extension PoEData
             }
         }
     }
+
     func modifyLayoutsName(stringData: inout String)
     {
         

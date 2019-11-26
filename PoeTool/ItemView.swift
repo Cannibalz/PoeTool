@@ -32,7 +32,7 @@ struct itemPreferenceKey: PreferenceKey
 
 struct gridBackgroundView: View
 {
-    var cellProperty : cellProperty
+    var cellProperty: cellProperty
     var body: some View
     {
         ZStack
