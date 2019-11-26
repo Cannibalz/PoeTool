@@ -209,6 +209,7 @@ struct Hybrid: Codable {
         case properties = "properties"
         case explicitMods = "explicitMods"
         case secDescrText = "secDescrText"
+        
     }
 }
 

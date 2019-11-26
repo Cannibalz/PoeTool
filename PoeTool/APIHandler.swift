@@ -153,12 +153,15 @@ class PoEData : NSObject
 // Stashs
 extension PoEData
 {
-    func getStash(leagueName: String,completion: @escaping (Stash)->())
+    func stashInit(leagueName: String,completion: @escaping (Stash)->())
     {
-        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=0"
+        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=2"
         getData(url: urlString, POESESSID: self.account.POESESSID)
         { Body in
-            let data = Body.data
+            var data = Body.data
+            var stringData : String = String(data: data, encoding: .utf8) ?? ""
+            self.modifyLayoutsName(stringData: &stringData)
+            data = stringData.data(using: .utf8)!
             var stashs : Stash
             do
             {
@@ -170,5 +173,13 @@ extension PoEData
                 print("error in getStash: \(error)")
             }
         }
+    }
+    func modifyLayoutsName(stringData: inout String)
+    {
+        
+        stringData = stringData.replacingOccurrences(of: "currencyLayout", with: "tabLayout")
+        stringData = stringData.replacingOccurrences(of: "fragmentLayout", with: "tabLayout")
+        stringData = stringData.replacingOccurrences(of: "essenceLayout", with: "tabLayout")
+        stringData = stringData.replacingOccurrences(of: "delveLayout", with: "tabLayout")
     }
 }
