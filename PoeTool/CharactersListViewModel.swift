@@ -27,7 +27,7 @@ class CharactersListViewModel : ObservableObject
     }
     func viewOnApper()
     {
-        if !created || !PoEData.shared.isLogged
+        if true//!created || !PoEData.shared.isLogged
         {
             PoEData.shared.createList
             {(characters,set) in

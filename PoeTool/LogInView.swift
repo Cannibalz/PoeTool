@@ -9,57 +9,82 @@ import SwiftUI
 struct loadingCircle: View
 {
     @State var spin = false
+
     var body: some View
     {
-        VStack{
+        VStack
+        {
             Image(systemName: "arrow.2.circlepath.circle")
-            .resizable()
-            .frame(width: 200.0, height: 200.0)
-            .rotationEffect(.degrees(spin ? 360:0))
-            .animation(loadingAnimation)
-            .onAppear(){self.spin.toggle()}
-            .cornerRadius(25)
+                .resizable()
+                .frame(width: 200.0, height: 200.0)
+                .rotationEffect(.degrees(spin ? 360 : 0))
+                .animation(loadingAnimation)
+                .onAppear { self.spin.toggle() }
+                .cornerRadius(25)
             Text("loading...")
         }
         .background(Color(red: 0.9, green: 0.9, blue: 0.9))
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
+
     var loadingAnimation: Animation
     {
         Animation.linear(duration: 0.5)
             .speed(0.5)
             .repeatForever(autoreverses: false)
-        
     }
 }
-struct LogInView: View {
+
+struct LogInView: View
+{
     @ObservedObject var viewModel = LoginViewModel()
-    var body: some View {
+    @State var privateAcc = false
+    var body: some View
+    {
         NavigationView
         {
             ZStack
             {
                 VStack
                 {
-                    TextField("Account Name",text: $viewModel.accName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                    TextField("POESSID",text: $viewModel.POESESSID)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                    Toggle(isOn: $viewModel.wannaStore) {
+                    TextField("Account Name", text: $viewModel.accName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    Button(action: {
+                        self.privateAcc = !self.privateAcc
+                    })
+                    {
+                        HStack(alignment: .top, spacing: 10)
+                        {
+                            if !privateAcc
+                            {
+                                Image(systemName: "square")
+                            }
+                            else if privateAcc
+                            {
+                                Image(systemName: "checkmark.square.fill")
+                            }
+                            Text("Private Account")
+                        }
+                    }
+                    TextField("POESESSID", text: $viewModel.POESESSID)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding().disabled(!privateAcc)
+                        .opacity(privateAcc ? 1 : 0)
+
+                    Toggle(isOn: $viewModel.wannaStore)
+                    {
                         Text("Remeber me")
                     }.frame(width: 200.0)
-                    NavigationLink(destination:CharactersListView(), isActive: $viewModel.authed, label:
-                    {
-                        Button(action: {
-                            self.viewModel.accountAuth()
-                        })
+                    NavigationLink(destination: CharactersListView(), isActive: $viewModel.authed, label:
                         {
-                            Text("Authenticate")
-                        }
+                            Button(action: {
+                                self.viewModel.accountAuth()
+                            })
+                            {
+                                Text("Authenticate")
+                            }
                     })
-                    
                 }
                 VStack
                 {
@@ -71,27 +96,29 @@ struct LogInView: View {
                     {
                         loadingCircle().hidden()
                     }
-                    Button(action:{
+                    Button(action: {
                         print("asdf")
                     })
                     {
                         Text("cancel")
                     }
                 }
-            }.navigationBarTitle(Text(""),displayMode: .inline)
+            }.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
-            self.viewModel.viewOnApper()
+            // self.viewModel.viewOnApper()
         })
         .onDisappear(perform: {
-            
         })
     }
 }
+
 #if DEBUG
-struct LogInView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
+    struct LogInView_Previews: PreviewProvider
+    {
+        static var previews: some View
+        {
+            LogInView()
+        }
     }
-}
 #endif

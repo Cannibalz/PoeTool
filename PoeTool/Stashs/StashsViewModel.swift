@@ -19,7 +19,6 @@ class StashsViewModel : ObservableObject
         { stash in
             self.stashs.append(stash)
             self.tabs = stash.tabs
-            print(self.tabs[0].type)
         }
     }
 }

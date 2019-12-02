@@ -34,7 +34,7 @@ struct Item: Codable,Identifiable {
     let ilvl: Int
     let icon: String
     let id: String
-    let sockets: [Socket]?
+    //let sockets: [Socket]?
     let name: String
     let typeLine: String
     let identified: Bool
@@ -64,7 +64,7 @@ struct Item: Codable,Identifiable {
         case ilvl = "ilvl"
         case icon = "icon"
         case id = "id"
-        case sockets = "sockets"
+        //case sockets = "sockets"
         case name = "name"
         case typeLine = "typeLine"
         case identified = "identified"
@@ -154,7 +154,7 @@ struct SocketedItem: Codable {
     let descrText: String
     let frameType: Int
     let socket: Int
-    let colour: Colour
+    //let colour: Colour
     let additionalProperties: [Property]?
     let nextLevelRequirements: [Property]?
     let corrupted: Bool?
@@ -178,7 +178,7 @@ struct SocketedItem: Codable {
         case descrText = "descrText"
         case frameType = "frameType"
         case socket = "socket"
-        case colour = "colour"
+        //case colour = "colour"
         case additionalProperties = "additionalProperties"
         case nextLevelRequirements = "nextLevelRequirements"
         case corrupted = "corrupted"
