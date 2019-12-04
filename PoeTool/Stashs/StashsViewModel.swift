@@ -12,15 +12,14 @@ class StashsViewModel: ObservableObject
 {
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
-    @Published var tabsInfo: [TabsInfo] = [TabsInfo]()
     func stashInit(leagueName: String)
     {
         PoEData.shared.getStash(leagueName: leagueName, tabIndex: 0, needTabsInfo: 1)
         { parserStash in
-            var initTabsLayout = Array(repeating: parserStash.tabLayout.self, count: parserStash.numTabs)
-            var initItemsArray = Array(repeating: parserStash.items.self, count: parserStash.numTabs)
+            var initTabsLayout = Array(repeating: [String:TabLayout](), count: parserStash.numTabs)
+            var initItemsArray = Array(repeating: [Item](), count: parserStash.numTabs)
             // self.stash.append(stash)
-            initTabsLayout[0] = parserStash.tabLayout
+            initTabsLayout[0] = parserStash.tabLayout!
             initItemsArray[0] = parserStash.items
             self.stash = Stash(numTab: parserStash.numTabs, tabLayout: initTabsLayout, tabsInfo: parserStash.tabsInfo, itemsArray: initItemsArray)
         }
@@ -28,7 +27,12 @@ class StashsViewModel: ObservableObject
 
     func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> ItemView
     {
-        return ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: cellSize, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
+        print(stash?.itemsArray[tabIndex]!.indices)
+//        if let item = stash?.itemsArray[tabIndex]![i]
+//        {
+            let returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: cellSize, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
+//        }
+        return returnView
     }
 
     func toggleToolTipView(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData], activeIdx: UUID) -> some View

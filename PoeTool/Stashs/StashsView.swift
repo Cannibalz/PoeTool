@@ -31,7 +31,7 @@ struct StashsView: View
                 {
                     ZStack
                     {
-                        ForEach(0 ..< self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]!.count)
+                        ForEach( (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.indices ?? 0..<0))
                         { i in
                             self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                         }
