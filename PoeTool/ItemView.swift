@@ -55,51 +55,57 @@ struct gridBackgroundView: View
     }
 }
 
-struct itemView: View
+struct ItemView: View
 {
     var item: Item
     let cellSize: CGFloat
+    var offset: CGSize
     @Binding var actived: UUID
     @Binding var isShowing: Bool
-////    @Binding var position : CGSize
-////    init(_ item:Item, cellSize:Int)
-////    {
-////        self.item = item
-////        self.cellSize = cellSize
-////    }
-    init(item:Item, cellSize:CGFloat, actived: Binding<UUID>, isShowing:Binding<Bool>)
+    ////    @Binding var position : CGSize
+    ////    init(_ item:Item, cellSize:Int)
+    ////    {
+    ////        self.item = item
+    ////        self.cellSize = cellSize
+    ////    }
+    init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>)
     {
         self.item = item
         self.cellSize = cellSize
-        self._actived = actived
-        self._isShowing = isShowing
-        print("---")
-        print(self.item.x)
-        print(self.item.y)
-        
+        _actived = actived
+        _isShowing = isShowing
+        offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
     }
-    init(item:Item, cellSize:CGFloat, actived: Binding<UUID>, isShowing:Binding<Bool>, offset : CGSize)
+
+    init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
     {
         self.item = item
         self.cellSize = cellSize
-        self._actived = actived
-        self._isShowing = isShowing
-        self.item.x = Int(offset.width)
-        self.item.y = Int(offset.height)
-        print("---")
-        print(self.item.x)
-        print(self.item.y)
-        print("---")
+        _actived = actived
+        _isShowing = isShowing
+        self.offset = offset
     }
+
     var body: some View
     {
         ZStack(alignment: .topLeading)
         {
             URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
-                .overlay(Text("\(item.stackSize.flatMap(String.init) ?? "")"))
-                .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
+                .overlay(Text(item.stackSize
+                        .flatMap
+                    { x -> String in
+
+                        if x > 1
+                        {
+                            return String(x)
+                        }
+                        else { return "" }
+
+                } ?? ""), alignment: .topLeading).font(.system(size: 12))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
-                .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: CGFloat(self.item.x) * self.cellSize, y: CGFloat(self.item.y) * self.cellSize)] })
+                .offset(x: offset.width, y: offset.height)
+
+                .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: self.offset.width, y: self.offset.height)] })
                 .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                     value[0].bottomTrailing = anchor
                 })
@@ -109,8 +115,9 @@ struct itemView: View
 //                Text("\(item.stackSize!)").font(.system(size: 10)).bold()
 //                    .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
 //            }
-            //寫進道具中
+            // 寫進道具中
         }
+
         .onTapGesture
         {
             self.actived = self.item.uuID

@@ -8,14 +8,28 @@
 
 import Foundation
 
-struct Stash: Codable {
+struct parserStash: Codable {
     let numTabs: Int
     let tabLayout : [String: TabLayout]?
-    let tabs: [Tab]
+    let tabsInfo: [TabsInfo]
     let items: [Item]
+    enum CodingKeys: String, CodingKey
+    {
+        case numTabs = "numTabs"
+        case tabLayout = "tabLayout"
+        case tabsInfo = "tabs"
+        case items = "items"
+    }
 }
-
-struct Tab: Codable, Identifiable{
+struct Stash
+{
+    let numTab: Int
+    var tabLayout : [[String:TabLayout]?]
+    var tabsInfo : [TabsInfo]
+    var itemsArray : [[Item]?]
+    
+}
+struct TabsInfo: Codable, Identifiable{
     let n: String
     let i: Int
     let id, type: String

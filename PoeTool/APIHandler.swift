@@ -153,7 +153,7 @@ class PoEData : NSObject
 // Stashs
 extension PoEData
 {
-    func getStash(leagueName: String, tabIndex:Int, needTabsInfo:Int,completion: @escaping (Stash)->())
+    func getStash(leagueName: String, tabIndex:Int, needTabsInfo:Int,completion: @escaping (parserStash)->())
     {
         let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=0"
         getData(url: urlString, POESESSID: self.account.POESESSID)
@@ -162,10 +162,10 @@ extension PoEData
             var stringData : String = String(data: data, encoding: .utf8) ?? ""
             self.modifyLayoutsName(stringData: &stringData)
             data = stringData.data(using: .utf8)!
-            var stashs : Stash
+            var stashs : parserStash
             do
             {
-                stashs = try JSONDecoder().decode(Stash.self, from: data)
+                stashs = try JSONDecoder().decode(parserStash.self, from: data)
                 completion(stashs)
             }
             catch

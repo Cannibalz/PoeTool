@@ -19,38 +19,49 @@ struct StashsView: View
     var currencyTabWidth = CGFloat(569)
     var scaleCoefficient: CGFloat = 1
     @State var showDetail = true
-    @State private var activeIdx: UUID = UUID()
+    @State var activeIdx: UUID = UUID()
     var body: some View
     {
         VStack(alignment: .center)
         {
-            if self.viewModel.stashs.count > 0
+            if (self.viewModel.stash?.numTab ?? 0) > 0
             {
                 stashTabsPicker(viewModel: viewModel)
                 ZStack
                 {
                     ZStack
                     {
-                        ForEach(0 ..< self.viewModel.stashs[0].items.count)
+                        ForEach(0 ..< self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]!.count)
                         { i in
-                            itemView(item: self.viewModel.stashs[0].items[i], cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail,offset:CGSize(width: CGFloat(self.viewModel.stashs[0].tabLayout![String(self.viewModel.stashs[0].items[i].x)]!.x), height: CGFloat(self.viewModel.stashs[0].tabLayout![String(self.viewModel.stashs[0].items[i].x)]!.y)))
-//                                .offset(x: CGFloat(self.viewModel.stashs[0].tabLayout![String(self.viewModel.stashs[0].items[i].x)]!.x
-//                                ), y: CGFloat(self.viewModel.stashs[0].tabLayout![String(self.viewModel.stashs[0].items[i].x)]!.y
-//                                ))
-                                //.frame(width: CGFloat(self.viewModel.stashs[0].items[i].w) * self.cellSize, height: CGFloat(self.viewModel.stashs[0].items[i].h) * self.cellSize)
+                            self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                         }
-                        
                     }
-                    
                 }
                 .frame(width: currencyTabWidth, height: currencyTabWidth, alignment: .topLeading)
-                .background(Image(self.viewModel.tabs[0].type))
+                .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
             }
             else
             {
                 EmptyView()
+            }
+        }
+        .overlayPreferenceValue(itemPreferenceKey.self)
+        { preferences in
+            GeometryReader
+            { geometry in
+                if !self.showDetail
+                {
+                    self.viewModel.toggleToolTipView(geometry, preferences, activeIdx: self.activeIdx)
+                }
+            }
+        }
+        .onTapGesture
+        {
+            if !self.showDetail
+            {
+                self.showDetail = true
             }
         }
         .onAppear
@@ -67,17 +78,28 @@ struct stashTabsPicker: View
     {
         ScrollView(.horizontal)
         {
-            if viewModel.stashs.count > 0
+            if viewModel.stash?.numTab ?? 0 > 0
             {
                 HStack
                 {
-                    ForEach(0 ..< viewModel.stashs[0].tabs.count)
+                    ForEach(0 ..< viewModel.stash!.tabsInfo.count)
                     { i in
-                        Text(self.viewModel.stashs[0].tabs[i].n)
-                            .frame(minWidth: 30)
-                            .foregroundColor(Color(red: 1.00, green: 0.75, blue: 0.47))
-                            .background(Color(red: 124 / 255, green: 84 / 255, blue: 54 / 255))
-                            .cornerRadius(10)
+
+                        Button(action:
+                            {
+                                self.viewModel.tabIndex = i
+                                print(self.viewModel.tabIndex)
+                                print(self.viewModel.stash?.itemsArray[self.viewModel.tabIndex]!.count)
+                            },
+                            label:
+                            {
+                                Text(self.viewModel.stash!.tabsInfo[i].n)
+                                    .frame(minWidth: 30)
+                                    .foregroundColor(Color(red: 1.00, green: 0.75, blue: 0.47))
+                                    .background(Color(red: 124 / 255, green: 84 / 255, blue: 54 / 255))
+                                    .cornerRadius(10)
+
+                        })
                     }
                 }
             }
