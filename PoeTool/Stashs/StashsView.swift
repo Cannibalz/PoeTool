@@ -31,14 +31,14 @@ struct StashsView: View
                 {
                     ZStack
                     {
-                        ForEach( (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.indices ?? 0..<0))
+                        ForEach(0..<(self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id:\.hashValue)// ?? 0 ..< 0)
                         { i in
                             self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
                         }
                     }
                 }
                 .frame(width: currencyTabWidth, height: currencyTabWidth, alignment: .topLeading)
-                .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
+                //.background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
             }
@@ -87,9 +87,7 @@ struct stashTabsPicker: View
 
                         Button(action:
                             {
-                                self.viewModel.tabIndex = i
-                                print(self.viewModel.tabIndex)
-                                print(self.viewModel.stash?.itemsArray[self.viewModel.tabIndex]!.count)
+                                self.viewModel.stashTabCheck(tabIndex: i)
                             },
                             label:
                             {
@@ -103,6 +101,6 @@ struct stashTabsPicker: View
                     }
                 }
             }
-        }.frame(height: 50)
+        }.frame(width:Screen.Width, height: 50)
     }
 }

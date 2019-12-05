@@ -11,7 +11,7 @@ import Foundation
 struct parserStash: Codable {
     let numTabs: Int
     let tabLayout : [String: TabLayout]?
-    let tabsInfo: [TabsInfo]
+    let tabsInfo: [TabsInfo]?
     let items: [Item]
     enum CodingKeys: String, CodingKey
     {

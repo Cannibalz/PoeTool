@@ -38,7 +38,6 @@ struct loadingCircle: View
 struct LogInView: View
 {
     @ObservedObject var viewModel = LoginViewModel()
-    @State var privateAcc = false
     var body: some View
     {
         NavigationView
@@ -50,27 +49,10 @@ struct LogInView: View
                     TextField("Account Name", text: $viewModel.accName)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                    Button(action: {
-                        self.privateAcc = !self.privateAcc
-                    })
-                    {
-                        HStack(alignment: .top, spacing: 10)
-                        {
-                            if !privateAcc
-                            {
-                                Image(systemName: "square")
-                            }
-                            else if privateAcc
-                            {
-                                Image(systemName: "checkmark.square.fill")
-                            }
-                            Text("Private Account")
-                        }
-                    }
                     TextField("POESESSID", text: $viewModel.POESESSID)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding().disabled(!privateAcc)
-                        .opacity(privateAcc ? 1 : 0)
+                        .padding()//.disabled(!privateAcc)
+                        //.opacity(privateAcc ? 1 : 0)
 
                     Toggle(isOn: $viewModel.wannaStore)
                     {
@@ -106,7 +88,7 @@ struct LogInView: View
             }.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
-            // self.viewModel.viewOnApper()
+             self.viewModel.viewOnApper()
         })
         .onDisappear(perform: {
         })

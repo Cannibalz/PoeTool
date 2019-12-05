@@ -74,7 +74,7 @@ struct ItemView: View
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
-        offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
+        self.offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
     }
 
     init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
@@ -109,7 +109,7 @@ struct ItemView: View
                 .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                     value[0].bottomTrailing = anchor
                 })
-                .background(Color.blue.opacity(0.1).offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize))
+                .background(Color.blue.opacity(0.1).offset(x: offset.width, y: offset.height))
 //            if item.stackSize != 1 && item.stackSize != nil
 //            {
 //                Text("\(item.stackSize!)").font(.system(size: 10)).bold()

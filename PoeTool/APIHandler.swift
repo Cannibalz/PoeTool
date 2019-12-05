@@ -155,7 +155,7 @@ extension PoEData
 {
     func getStash(leagueName: String, tabIndex:Int, needTabsInfo:Int,completion: @escaping (parserStash)->())
     {
-        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=1&tabIndex=0"
+        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=\(leagueName)&realm=pc&accountName=\(account.Name)&tabs=\(needTabsInfo)&tabIndex=\(tabIndex)"
         getData(url: urlString, POESESSID: self.account.POESESSID)
         { Body in
             var data = Body.data
