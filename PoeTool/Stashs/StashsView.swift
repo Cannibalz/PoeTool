@@ -27,7 +27,7 @@ struct StashsView: View
             if (self.viewModel.stash?.numTab ?? 0) > 0
             {
                 stashTabsPicker(viewModel: viewModel)
-                ZStack
+                ZStack(alignment: .topLeading)
                 {
                     ForEach(0 ..< (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id: \.hashValue)
                     { i in
