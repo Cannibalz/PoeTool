@@ -74,7 +74,7 @@ struct ItemView: View
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
-        self.offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
+        offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
     }
 
     init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
@@ -102,20 +102,15 @@ struct ItemView: View
                         else { return "" }
 
                 } ?? ""), alignment: .topLeading).font(.system(size: 12))
+                //.border(Color.yellow)
+                .background(Color.blue.opacity(0.1))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
                 .offset(x: offset.width, y: offset.height)
-
                 .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: self.offset.width, y: self.offset.height)] })
                 .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                     value[0].bottomTrailing = anchor
                 })
-                .background(Color.blue.opacity(0.1).offset(x: offset.width, y: offset.height))
-//            if item.stackSize != 1 && item.stackSize != nil
-//            {
-//                Text("\(item.stackSize!)").font(.system(size: 10)).bold()
-//                    .offset(x: CGFloat(item.x) * cellSize, y: CGFloat(item.y) * cellSize)
-//            }
-            // 寫進道具中
+            
         }
 
         .onTapGesture
@@ -123,5 +118,6 @@ struct ItemView: View
             self.actived = self.item.uuID
             self.isShowing = !self.isShowing
         }
+        
     }
 }

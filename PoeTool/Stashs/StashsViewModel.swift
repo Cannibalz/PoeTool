@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 class StashsViewModel: ObservableObject
 {
-    let tabCellSize : [String:CGFloat] = ["CurrencyStash":37.9619,"FragmentStash":30.127,"EssenceStash":38.3238,"DelveStash":42.1795,"":0]
+    let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795, "": 0]
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
     var leagueName = ""
@@ -27,41 +27,37 @@ class StashsViewModel: ObservableObject
             self.leagueName = leagueName
         }
     }
-    func appendTab(leagueName:String,tabIndex:Int)
+
+    func appendTab(leagueName: String, tabIndex: Int)
     {
         PoEData.shared.getStash(leagueName: leagueName, tabIndex: tabIndex, needTabsInfo: 0)
         { parserStash in
-            print(parserStash)
             self.stash?.itemsArray[tabIndex] = parserStash.items
             if parserStash.tabLayout?.count ?? 0 > 0
             {
                 self.stash?.tabLayout[tabIndex] = parserStash.tabLayout
             }
             self.tabIndex = tabIndex
-            print(self.stash?.itemsArray[tabIndex]?.count ?? 0)
-            print(self.tabIndex)
+//            print(self.stash?.itemsArray[tabIndex]?.count ?? 0)
+//            print(self.tabIndex)
         }
     }
+
     func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> ItemView?
     {
-//        var returnView : ItemView? = nil
-//        if i < stash?.itemsArray[tabIndex]!.count ?? 0
-//        {
-          var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: self.tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
-//        }
-        
+        var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
+        print("\((stash?.itemsArray[tabIndex]![i])?.typeLine) 's x :\(stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x)")
         return returnView
     }
 
-    func stashTabCheck(tabIndex:Int)
+    func stashTabCheck(tabIndex: Int)
     {
-        if self.stash?.itemsArray[tabIndex]?.count == 0
+        if stash?.itemsArray[tabIndex]?.count == 0
         {
-            self.appendTab(leagueName: leagueName, tabIndex: tabIndex)
+            appendTab(leagueName: leagueName, tabIndex: tabIndex)
         }
         else if stash?.tabsInfo[tabIndex].type == "MapStash"
         {
-            
         }
         else
         {
