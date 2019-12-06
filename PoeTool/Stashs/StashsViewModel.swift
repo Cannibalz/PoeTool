@@ -10,7 +10,9 @@ import Foundation
 import SwiftUI
 class StashsViewModel: ObservableObject
 {
-    let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795, "": 0]
+    let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795]
+    let layoutedTab = ["CurrencyStash","FragmentStash","EssenceStash","DelveStash"]
+    
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
     var leagueName = ""
@@ -45,9 +47,21 @@ class StashsViewModel: ObservableObject
 
     func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> ItemView?
     {
-        var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
-        print("\((stash?.itemsArray[tabIndex]![i])?.typeLine) 's x :\(stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x)")
-        return returnView
+        if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
+        {
+            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
+            return returnView
+        }
+        else if stash?.tabsInfo[tabIndex].type == "QuadStash"
+        {
+            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/24), actived: actived, isShowing: isShowing)
+            return returnView
+        }
+        else
+        {
+            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/12), actived: actived, isShowing: isShowing)
+            return returnView
+        }
     }
 
     func stashTabCheck(tabIndex: Int)
