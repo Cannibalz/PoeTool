@@ -11,7 +11,6 @@ import SwiftUI
 class StashsViewModel: ObservableObject
 {
     let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795]
-    let layoutedTab = ["CurrencyStash","FragmentStash","EssenceStash","DelveStash"]
     
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
