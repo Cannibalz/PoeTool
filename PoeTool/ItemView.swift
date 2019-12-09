@@ -90,7 +90,7 @@ struct ItemView: View
     {
         ZStack(alignment: .topLeading)
         {
-            URLImage(URL(string: item.icon)!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
+            URLImage(URL(string: item.icon.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
                 .overlay(Text(item.stackSize
                         .flatMap
                     { x -> String in
