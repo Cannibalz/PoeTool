@@ -80,16 +80,17 @@ class StashsViewModel: ObservableObject
 
     func toggleToolTipView(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData], activeIdx: UUID) -> some View
     {
-        let p = preferences.first(where: { $0.item.uuID == activeIdx })
-        let aTopLeading = p?.topLeading
-        var x = p?.x
-        var y = p?.y
-        let topLeading = aTopLeading != nil ? geometry[aTopLeading!] : .zero
-        if (x ?? 0) + 365 > geometry.size.width
+        
+        if let p = preferences.first(where: { $0.item.uuID == activeIdx })
         {
-            x = geometry.size.width - 365
+            let x = p.x
+            let y = p.y
+            let iTTV = itemToolTipView(item: p.item).offset(x: x, y: y)
+            return AnyView(iTTV)
         }
-        let iTTV = itemToolTipView(item: p!.item).offset(x: /* topLeading.x + */ x ?? Screen.Width + 30, y: y ?? 0 /* + (y ?? 640) */ )
-        return iTTV
+        else
+        {
+            return AnyView(EmptyView())
+        }
     }
 }

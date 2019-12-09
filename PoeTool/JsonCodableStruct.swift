@@ -142,14 +142,14 @@ struct SocketedItem: Codable {
     let h: Int
     let ilvl: Int
     let icon: String
-    let support: Bool
+    let support: Bool?
     let id: String
     let name: String
     let typeLine: String
     let identified: Bool
     let properties: [Property]
     let requirements: [Property]?
-    let secDescrText: String
+    let secDescrText: String?
     let explicitMods: [String]?
     let descrText: String
     let frameType: Int

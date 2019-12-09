@@ -24,6 +24,8 @@ struct StashsView: View
     {
         VStack(alignment: .center)
         {
+            Banner()
+            Divider()
             if (self.viewModel.stash?.numTab ?? 0) > 0
             {
                 stashTabsPicker(viewModel: viewModel)
@@ -48,7 +50,7 @@ struct StashsView: View
         { preferences in
             GeometryReader
             { geometry in
-                if !self.showDetail
+                if !self.showDetail && preferences.count > 0
                 {
                     self.viewModel.toggleToolTipView(geometry, preferences, activeIdx: self.activeIdx)
                 }

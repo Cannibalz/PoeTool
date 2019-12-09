@@ -57,21 +57,21 @@ struct CharactersListView: View
         {
             VStack
             {
+                Banner()
                 if self.viewModel.leagues.count > 0
                 {
                     if self.viewModel.leagueIndex != 0
                     {
                         Spacer()
-                        NavigationLink(destination:StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
+                        NavigationLink(destination: StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
                         {
                             Text("  Stashs of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.white).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white, lineWidth: 2))
+                                .stroke(Color.white, lineWidth: 2))
                         }
                     }
                 }
                 List
                 {
-
                     ForEach(viewModel.charactersInfo)
                     { chara in
                         if self.viewModel.leagueIndex == 0

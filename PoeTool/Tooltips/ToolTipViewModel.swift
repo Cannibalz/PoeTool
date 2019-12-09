@@ -14,31 +14,48 @@ import SwiftUI
 class ToolTipViewModel: ObservableObject
 {
     var viewY = CGFloat(0)
+    var viewMinX = CGFloat(0)
+    var viewMaxX = CGFloat(0)
     @Published var yOffset : CGFloat?
+    @Published var xOffset : CGFloat?
     var needToOffset = true
     func readSize(geoProxy:GeometryProxy)-> some View
     {
         if needToOffset
         {
             self.viewY = geoProxy.frame(in: .global).maxY
-            if viewY > 717
+            self.viewMaxX = geoProxy.frame(in: .global).maxX
+            self.viewMinX = geoProxy.frame(in: .global).minX
+            if viewY > Screen.Height
             {
-                yOffset = CGFloat(717) - viewY
+                yOffset = Screen.Height - viewY
             }
             else
             {
                 yOffset = nil
             }
+            if viewMinX < 0
+            {
+                xOffset = (0-viewMinX)
+            }
+            else if viewMaxX > Screen.Width
+            {
+                xOffset = Screen.Width - viewMaxX
+            }
+            else
+            {
+                xOffset = nil
+            }
             self.needToOffset = false
+            
         }
-        
         return Color.black.opacity(0.7)
     }
     
     func propText(prop: Property) -> Text
     {
         var valueString = ""
-        var name = prop.name
+        var name = prop.name.replacingOccurrences(of: "<unmet>", with: "")
         for i in 0 ..< prop.values.count
         {
             let value = prop.values[i][0]

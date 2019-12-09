@@ -53,7 +53,7 @@ struct CharacterDetailView: View
         { preferences in
             GeometryReader
             { geometry in
-                if !self.showDetail
+                if !self.showDetail && preferences.count > 0
                 {
                     self.viewModel.createBorder(geometry, preferences, activeIdx: self.activeIdx)
                 }

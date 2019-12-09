@@ -40,6 +40,18 @@ struct itemToolTipView: View
                     viewModel.reqsText(reqs: self.item.requirements!)
                     viewModel.coloredDivider(self.item.frameType)
                 }
+                ForEach(item.implicitMods?.indices ?? 0 ..< 0)
+                {i in
+                    Text(self.item.implicitMods![i]).foregroundColor(Color.blue).multilineTextAlignment(.center)
+                }
+                if (item.implicitMods?.count ?? 0) > 0
+                {
+                    viewModel.coloredDivider(self.item.frameType)
+                }
+                if item.identified == false
+                {
+                    Text("Unidentified").foregroundColor(Color.red)
+                }
                 ForEach(item.explicitMods?.indices ?? 0 ..< 0)
                 { i in
                     Text(self.item.explicitMods![i]).foregroundColor(Color.blue).multilineTextAlignment(.center)
@@ -51,8 +63,8 @@ struct itemToolTipView: View
                 GeometryReader
                 { geoProxy in
                     self.viewModel.readSize(geoProxy: geoProxy)
-                }.offset(x: 0, y: viewModel.yOffset ?? 0)
+                }
             )
-        }.font(.system(size: 14))
+            }.font(.system(size: 14)).offset(x: viewModel.xOffset ?? 0, y: viewModel.yOffset ?? 0)
     }
 }
