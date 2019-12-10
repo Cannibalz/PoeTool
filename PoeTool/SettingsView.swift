@@ -17,9 +17,11 @@ struct MenuContent: View {
             Text("Posts").onTapGesture {
                 print("Posts")
             }
-            Text("Logout").onTapGesture {
-                print("Logout")
-            }
+        
+//            NavigationLink(destination: LogInView(autoAuth: false)) {
+//                Text("Logout")
+//            }
+            
         }
     }
 }

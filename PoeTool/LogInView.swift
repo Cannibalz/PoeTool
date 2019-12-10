@@ -9,7 +9,7 @@ import SwiftUI
 struct loadingCircle: View
 {
     @State var spin = false
-
+    
     var body: some View
     {
         VStack
@@ -37,7 +37,9 @@ struct loadingCircle: View
 
 struct LogInView: View
 {
+    @Binding var logInSuccess : Bool
     @ObservedObject var viewModel = LoginViewModel()
+    var autoAuth = true
     var body: some View
     {
         NavigationView
@@ -88,7 +90,10 @@ struct LogInView: View
             }.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
-             self.viewModel.viewOnApper()
+            if self.autoAuth
+            {
+                self.viewModel.viewOnApper()
+            }
         })
         .onDisappear(perform: {
         })
@@ -100,7 +105,7 @@ struct LogInView: View
     {
         static var previews: some View
         {
-            LogInView()
+            LogInView(logInSuccess: .constant(false))
         }
     }
 #endif

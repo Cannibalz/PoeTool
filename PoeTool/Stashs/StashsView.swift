@@ -24,7 +24,7 @@ struct StashsView: View
     {
         VStack(alignment: .center)
         {
-            Banner()
+//            Banner()
             Divider()
             if (self.viewModel.stash?.numTab ?? 0) > 0
             {

@@ -57,7 +57,6 @@ struct itemToolTipView: View
                     Text(self.item.explicitMods![i]).foregroundColor(Color.blue).multilineTextAlignment(.center)
                 }
             }
-            .offset(x: 0, y: viewModel.yOffset ?? 0)
             .foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)
             .background(
                 GeometryReader
@@ -65,6 +64,7 @@ struct itemToolTipView: View
                     self.viewModel.readSize(geoProxy: geoProxy)
                 }
             )
+            .offset(x: 0, y: viewModel.yOffset ?? 0)
             }.font(.system(size: 14)).offset(x: viewModel.xOffset ?? 0, y: viewModel.yOffset ?? 0)
     }
 }

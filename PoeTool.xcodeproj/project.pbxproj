@@ -34,6 +34,7 @@
 		9887FC7523535DB8005D7AD1 /* PoeToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC7423535DB8005D7AD1 /* PoeToolUITests.swift */; };
 		98884D24237A9ADE004B61A3 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98884D23237A9ADE004B61A3 /* ToolTipView.swift */; };
 		98884D26237A9AED004B61A3 /* ToolTipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98884D25237A9AED004B61A3 /* ToolTipViewModel.swift */; };
+		989082FB239F3255004156F3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989082FA239F3255004156F3 /* HomeView.swift */; };
 		9894159923681B1200E6BF85 /* URLImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156923681B1200E6BF85 /* URLImageService.swift */; };
 		9894159A23681B1200E6BF85 /* FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156B23681B1200E6BF85 /* FileIndex.swift */; };
 		9894159B23681B1200E6BF85 /* RemoteFileCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894156C23681B1200E6BF85 /* RemoteFileCacheService.swift */; };
@@ -128,6 +129,7 @@
 		9887FC7623535DB8005D7AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98884D23237A9ADE004B61A3 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
 		98884D25237A9AED004B61A3 /* ToolTipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipViewModel.swift; sourceTree = "<group>"; };
+		989082FA239F3255004156F3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9894156923681B1200E6BF85 /* URLImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLImageService.swift; sourceTree = "<group>"; };
 		9894156B23681B1200E6BF85 /* FileIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileIndex.swift; sourceTree = "<group>"; };
 		9894156C23681B1200E6BF85 /* RemoteFileCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteFileCacheService.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				989082FA239F3255004156F3 /* HomeView.swift */,
 				980C64E023865BF80074484A /* Stashs */,
 				989EBA5D2382249100E77B38 /* GoogldAD */,
 				9823539B2373A76A0094C29E /* Tooltips */,
@@ -755,6 +758,7 @@
 				989415B823681B1200E6BF85 /* URLImage.swift in Sources */,
 				989415B623681B1200E6BF85 /* ImageProxy.swift in Sources */,
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
+				989082FB239F3255004156F3 /* HomeView.swift in Sources */,
 				989415AE23681B1200E6BF85 /* ImageLoaderService.swift in Sources */,
 				98884D26237A9AED004B61A3 /* ToolTipViewModel.swift in Sources */,
 				989415B323681B1200E6BF85 /* ImageLoaderObserver.swift in Sources */,
@@ -983,7 +987,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = KaFn.PoeTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1004,7 +1008,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = KaFn.PoeTool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

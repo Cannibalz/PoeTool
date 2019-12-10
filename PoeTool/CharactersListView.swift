@@ -101,6 +101,7 @@ struct CharactersListView: View
         })
         .onDisappear
         {
+            
         }
     }
 
