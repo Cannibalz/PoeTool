@@ -16,7 +16,7 @@ struct HomeView : View
     {
         return Group
         {
-            if PoEData.shared.isLogged
+            if logInSuccess
             {
                 CharactersListView()
             }

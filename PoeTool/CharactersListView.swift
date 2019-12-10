@@ -53,55 +53,57 @@ struct CharactersListView: View
     @ObservedObject var viewModel = CharactersListViewModel(isLogged: PoEData.shared.isLogged)
     var body: some View
     {
-        ZStack
+        NavigationView
         {
-            VStack
+            ZStack
             {
-                Banner()
-                if self.viewModel.leagues.count > 0
+                VStack
                 {
-                    if self.viewModel.leagueIndex != 0
+                    Banner()
+                    if self.viewModel.leagues.count > 0
                     {
-                        Spacer()
-                        NavigationLink(destination: StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
+                        if self.viewModel.leagueIndex != 0
                         {
-                            Text("  Stashs of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.white).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.white, lineWidth: 2))
-                        }
-                    }
-                }
-                List
-                {
-                    ForEach(viewModel.charactersInfo)
-                    { chara in
-                        if self.viewModel.leagueIndex == 0
-                            || chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
-                        {
-                            NavigationLink(destination: CharacterDetailView(chara: chara))
+                            Spacer()
+                            NavigationLink(destination: StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
                             {
-                                characterCell(characterInfo: chara)
+                                Text("  Stashs of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.white).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.white, lineWidth: 2))
                             }
                         }
                     }
-                }
-                if viewModel.charactersInfo.count > 0
+                    List
+                    {
+                        ForEach(viewModel.charactersInfo)
+                        { chara in
+                            if self.viewModel.leagueIndex == 0
+                                || chara.league == self.viewModel.leagues[self.viewModel.leagueIndex]
+                            {
+                                NavigationLink(destination: CharacterDetailView(chara: chara))
+                                {
+                                    characterCell(characterInfo: chara).disabled(false)
+                                }
+                            }
+                        }
+                    }
+                    if viewModel.charactersInfo.count > 0
+                    {
+                        leaguePicker(viewModel: viewModel)
+                    }
+                }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
+                SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+            }
+            .navigationBarItems(trailing: Button(action:
                 {
-                    leaguePicker(viewModel: viewModel)
-                }
-            }.navigationBarTitle(Text("Characters")).navigationBarBackButtonHidden(true)
-            SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
-        }
-        .navigationBarItems(trailing: Button(action:
+                    self.openMenu()
+            }, label: { Image(systemName: "line.horizontal.3") }))
+            .onAppear(perform: {
+                self.viewModel.viewOnApper()
+                self.selected = 0
+            })
+            .onDisappear
             {
-                self.openMenu()
-        }, label: { Image(systemName: "line.horizontal.3") }))
-        .onAppear(perform: {
-            self.viewModel.viewOnApper()
-            self.selected = 0
-        })
-        .onDisappear
-        {
-            
+            }
         }
     }
 

@@ -42,8 +42,8 @@ struct LogInView: View
     var autoAuth = true
     var body: some View
     {
-        NavigationView
-        {
+//        NavigationView
+//        {
             ZStack
             {
                 VStack
@@ -60,15 +60,18 @@ struct LogInView: View
                     {
                         Text("Remeber me")
                     }.frame(width: 200.0)
-                    NavigationLink(destination: CharactersListView(), isActive: $viewModel.authed, label:
-                        {
+//                    NavigationLink(destination: CharactersListView(), isActive: $viewModel.authed, label:
+//                        {
                             Button(action: {
                                 self.viewModel.accountAuth()
+                                print("Authed : \(self.viewModel.authed)")
+                                self.logInSuccess = self.viewModel.authed
+                                print("log In Success : \(self.logInSuccess)")
                             })
                             {
                                 Text("Authenticate")
                             }
-                    })
+//                    })
                 }
                 VStack
                 {
@@ -87,7 +90,7 @@ struct LogInView: View
                         Text("cancel")
                     }
                 }
-            }.navigationBarTitle(Text(""), displayMode: .inline)
+            //}.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
             if self.autoAuth

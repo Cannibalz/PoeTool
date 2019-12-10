@@ -14,16 +14,16 @@ class LoginViewModel: ObservableObject
     {
         
     }
-    func viewOnApper()
+    func viewOnApper()->Bool
     {
         if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID")
         {
             PoEData.shared.ValidByUserDefault()
             self.authed = true
-            
         }
+        return self.authed
     }
-    func accountAuth()
+    func accountAuth()->Bool
     {
         isLoading = true
         //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
@@ -38,6 +38,7 @@ class LoginViewModel: ObservableObject
             }
             self.isLoading = false
         })
+        return self.authed
     }
     func storeInfo()
     {
