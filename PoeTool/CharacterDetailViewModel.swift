@@ -152,6 +152,7 @@ class CharacterDetailViewModel: ObservableObject
             self.catagoryItems.append(tempEquipment)
             self.catagoryItems.append(tempFlask)
             self.catagoryItems.append(tempMainInventory)
+            
         }
     }
     func createBorder(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData],activeIdx : UUID) -> some View

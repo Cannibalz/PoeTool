@@ -90,6 +90,7 @@ struct ItemView: View
     {
         ZStack(alignment: .topLeading)
         {
+            
             URLImage(URL(string: item.icon.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
                 .overlay(Text(item.stackSize
                         .flatMap
@@ -102,8 +103,6 @@ struct ItemView: View
                         else { return "" }
 
                 } ?? ""), alignment: .topLeading).font(.system(size: 12))
-                //.border(Color.yellow)
-                .background(Color.blue.opacity(0.1))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
                 .offset(x: offset.width, y: offset.height)
                 .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: self.offset.width, y: self.offset.height)] })

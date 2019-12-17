@@ -64,8 +64,10 @@ struct LogInView: View
 //                        {
                             Button(action: {
                                 self.viewModel.accountAuth()
+                                {_ in
+                                    self.logInSuccess = self.viewModel.authed
+                                }
                                 print("Authed : \(self.viewModel.authed)")
-                                self.logInSuccess = self.viewModel.authed
                                 print("log In Success : \(self.logInSuccess)")
                             })
                             {
@@ -93,10 +95,6 @@ struct LogInView: View
             //}.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
-            if self.autoAuth
-            {
-                self.viewModel.viewOnApper()
-            }
         })
         .onDisappear(perform: {
         })

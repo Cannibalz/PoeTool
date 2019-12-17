@@ -43,7 +43,7 @@ class PoEData : NSObject
 {
     static let shared = PoEData()
     var isLogged : Bool = false
-    var charaters : [CharacterInfo] = [CharacterInfo]()
+    
     var account = Account()
     init(name:String,POESESSID:String)
     {
@@ -147,6 +147,11 @@ class PoEData : NSObject
 
         self.APIRequestCancellable?.cancel()
         print("Requset Cancelled")
+    }
+    func initAccount()
+    {
+        self.account = Account()
+        self.isLogged = false
     }
 }
 

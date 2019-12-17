@@ -16,15 +16,22 @@ class LoginViewModel: ObservableObject
     }
     func viewOnApper()->Bool
     {
-        if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID")
+        if let wannaStore: Bool = UserDefaults.standard.bool(forKey: "wannaStore")
         {
-            PoEData.shared.ValidByUserDefault()
-            self.authed = true
+            print(wannaStore)
+            
+            if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID"), wannaStore
+            {
+                PoEData.shared.ValidByUserDefault()
+                self.authed = true
+            }
+            return self.authed
         }
-        return self.authed
+
     }
-    func accountAuth()->Bool
+    func accountAuth(completion: @escaping(Bool)->() )
     {
+        var loginSuccess = false
         isLoading = true
         //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
         PoEinstance.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
@@ -34,22 +41,33 @@ class LoginViewModel: ObservableObject
             {
                 self.authed = true
                 self.isLoading = false
+                loginSuccess = true
                 self.storeInfo()
+                completion(loginSuccess)
+            }
+            else
+            {
+                completion(loginSuccess)
             }
             self.isLoading = false
+            
         })
-        return self.authed
     }
     func storeInfo()
     {
         if wannaStore
         {
+            print("stored")
             let accName : String = self.accName
             let POESSID : String = self.POESESSID
             UserDefaults.standard.set(accName, forKey: "accName")
             UserDefaults.standard.set(POESSID, forKey: "POESESSID")
             UserDefaults.standard.set(true ,forKey:"wannaStore")
-            
+        }
+        else
+        {
+            print("unstored")
+            UserDefaults.standard.set(false ,forKey:"wannaStore")
         }
     }
 }

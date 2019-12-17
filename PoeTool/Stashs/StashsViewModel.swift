@@ -39,28 +39,31 @@ class StashsViewModel: ObservableObject
                 self.stash?.tabLayout[tabIndex] = parserStash.tabLayout
             }
             self.tabIndex = tabIndex
-//            print(self.stash?.itemsArray[tabIndex]?.count ?? 0)
-//            print(self.tabIndex)
         }
     }
 
-    func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> ItemView?
+    func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> AnyView
     {
+        var returnView = AnyView(EmptyView())
         if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
         {
-            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0))
-            return returnView
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
+            
         }
         else if stash?.tabsInfo[tabIndex].type == "QuadStash"
         {
-            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/24), actived: actived, isShowing: isShowing)
-            return returnView
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/24), actived: actived, isShowing: isShowing))
+            
+        }
+        else if stash?.tabsInfo[tabIndex].type == "DivinationCardStash"
+        {
+            
         }
         else
         {
-            var returnView = ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/12), actived: actived, isShowing: isShowing)
-            return returnView
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/12), actived: actived, isShowing: isShowing))
         }
+        return returnView
     }
 
     func stashTabCheck(tabIndex: Int)
@@ -91,6 +94,17 @@ class StashsViewModel: ObservableObject
         else
         {
             return AnyView(EmptyView())
+        }
+    }
+    func highlightBorder(_ i:Int)->Color
+    {
+        if i == self.tabIndex
+        {
+            return Color.yellow
+        }
+        else
+        {
+            return Color(.sRGB, white: 0, opacity: 0)
         }
     }
 }

@@ -50,6 +50,7 @@ struct CharactersListView: View
     @State private var selected: Int? = 0
     @State var menuOpen: Bool = false
     @State var selectedChar: CharacterInfo = CharacterInfo()
+    @Binding var logInSuccess : Bool
     @ObservedObject var viewModel = CharactersListViewModel(isLogged: PoEData.shared.isLogged)
     var body: some View
     {
@@ -95,8 +96,14 @@ struct CharactersListView: View
             }
             .navigationBarItems(trailing: Button(action:
                 {
-                    self.openMenu()
-            }, label: { Image(systemName: "line.horizontal.3") }))
+                    UserDefaults.standard.set(false ,forKey:"wannaStore")
+                    UserDefaults.standard.set("" ,forKey:"accName")
+                    UserDefaults.standard.set("" ,forKey:"POESSID")
+                    PoEData.shared.account = Account()
+                    PoEData.shared.isLogged = false
+                    self.logInSuccess = false
+            }, label: { Text("Log out") }))
+                
             .onAppear(perform: {
                 self.viewModel.viewOnApper()
                 self.selected = 0
@@ -125,7 +132,7 @@ struct CharactersListView: View
     {
         static var previews: some View
         {
-            CharactersListView(viewModel: CharactersListViewModel(isLogged: true))
+            CharactersListView(logInSuccess: .constant(true), viewModel: CharactersListViewModel(isLogged: true))
         }
     }
 #endif

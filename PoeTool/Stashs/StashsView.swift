@@ -29,14 +29,27 @@ struct StashsView: View
             if (self.viewModel.stash?.numTab ?? 0) > 0
             {
                 stashTabsPicker(viewModel: viewModel)
+                
                 ZStack(alignment: .topLeading)
                 {
-                    ForEach(0 ..< (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id: \.hashValue)
-                    { i in
-                        self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
+                    if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "DivinationCardStash"
+                    {
+                        Text("Divination Card tab is not available with POE API now!")
+                    }
+                    else if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "UniqueStash"
+                    {
+                        Text("Unique tab is not available with POE API now!")
+                    }
+                    else
+                    {
+                        ForEach(0 ..< (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id: \.hashValue)
+                        { i in
+                            self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
+                        }
                     }
                 }
                 .frame(width: currencyTabWidth, height: currencyTabWidth, alignment: .topLeading)
+                .border(Color(red: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.r) / 255, green: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.g) / 255, blue: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.b) / 255), width: 2)
                 .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
@@ -87,14 +100,16 @@ struct stashTabsPicker: View
                         Button(action:
                             {
                                 self.viewModel.stashTabCheck(tabIndex: i)
+
                             },
                             label:
                             {
                                 Text(self.viewModel.stash!.tabsInfo[i].n)
+                                    .foregroundColor(Color(red: 1.00, green: 1.00 /* 0.75 */, blue: 1.00 /* 0.47 */ ))
+                                    .shadow(color: .black, radius: 2, x: 0, y: 0)
                                     .frame(minWidth: 30)
-                                    .foregroundColor(Color(red: 1.00, green: 0.75, blue: 0.47))
-                                    .background(Color(red: 124 / 255, green: 84 / 255, blue: 54 / 255))
-                                    .cornerRadius(10)
+                                    .background(Color(red: Double(self.viewModel.stash!.tabsInfo[i].colour.r) / 255, green: Double(self.viewModel.stash!.tabsInfo[i].colour.g) / 255, blue: Double(self.viewModel.stash!.tabsInfo[i].colour.b) / 255))
+                                    .border(self.viewModel.highlightBorder(i), width: 2)
 
                         })
                     }
