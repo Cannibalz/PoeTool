@@ -56,13 +56,10 @@ struct itemToolTipView: View
                 { i in
                     Text(self.item.explicitMods![i]).foregroundColor(Color.blue).multilineTextAlignment(.center)
                 }
-                ForEach(item.socketedItems?.indices ?? 0 ..< 0)
-                { i in
-                    if i == 0
-                    {
-                        Divider()
-                    }
-                    
+                if (item.socketedItems?.count ?? 0) > 0
+                {
+                    viewModel.coloredDivider(self.item.frameType)
+                    self.viewModel.socketItem(self.item.socketedItems!, itemSockets: self.item.sockets!)
                 }
             }
             .foregroundColor(Color("GridColor")).frame(width: 350, alignment: .center)

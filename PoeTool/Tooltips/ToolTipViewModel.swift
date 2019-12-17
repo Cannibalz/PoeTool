@@ -78,7 +78,6 @@ class ToolTipViewModel: ObservableObject
         }
         return Text("\(name)\(valueString)")
     }
-
     func reqsText(reqs: [Property]) -> Text
     {
         var reqsString = "Requires "
@@ -102,7 +101,38 @@ class ToolTipViewModel: ObservableObject
         }
         return Text(reqsString)
     }
-
+    func socketItem(_ socketedItem : [SocketedItem],itemSockets : [Socket])-> some View
+    {
+        var groupArray : [String]? = Array(repeating: "", count: 6)
+        for var item in socketedItem
+        {
+            print(item)
+            print("group int : \(itemSockets[item.socket].group)")
+            if groupArray?[itemSockets[item.socket].group] == ""
+            {
+                groupArray?[itemSockets[item.socket].group] += item.typeLine
+            }
+            else
+            {
+                groupArray?[itemSockets[item.socket].group] += "-\(item.typeLine)"
+            }
+        }
+    
+        var returnView : some View
+        {
+            List
+            {
+                ForEach(0 ..< 3)
+                { i in
+                    if groupArray?[i] != ""
+                    {
+                        Text(groupArray![i]).font(.system(size: 12))
+                    }
+                }
+            }.multilineTextAlignment(.leading)
+        }
+        return returnView
+    }
     func coloredDivider(_ frameType: Int) -> some View
     {
         return Divider().background(Color.frameTypeColor(frameType))

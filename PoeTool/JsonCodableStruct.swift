@@ -137,52 +137,52 @@ enum Value: Codable {
 
 // MARK: - SocketedItem
 struct SocketedItem: Codable {
-    let verified: Bool
-    let w: Int
-    let h: Int
-    let ilvl: Int
-    let icon: String
-    let support: Bool?
-    let id: String
-    let name: String
+//    let verified: Bool
+//    let w: Int
+//    let h: Int
+//    let ilvl: Int
+//    let icon: String
+//    let support: Bool?
+//    let id: String
+//    let name: String
     let typeLine: String
-    let identified: Bool
+//    let identified: Bool
     let properties: [Property]
-    let requirements: [Property]?
-    let secDescrText: String?
-    let explicitMods: [String]?
-    let descrText: String
-    let frameType: Int
+//    let requirements: [Property]?
+//    let secDescrText: String?
+//    let explicitMods: [String]?
+//    let descrText: String
+//    let frameType: Int
     let socket: Int
     let colour: Colour
-    let additionalProperties: [Property]?
-    let nextLevelRequirements: [Property]?
+//    let additionalProperties: [Property]?
+//    let nextLevelRequirements: [Property]?
     let corrupted: Bool?
-    let hybrid: Hybrid?
+//    let hybrid: Hybrid?
 
     enum CodingKeys: String, CodingKey {
-        case verified = "verified"
-        case w = "w"
-        case h = "h"
-        case ilvl = "ilvl"
-        case icon = "icon"
-        case support = "support"
-        case id = "id"
-        case name = "name"
+//        case verified = "verified"
+//        case w = "w"
+//        case h = "h"
+//        case ilvl = "ilvl"
+//        case icon = "icon"
+//        case support = "support"
+//        case id = "id"
+//        case name = "name"
         case typeLine = "typeLine"
-        case identified = "identified"
+//        case identified = "identified"
         case properties = "properties"
-        case requirements = "requirements"
-        case secDescrText = "secDescrText"
-        case explicitMods = "explicitMods"
-        case descrText = "descrText"
-        case frameType = "frameType"
+//        case requirements = "requirements"
+//        case secDescrText = "secDescrText"
+//        case explicitMods = "explicitMods"
+//        case descrText = "descrText"
+//        case frameType = "frameType"
         case socket = "socket"
         case colour = "colour"
-        case additionalProperties = "additionalProperties"
-        case nextLevelRequirements = "nextLevelRequirements"
+//        case additionalProperties = "additionalProperties"
+//        case nextLevelRequirements = "nextLevelRequirements"
         case corrupted = "corrupted"
-        case hybrid = "hybrid"
+//        case hybrid = "hybrid"
     }
 }
 
