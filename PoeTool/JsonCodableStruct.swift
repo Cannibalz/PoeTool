@@ -150,11 +150,11 @@ struct SocketedItem: Codable {
     let properties: [Property]
 //    let requirements: [Property]?
 //    let secDescrText: String?
-//    let explicitMods: [String]?
+    let explicitMods: [String]?
 //    let descrText: String
 //    let frameType: Int
     let socket: Int
-    let colour: Colour
+    let colour: Colour?
 //    let additionalProperties: [Property]?
 //    let nextLevelRequirements: [Property]?
     let corrupted: Bool?
@@ -174,7 +174,7 @@ struct SocketedItem: Codable {
         case properties = "properties"
 //        case requirements = "requirements"
 //        case secDescrText = "secDescrText"
-//        case explicitMods = "explicitMods"
+        case explicitMods = "explicitMods"
 //        case descrText = "descrText"
 //        case frameType = "frameType"
         case socket = "socket"
@@ -192,6 +192,7 @@ enum Colour: String, Codable {
     case s = "S"
     case a = "A"
     case g = "G"
+    case dv = "DV"
 }
 struct tabsColour : Codable
 {
@@ -234,6 +235,7 @@ enum SColour: String, Codable {
     case r = "R"
     case a = "A"
     case w = "W"
+    case dv = "DV"
 }
 enum APIError: Error, LocalizedError {
     case unknown, apiError(reason: String)
