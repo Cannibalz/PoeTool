@@ -11,7 +11,7 @@ import SwiftUI
 class StashsViewModel: ObservableObject
 {
     let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795]
-    
+
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
     var leagueName = ""
@@ -42,26 +42,34 @@ class StashsViewModel: ObservableObject
         }
     }
 
-    func stashPerCellView(i: Int, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>) -> AnyView
+    func divinationCardCell(item: Item) -> some View
+    {
+        var returnView: some View
+        {
+            URLImage(URL(string: "https://web.poecdn.com/image/divination-card/\(item.artFilename!).png")!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
+                .overlay(Text(item.typeLine + "\n" + item.properties![0].values[0][0].str()).font(.system(size: 12)), alignment: .topLeading)
+                //.overlay(Text(item.explicitMods?[0] ?? "").font(.system(size: 10)), alignment: .bottom)
+        }
+        return returnView
+    }
+
+    func stashPerCellView(i: Int, actived: Binding<UUID>, isShowing: Binding<Bool>) -> AnyView
     {
         var returnView = AnyView(EmptyView())
         if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
         {
             returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
-            
         }
         else if stash?.tabsInfo[tabIndex].type == "QuadStash"
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/24), actived: actived, isShowing: isShowing))
-            
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
         }
         else if stash?.tabsInfo[tabIndex].type == "DivinationCardStash"
         {
-            
         }
         else
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: (569/12), actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
         }
         return returnView
     }
@@ -83,7 +91,6 @@ class StashsViewModel: ObservableObject
 
     func toggleToolTipView(_ geometry: GeometryProxy, _ preferences: [itemPreferenceData], activeIdx: UUID) -> some View
     {
-        
         if let p = preferences.first(where: { $0.item.uuID == activeIdx })
         {
             let x = p.x
@@ -96,9 +103,10 @@ class StashsViewModel: ObservableObject
             return AnyView(EmptyView())
         }
     }
-    func highlightBorder(_ i:Int)->Color
+
+    func highlightBorder(_ i: Int) -> Color
     {
-        if i == self.tabIndex
+        if i == tabIndex
         {
             return Color.yellow
         }

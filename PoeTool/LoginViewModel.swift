@@ -16,11 +16,11 @@ class LoginViewModel: ObservableObject
     }
     func viewOnApper()->Bool
     {
-        if let wannaStore: Bool = UserDefaults.standard.bool(forKey: "wannaStore")
+        if let _: Bool = UserDefaults.standard.bool(forKey: "wannaStore")
         {
             print(wannaStore)
             
-            if let accName: String = UserDefaults.standard.string(forKey: "accName"), let POESESSID: String = UserDefaults.standard.string(forKey: "POESESSID"), wannaStore
+            if let _: String = UserDefaults.standard.string(forKey: "accName"), let _: String = UserDefaults.standard.string(forKey: "POESESSID"), wannaStore
             {
                 PoEData.shared.ValidByUserDefault()
                 self.authed = true

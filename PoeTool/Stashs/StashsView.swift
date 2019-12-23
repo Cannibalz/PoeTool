@@ -34,7 +34,12 @@ struct StashsView: View
                 {
                     if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "DivinationCardStash"
                     {
-                        Text("Divination Card tab is not available with POE API now!")
+                        
+                        QGrid(self.viewModel.stash?.itemsArray[self.viewModel.tabIndex] ?? [], columns: 4)
+                        {item in
+                            self.viewModel.divinationCardCell(item: item)
+                            
+                        }
                     }
                     else if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "UniqueStash"
                     {
@@ -44,7 +49,7 @@ struct StashsView: View
                     {
                         ForEach(0 ..< (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id: \.hashValue)
                         { i in
-                            self.viewModel.stashPerCellView(i: i, cellSize: self.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
+                            self.viewModel.stashPerCellView(i: i, actived: self.$activeIdx, isShowing: self.$showDetail)
                         }
                     }
                 }

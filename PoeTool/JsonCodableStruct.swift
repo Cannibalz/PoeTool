@@ -56,6 +56,7 @@ struct Item: Codable,Identifiable {
     let corrupted: Bool?
     let enchantMods: [String]?
     let craftedMods: [String]?
+    let artFilename : String?
 
     enum CodingKeys: String, CodingKey {
         case verified = "verified"
@@ -86,6 +87,7 @@ struct Item: Codable,Identifiable {
         case craftedMods = "craftedMods"
         case stackSize = "stackSize"
         case maxStackSize = "maxStackSize"
+        case artFilename = "artFilename"
     }
 }
 
@@ -246,6 +248,20 @@ enum APIError: Error, LocalizedError {
             return "Unknown error"
         case .apiError(let reason):
             return reason
+        }
+    }
+}
+
+extension Value
+{
+    func str()->String
+    {
+        switch self
+        {
+            case let .string(string):
+            return string
+            case let .integer(int):
+            return "\(int)"
         }
     }
 }

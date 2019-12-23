@@ -22,6 +22,7 @@
 		980C64E423866D940074484A /* StashsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E323866D940074484A /* StashsViewModel.swift */; };
 		980C64E6238672F00074484A /* StashsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E5238672F00074484A /* StashsJSON.swift */; };
 		984D13DE2387C3C800A7CE2C /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 984D13DD2387C3C800A7CE2C /* QGrid */; };
+		9854F34A23B094E2007B23FE /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F34923B094E2007B23FE /* CoreData.swift */; };
 		9885E468235D96BD00241F9C /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9885E467235D96BD00241F9C /* APIHandler.swift */; };
 		9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */; };
 		9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */; };
@@ -111,6 +112,7 @@
 		980C64E123866D830074484A /* StashsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsView.swift; sourceTree = "<group>"; };
 		980C64E323866D940074484A /* StashsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsViewModel.swift; sourceTree = "<group>"; };
 		980C64E5238672F00074484A /* StashsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsJSON.swift; sourceTree = "<group>"; };
+		9854F34923B094E2007B23FE /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		9885E467235D96BD00241F9C /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		9887FC4C23535DB6005D7AD1 /* PoeTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */,
 				321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */,
 				98EA8818237296CF00B1E53A /* Extensions.swift */,
+				9854F34923B094E2007B23FE /* CoreData.swift */,
 			);
 			path = PoeTool;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				989415A523681B1200E6BF85 /* FileManager+Extensions.swift in Sources */,
 				9894159C23681B1200E6BF85 /* CGContext+Extensions.swift in Sources */,
 				989415A623681B1200E6BF85 /* ImageIOUtils.swift in Sources */,
+				9854F34A23B094E2007B23FE /* CoreData.swift in Sources */,
 				989415B823681B1200E6BF85 /* URLImage.swift in Sources */,
 				989415B623681B1200E6BF85 /* ImageProxy.swift in Sources */,
 				9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */,
