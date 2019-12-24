@@ -9,7 +9,7 @@ import SwiftUI
 struct loadingCircle: View
 {
     @State var spin = false
-    
+
     var body: some View
     {
         VStack
@@ -37,62 +37,64 @@ struct loadingCircle: View
 
 struct LogInView: View
 {
-    @Binding var logInSuccess : Bool
+    @Binding var logInSuccess: Bool
     @ObservedObject var viewModel = LoginViewModel()
     var autoAuth = true
     var body: some View
     {
 //        NavigationView
 //        {
-            ZStack
+        ZStack
+        {
+            VStack
             {
-                VStack
-                {
-                    TextField("Account Name", text: $viewModel.accName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    TextField("POESESSID", text: $viewModel.POESESSID)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()//.disabled(!privateAcc)
-                        //.opacity(privateAcc ? 1 : 0)
+                TextField("Account Name", text: $viewModel.accName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("POESESSID", text: $viewModel.POESESSID)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding() // .disabled(!privateAcc)
+                // .opacity(privateAcc ? 1 : 0)
 
-                    Toggle(isOn: $viewModel.wannaStore)
-                    {
-                        Text("Remeber me")
-                    }.frame(width: 200.0)
-//                    NavigationLink(destination: CharactersListView(), isActive: $viewModel.authed, label:
-//                        {
-                            Button(action: {
-                                self.viewModel.accountAuth()
-                                {_ in
-                                    self.logInSuccess = self.viewModel.authed
-                                }
-                                print("Authed : \(self.viewModel.authed)")
-                                print("log In Success : \(self.logInSuccess)")
-                            })
-                            {
-                                Text("Authenticate")
-                            }
-//                    })
-                }
-                VStack
+                Toggle(isOn: $viewModel.wannaStore)
                 {
-                    if viewModel.isLoading
-                    {
-                        loadingCircle()
+                    Text("Remeber me")
+                }.frame(width: 200.0)
+                Button(action: {
+                    
+                    
+                    _ = UserAcc.createUserAcc(name: self.viewModel.accName, poesessid: self.viewModel.POESESSID, order: 0)
+                    
+                    self.viewModel.accountAuth
+                    { _ in
+                        self.logInSuccess = self.viewModel.authed
                     }
-                    else
-                    {
-                        loadingCircle().hidden()
-                    }
-                    Button(action: {
-                        print("asdf")
-                    })
-                    {
-                        Text("cancel")
-                    }
+                    print("Authed : \(self.viewModel.authed)")
+                    print("log In Success : \(self.logInSuccess)")
+                })
+                {
+                    Text("Authenticate")
                 }
-            //}.navigationBarTitle(Text(""), displayMode: .inline)
+//                    })
+            }
+            VStack
+            {
+                if viewModel.isLoading
+                {
+                    loadingCircle()
+                }
+                else
+                {
+                    loadingCircle().hidden()
+                }
+                Button(action: {
+                    print("asdf")
+                })
+                {
+                    Text("cancel")
+                }
+            }
+            // }.navigationBarTitle(Text(""), displayMode: .inline)
         }
         .onAppear(perform: {
         })

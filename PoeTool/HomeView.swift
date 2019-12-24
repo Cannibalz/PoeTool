@@ -12,6 +12,7 @@ import SwiftUI
 struct HomeView: View
 {
     @State var logInSuccess = false
+    @Environment(\.managedObjectContext) var managedObjectContext
     var body: some View
     {
         VStack

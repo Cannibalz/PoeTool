@@ -23,6 +23,8 @@
 		980C64E6238672F00074484A /* StashsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E5238672F00074484A /* StashsJSON.swift */; };
 		984D13DE2387C3C800A7CE2C /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 984D13DD2387C3C800A7CE2C /* QGrid */; };
 		9854F34A23B094E2007B23FE /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F34923B094E2007B23FE /* CoreData.swift */; };
+		9860752A23B1E578006312ED /* UserAcc+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860752923B1E578006312ED /* UserAcc+CoreData.swift */; };
+		9860752C23B1E8B5006312ED /* CoreDataDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860752B23B1E8B5006312ED /* CoreDataDataSource.swift */; };
 		9885E468235D96BD00241F9C /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9885E467235D96BD00241F9C /* APIHandler.swift */; };
 		9887FC5023535DB6005D7AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */; };
 		9887FC5223535DB6005D7AD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */; };
@@ -113,6 +115,8 @@
 		980C64E323866D940074484A /* StashsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsViewModel.swift; sourceTree = "<group>"; };
 		980C64E5238672F00074484A /* StashsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsJSON.swift; sourceTree = "<group>"; };
 		9854F34923B094E2007B23FE /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		9860752923B1E578006312ED /* UserAcc+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAcc+CoreData.swift"; sourceTree = "<group>"; };
+		9860752B23B1E8B5006312ED /* CoreDataDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDataSource.swift; sourceTree = "<group>"; };
 		9885E467235D96BD00241F9C /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		9887FC4C23535DB6005D7AD1 /* PoeTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoeTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9887FC4F23535DB6005D7AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -276,6 +280,17 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		9860752823B1E55D006312ED /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9887FC5323535DB6005D7AD1 /* PoeTool.xcdatamodeld */,
+				9854F34923B094E2007B23FE /* CoreData.swift */,
+				9860752923B1E578006312ED /* UserAcc+CoreData.swift */,
+				9860752B23B1E8B5006312ED /* CoreDataDataSource.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		9887FC4323535DB5005D7AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +316,7 @@
 		9887FC4E23535DB6005D7AD1 /* PoeTool */ = {
 			isa = PBXGroup;
 			children = (
+				9860752823B1E55D006312ED /* CoreData */,
 				989082FA239F3255004156F3 /* HomeView.swift */,
 				980C64E023865BF80074484A /* Stashs */,
 				989EBA5D2382249100E77B38 /* GoogldAD */,
@@ -316,12 +332,10 @@
 				9885E467235D96BD00241F9C /* APIHandler.swift */,
 				9887FC5D23535DB8005D7AD1 /* LaunchScreen.storyboard */,
 				9887FC6023535DB8005D7AD1 /* Info.plist */,
-				9887FC5323535DB6005D7AD1 /* PoeTool.xcdatamodeld */,
 				9887FC5A23535DB8005D7AD1 /* Preview Content */,
 				9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */,
 				321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */,
 				98EA8818237296CF00B1E53A /* Extensions.swift */,
-				9854F34923B094E2007B23FE /* CoreData.swift */,
 			);
 			path = PoeTool;
 			sourceTree = "<group>";
@@ -754,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9860752A23B1E578006312ED /* UserAcc+CoreData.swift in Sources */,
 				9887FC5523535DB6005D7AD1 /* PoeTool.xcdatamodeld in Sources */,
 				989415A523681B1200E6BF85 /* FileManager+Extensions.swift in Sources */,
 				9894159C23681B1200E6BF85 /* CGContext+Extensions.swift in Sources */,
@@ -772,6 +787,7 @@
 				9894159B23681B1200E6BF85 /* RemoteFileCacheService.swift in Sources */,
 				989415AF23681B1200E6BF85 /* Downloader.swift in Sources */,
 				9885E468235D96BD00241F9C /* APIHandler.swift in Sources */,
+				9860752C23B1E8B5006312ED /* CoreDataDataSource.swift in Sources */,
 				989415A023681B1200E6BF85 /* CoreDataModelDescription.swift in Sources */,
 				98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */,
 				980C64E423866D940074484A /* StashsViewModel.swift in Sources */,
