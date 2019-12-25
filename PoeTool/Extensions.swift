@@ -51,3 +51,9 @@ struct Screen
     static let Width = UIScreen.main.bounds.width - 10
     static let Height = UIScreen.main.bounds.height - 10
 }
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

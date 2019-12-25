@@ -85,7 +85,7 @@ class PoEData : NSObject
     }
     func isValid(accName:String,POESESSID:String,Completion:@escaping(Int)->())
     {
-        let urlString = "https://www.pathofexile.com/character-window/get-characters?accountName=\(accName)"
+        let urlString = "https://www.pathofexile.com/character-window/get-stash-items?league=standard&realm=pc&accountName=\(accName)&tabs=0&tabIndex=0"
         getData(url: urlString, POESESSID: POESESSID)
         {Body in
             let statusCode = (Body.response as! HTTPURLResponse).statusCode

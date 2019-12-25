@@ -53,18 +53,18 @@ struct LogInView: View
                     .padding()
                 TextField("POESESSID", text: $viewModel.POESESSID)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding() // .disabled(!privateAcc)
-                // .opacity(privateAcc ? 1 : 0)
+                    .padding()
+                    .keyboardType(.default)
 
                 Toggle(isOn: $viewModel.wannaStore)
                 {
                     Text("Remeber me")
                 }.frame(width: 200.0)
                 Button(action: {
-                    
-                    
-                    _ = UserAcc.createUserAcc(name: self.viewModel.accName, poesessid: self.viewModel.POESESSID, order: 0)
-                    
+                    print(self.viewModel.accName)
+                    print(self.viewModel.POESESSID)
+                    _ = UserAcc.createUserAcc(name: self.viewModel.accName, poesessid: self.viewModel.POESESSID, order: UserAcc.nextOrder())
+
                     self.viewModel.accountAuth
                     { _ in
                         self.logInSuccess = self.viewModel.authed
@@ -100,6 +100,11 @@ struct LogInView: View
         })
         .onDisappear(perform: {
         })
+    }
+
+    private func endEditing()
+    {
+        UIApplication.shared.endEditing()
     }
 }
 

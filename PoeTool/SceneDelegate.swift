@@ -26,7 +26,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let managedObjectContext = CoreData.shared.context
+            print(UserAcc.count())
             let homeView = HomeView().environment(\.managedObjectContext, managedObjectContext)
+                .environmentObject(UserEnvironment())
             
             window.rootViewController = UIHostingController(rootView: homeView)
             self.window = window
@@ -68,3 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+class UserEnvironment: ObservableObject {
+    
+}

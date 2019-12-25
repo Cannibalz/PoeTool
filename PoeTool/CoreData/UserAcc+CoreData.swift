@@ -23,7 +23,7 @@ public class UserAcc: NSManagedObject, Identifiable
         }
         catch let error as NSError
         {
-            print(error)
+            fatalError("\(error)")
             return 0
         }
     }
@@ -83,6 +83,7 @@ public class UserAcc: NSManagedObject, Identifiable
     }
     class func createUserAcc(name:String, poesessid:String, order:Int?) -> UserAcc
     {
+        
         let userAcc = UserAcc.newUserAcc()
         userAcc.name = name
         userAcc.poesessid = poesessid

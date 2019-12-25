@@ -8,14 +8,24 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
+    @ObservedObject private var dataSource = CoreDataDataSource<UserAcc>()
 //    var nextViewModel : CharactersListViewModel?
     var PoEinstance = PoEData.shared
     init()
     {
-        
+        dataSource.loadDataSource()
+        for userAcc in dataSource.fetchedObjects
+        {
+            print("-------")
+            print(userAcc.name)
+            print(userAcc.poesessid)
+            print(userAcc.order)
+            print("-------")
+        }
     }
     func viewOnApper()->Bool
     {
+        
         if let _: Bool = UserDefaults.standard.bool(forKey: "wannaStore")
         {
             print(wannaStore)
