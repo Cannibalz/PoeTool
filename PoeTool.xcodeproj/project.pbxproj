@@ -21,6 +21,7 @@
 		980C64E223866D830074484A /* StashsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E123866D830074484A /* StashsView.swift */; };
 		980C64E423866D940074484A /* StashsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E323866D940074484A /* StashsViewModel.swift */; };
 		980C64E6238672F00074484A /* StashsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980C64E5238672F00074484A /* StashsJSON.swift */; };
+		984A5F3D23B348480031445D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984A5F3C23B348480031445D /* ToastView.swift */; };
 		984D13DE2387C3C800A7CE2C /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 984D13DD2387C3C800A7CE2C /* QGrid */; };
 		9854F34A23B094E2007B23FE /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854F34923B094E2007B23FE /* CoreData.swift */; };
 		9860752A23B1E578006312ED /* UserAcc+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9860752923B1E578006312ED /* UserAcc+CoreData.swift */; };
@@ -114,6 +115,7 @@
 		980C64E123866D830074484A /* StashsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsView.swift; sourceTree = "<group>"; };
 		980C64E323866D940074484A /* StashsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsViewModel.swift; sourceTree = "<group>"; };
 		980C64E5238672F00074484A /* StashsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StashsJSON.swift; sourceTree = "<group>"; };
+		984A5F3C23B348480031445D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		9854F34923B094E2007B23FE /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		9860752923B1E578006312ED /* UserAcc+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAcc+CoreData.swift"; sourceTree = "<group>"; };
 		9860752B23B1E8B5006312ED /* CoreDataDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDataSource.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				9887FC5123535DB6005D7AD1 /* SceneDelegate.swift */,
 				321C97C6F64B370AD3ACC748 /* JsonCodableStruct.swift */,
 				98EA8818237296CF00B1E53A /* Extensions.swift */,
+				984A5F3C23B348480031445D /* ToastView.swift */,
 			);
 			path = PoeTool;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				989415B123681B1200E6BF85 /* ImageLoaderCallbacks.swift in Sources */,
 				989415A823681B1200E6BF85 /* CoreImageFilterProcessor.swift in Sources */,
 				989415BA23681B1200E6BF85 /* CircleProgressShape.swift in Sources */,
+				984A5F3D23B348480031445D /* ToastView.swift in Sources */,
 				989EBA5F238224AA00E77B38 /* adBannerView.swift in Sources */,
 				9809CE412366C7DA00950DF3 /* SettingsViewModel.swift in Sources */,
 				989415A323681B1200E6BF85 /* CoreDataAttributeDescription.swift in Sources */,

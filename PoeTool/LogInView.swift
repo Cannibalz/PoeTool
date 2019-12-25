@@ -9,7 +9,6 @@ import SwiftUI
 struct loadingCircle: View
 {
     @State var spin = false
-
     var body: some View
     {
         VStack
@@ -38,6 +37,7 @@ struct loadingCircle: View
 struct LogInView: View
 {
     @Binding var logInSuccess: Bool
+    @State var loginFail = false
     @ObservedObject var viewModel = LoginViewModel()
     var autoAuth = true
     var body: some View
@@ -67,7 +67,9 @@ struct LogInView: View
 
                     self.viewModel.accountAuth
                     { _ in
+                        self.loginFail = !self.viewModel.authed
                         self.logInSuccess = self.viewModel.authed
+                        
                     }
                     print("Authed : \(self.viewModel.authed)")
                     print("log In Success : \(self.logInSuccess)")
@@ -95,7 +97,7 @@ struct LogInView: View
                 }
             }
             // }.navigationBarTitle(Text(""), displayMode: .inline)
-        }
+            }.toast(isShowing: $loginFail, text: Text("Login Fail"))
         .onAppear(perform: {
         })
         .onDisappear(perform: {
