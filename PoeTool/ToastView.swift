@@ -44,12 +44,11 @@ struct Toast<Presenting>: View where Presenting: View
                 .background(Color.secondary.colorInvert())
                 .foregroundColor(Color.primary)
                 .cornerRadius(20)
-                .border(Color.white)
+                .border(Color.white, width: 10)
                 .transition(.slide)
                 .opacity(self.isShowing ? 1 : 0)
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 5 * 4)
             }
-            
         }
     }
 }

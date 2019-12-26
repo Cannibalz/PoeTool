@@ -38,6 +38,7 @@ struct LogInView: View
 {
     @Binding var logInSuccess: Bool
     @State var loginFail = false
+    @State var dropDown = false
     @ObservedObject var viewModel = LoginViewModel()
     var autoAuth = true
     var body: some View
@@ -46,15 +47,26 @@ struct LogInView: View
 //        {
         ZStack
         {
-            VStack
+            VStack(spacing: 20)
             {
-                TextField("Account Name", text: $viewModel.accName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                TextField("POESESSID", text: $viewModel.POESESSID)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .keyboardType(.default)
+                HStack(spacing: 22)
+                {
+                    Image(systemName: "person.fill").resizable().frame(width: 20, height: 20)
+                    TextField("Account Name", text: $viewModel.accName)
+                    Image(systemName: "arrowtriangle.down.fill").resizable().frame(width: 20, height: 15).onTapGesture { self.dropDown.toggle() }
+                }
+                .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white, lineWidth: 1))
+
+                HStack(spacing: 22)
+                {
+                    Image(systemName: "lock.fill").resizable().frame(width: 20, height: 20)
+                    TextField("POESESSID", text: $viewModel.POESESSID)
+                        // .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.default)
+                }
+                .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white, lineWidth: 1))
 
                 Toggle(isOn: $viewModel.wannaStore)
                 {
@@ -69,7 +81,6 @@ struct LogInView: View
                     { _ in
                         self.loginFail = !self.viewModel.authed
                         self.logInSuccess = self.viewModel.authed
-                        
                     }
                     print("Authed : \(self.viewModel.authed)")
                     print("log In Success : \(self.logInSuccess)")
@@ -78,7 +89,8 @@ struct LogInView: View
                     Text("Authenticate")
                 }
 //                    })
-            }
+            }.frame(width: Screen.Width * 0.8)
+
             VStack
             {
                 if viewModel.isLoading
@@ -96,12 +108,30 @@ struct LogInView: View
                     Text("cancel")
                 }
             }
+            VStack
+            {
+                if dropDown
+                {
+                    Spacer().fixedSize().frame(height: 70)
+                    HStack
+                    {
+                        Image(systemName: "lock.fill").resizable().frame(width: 20, height: 20).hidden()
+                        List
+                        {
+                            Text("12345")
+                            Text("12345")
+                            Text("12345")
+                            Text("12345")
+                        }.background(Color.black).border(Color.white, width: 1)
+                    }.frame(width: Screen.Width * 0.8, height: Screen.Height * 0.2)
+                }
+            }
             // }.navigationBarTitle(Text(""), displayMode: .inline)
-            }.toast(isShowing: $loginFail, text: Text("Login Fail"))
-        .onAppear(perform: {
-        })
-        .onDisappear(perform: {
-        })
+        }.toast(isShowing: $loginFail, text: Text("Login Fail"))
+            .onAppear(perform: {
+            })
+            .onDisappear(perform: {
+            })
     }
 
     private func endEditing()

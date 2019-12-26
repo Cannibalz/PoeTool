@@ -11,6 +11,8 @@ import Foundation
 import QGrid
 import SwiftUI
 
+// https://poe.ninja/api/Data/GetCurrencyOverview?league=Metamorph
+
 struct StashsView: View
 {
     var leagueName: String

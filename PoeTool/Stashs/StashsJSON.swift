@@ -42,3 +42,33 @@ struct TabLayout: Codable {
     let w, h: Int
     let hidden: Bool?
 }
+
+typealias Currency = [CurrencyElement]
+struct CurrencyElement: Codable {
+    let id: Int
+    let name: String
+    let category, group: Category
+    let frame: Int
+    //let influences: [JSONAny]
+    let stackSize: Int?
+    let icon: String
+    let mean, median, mode, min: Double
+    let max, exalted: Double
+    let total, daily, current, accepted: Int
+    let change: Double
+    let history: [Double?]
+    let type: String?
+}
+enum Category: String, Codable {
+    case catalyst = "catalyst"
+    case currency = "currency"
+    case essence = "essence"
+    case fossil = "fossil"
+    case incubator = "incubator"
+    case influence = "influence"
+    case oil = "oil"
+    case piece = "piece"
+    case resonator = "resonator"
+    case splinter = "splinter"
+    case vial = "vial"
+}
