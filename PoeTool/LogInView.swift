@@ -73,10 +73,6 @@ struct LogInView: View
                     Text("Remeber me")
                 }.frame(width: 200.0)
                 Button(action: {
-                    print(self.viewModel.accName)
-                    print(self.viewModel.POESESSID)
-                    _ = UserAcc.createUserAcc(name: self.viewModel.accName, poesessid: self.viewModel.POESESSID, order: UserAcc.nextOrder())
-
                     self.viewModel.accountAuth
                     { _ in
                         self.loginFail = !self.viewModel.authed
@@ -118,10 +114,10 @@ struct LogInView: View
                         Image(systemName: "lock.fill").resizable().frame(width: 20, height: 20).hidden()
                         List
                         {
-                            Text("12345")
-                            Text("12345")
-                            Text("12345")
-                            Text("12345")
+                            ForEach(self.viewModel.dataSource.fetchedObjects)
+                            { Acc in
+                                Text(Acc.name)
+                            }
                         }.background(Color.black).border(Color.white, width: 1)
                     }.frame(width: Screen.Width * 0.8, height: Screen.Height * 0.2)
                 }

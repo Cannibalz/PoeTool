@@ -8,7 +8,7 @@ class LoginViewModel: ObservableObject
     @Published var wannaStore : Bool = false
     @Published var authed : Bool = false
     @Published var isLoading : Bool = false
-    @ObservedObject private var dataSource = CoreDataDataSource<UserAcc>()
+    @ObservedObject var dataSource = CoreDataDataSource<UserAcc>()
 //    var nextViewModel : CharactersListViewModel?
     var PoEinstance = PoEData.shared
     init()
@@ -67,6 +67,8 @@ class LoginViewModel: ObservableObject
     {
         if wannaStore
         {
+            _ = UserAcc.createUserAcc(name: self.accName, poesessid: self.POESESSID, order: UserAcc.nextOrder())
+            
             print("stored")
             let accName : String = self.accName
             let POESSID : String = self.POESESSID
