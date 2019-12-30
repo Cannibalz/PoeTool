@@ -116,7 +116,11 @@ struct LogInView: View
                         {
                             ForEach(self.viewModel.dataSource.fetchedObjects)
                             { Acc in
-                                Text(Acc.name)
+                                Text(Acc.name).onTapGesture {
+                                    self.viewModel.accName = Acc.name
+                                    self.viewModel.POESESSID = Acc.poesessid
+                                    self.dropDown = false
+                                }
                             }
                         }.background(Color.black).border(Color.white, width: 1)
                     }.frame(width: Screen.Width * 0.8, height: Screen.Height * 0.2)

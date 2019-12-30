@@ -1,13 +1,13 @@
-import SwiftUI
 import Combine
+import SwiftUI
 
 class LoginViewModel: ObservableObject
 {
-    @Published var accName = "niuwencong1"
-    @Published var POESESSID = "be96f2b25d7639acbf8a865240f2d9c5"
-    @Published var wannaStore : Bool = false
-    @Published var authed : Bool = false
-    @Published var isLoading : Bool = false
+    @Published var accName = ""
+    @Published var POESESSID = ""
+    @Published var wannaStore: Bool = true
+    @Published var authed: Bool = false
+    @Published var isLoading: Bool = false
     @ObservedObject var dataSource = CoreDataDataSource<UserAcc>()
 //    var nextViewModel : CharactersListViewModel?
     var PoEinstance = PoEData.shared
@@ -22,66 +22,103 @@ class LoginViewModel: ObservableObject
             print(userAcc.order)
             print("-------")
         }
+        DuplicationRemove()
+        print("DR")
     }
-    func viewOnApper()->Bool
+
+    func viewOnApper() -> Bool
     {
-        
         if let _: Bool = UserDefaults.standard.bool(forKey: "wannaStore")
         {
             print(wannaStore)
-            
+
             if let _: String = UserDefaults.standard.string(forKey: "accName"), let _: String = UserDefaults.standard.string(forKey: "POESESSID"), wannaStore
             {
                 PoEData.shared.ValidByUserDefault()
-                self.authed = true
+                authed = true
             }
-            return self.authed
+            return authed
         }
-
     }
-    func accountAuth(completion: @escaping(Bool)->() )
+
+    func accountAuth(completion: @escaping (Bool) -> Void)
     {
         var loginSuccess = false
         isLoading = true
-        //PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
-        PoEinstance.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
-        {statusCode in
-            
-            if statusCode == 200
-            {
-                self.authed = true
+        // PoEAPI.shared.Character.isValid(accName: self.accName, POESESSID: self.POESESSID, Completion:
+        PoEinstance.isValid(accName: accName, POESESSID: POESESSID, Completion:
+            { statusCode in
+
+                if statusCode == 200
+                {
+                    self.authed = true
+                    self.isLoading = false
+                    loginSuccess = true
+                    self.storeInfo()
+                    completion(loginSuccess)
+                }
+                else
+                {
+                    completion(loginSuccess)
+                }
                 self.isLoading = false
-                loginSuccess = true
-                self.storeInfo()
-                completion(loginSuccess)
-            }
-            else
-            {
-                completion(loginSuccess)
-            }
-            self.isLoading = false
-            
+
         })
     }
+
     func storeInfo()
     {
         if wannaStore
         {
-            _ = UserAcc.createUserAcc(name: self.accName, poesessid: self.POESESSID, order: UserAcc.nextOrder())
+            var accArray = dataSource.fetchedObjects
+            var isExisted = false
+            for acc in accArray
+            {
+                if acc.name == self.accName
+                {
+                    acc.update(name: self.accName, poesessid: self.POESESSID, order: Int(acc.order))
+                    isExisted = true
+                    break
+                }
+            }
+            if !isExisted
+            {
+                _ = UserAcc.createUserAcc(name: self.accName, poesessid: POESESSID, order: UserAcc.nextOrder())
+            }
             
-            print("stored")
-            let accName : String = self.accName
-            let POESSID : String = self.POESESSID
+
+            
+            let accName: String = self.accName
+            let POESSID: String = POESESSID
             UserDefaults.standard.set(accName, forKey: "accName")
             UserDefaults.standard.set(POESSID, forKey: "POESESSID")
-            UserDefaults.standard.set(true ,forKey:"wannaStore")
+            UserDefaults.standard.set(true, forKey: "wannaStore")
         }
         else
         {
             print("unstored")
-            UserDefaults.standard.set(false ,forKey:"wannaStore")
+            UserDefaults.standard.set(false, forKey: "wannaStore")
         }
     }
+
+    func DuplicationRemove()
+    {
+        print(dataSource.fetchedObjects.count)
+        var accName: [String] = []
+        CoreData.executeBlockAndCommit
+        {
+            for obj in self.dataSource.fetchedObjects
+            {
+                if !accName.contains(obj.name)
+                {
+                    accName.append(obj.name)
+                }
+                else
+                {
+                    obj.delete()
+                }
+            }
+        }
+        print(dataSource.fetchedObjects.count)
+    }
 }
-
-
