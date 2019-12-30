@@ -20,9 +20,9 @@ struct loadingCircle: View
                 .animation(loadingAnimation)
                 .onAppear { self.spin.toggle() }
                 .cornerRadius(25)
+            //.background(Color(red: 0.9, green: 0.9, blue: 0.9))
             Text("loading...")
         }
-        .background(Color(red: 0.9, green: 0.9, blue: 0.9))
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 
@@ -53,7 +53,15 @@ struct LogInView: View
                 {
                     Image(systemName: "person.fill").resizable().frame(width: 20, height: 20)
                     TextField("Account Name", text: $viewModel.accName)
-                    Image(systemName: "arrowtriangle.down.fill").resizable().frame(width: 20, height: 15).onTapGesture { self.dropDown.toggle() }
+                    if !dropDown
+                    {
+                        Image(systemName: "arrowtriangle.down.fill").resizable().frame(width: 20, height: 15).onTapGesture { self.dropDown.toggle() }
+                    }
+                    else if dropDown
+                    {
+                        Image(systemName: "arrowtriangle.up.fill").resizable().frame(width: 20, height: 15).onTapGesture { self.dropDown.toggle() }
+                    }
+                    
                 }
                 .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.white, lineWidth: 1))
@@ -96,12 +104,6 @@ struct LogInView: View
                 else
                 {
                     loadingCircle().hidden()
-                }
-                Button(action: {
-                    print("asdf")
-                })
-                {
-                    Text("cancel")
                 }
             }
             VStack

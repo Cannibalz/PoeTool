@@ -26,7 +26,7 @@ struct StashsView: View
     {
         VStack(alignment: .center)
         {
-//            Banner()
+            //arrow.2.circlepath
             Divider()
             if (self.viewModel.stash?.numTab ?? 0) > 0
             {
@@ -66,6 +66,11 @@ struct StashsView: View
                 EmptyView()
             }
         }
+            .navigationBarItems(trailing: Button(action: {
+                self.viewModel.appendTab(leagueName: self.leagueName, tabIndex: self.viewModel.tabIndex)
+                }, label: {
+                    Image(systemName: "arrow.2.circlepath")
+            }))
         .overlayPreferenceValue(itemPreferenceKey.self)
         { preferences in
             GeometryReader
