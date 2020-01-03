@@ -8,28 +8,53 @@
 
 import Foundation
 import SwiftUI
+
 class StashsViewModel: ObservableObject
 {
     let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795]
-
+    //Currency,Fragment在Currency中, Fossil, Essence, DivinationCard
+    let priceableName : [String] = ["Currency","Fossil","Essence","DivinationCard","Incubator","Oil","Scarab","Fossil","Resonator","Prophecy"]
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
+    @Published var prices : [String:Line] = [:]
     var leagueName = ""
     func stashInit(leagueName: String)
     {
+        
         PoEData.shared.getStash(leagueName: leagueName, tabIndex: 0, needTabsInfo: 1)
         { parserStash in
             var initTabsLayout = Array(repeating: [String: TabLayout](), count: parserStash.numTabs)
             var initItemsArray = Array(repeating: [Item](), count: parserStash.numTabs)
             // self.stash.append(stash)
-            initTabsLayout[0] = parserStash.tabLayout!
+            
+            initTabsLayout[0] = parserStash.tabLayout ?? [:]
             initItemsArray[0] = parserStash.items
             self.stash = Stash(numTab: parserStash.numTabs, tabLayout: initTabsLayout, tabsInfo: parserStash.tabsInfo!, itemsArray: initItemsArray)
             self.leagueName = leagueName
+            for catagory in self.priceableName
+            {
+                PoEData.shared.getPirce(type: catagory, league: self.leagueName)
+                { Body in
+                    let data = Body.data
+                    var price : Price
+                    do
+                    {
+                        price = try JSONDecoder().decode(Price.self, from: data)
+                        self.prices.merge(price.lines.toDictionary{$0.currencyTypeName ?? $0.name!}){(current, _) in current}
+                    }
+                    catch
+                    {
+                        print("Error here:\(error)")
+                    }
+
+                }
+            }
+            print(self.prices)
+            print("")
         }
     }
 
-    func appendTab(leagueName: String, tabIndex: Int)
+    func loadTab(leagueName: String, tabIndex: Int)
     {
         PoEData.shared.getStash(leagueName: leagueName, tabIndex: tabIndex, needTabsInfo: 0)
         { parserStash in
@@ -78,7 +103,7 @@ class StashsViewModel: ObservableObject
     {
         if stash?.itemsArray[tabIndex]?.count == 0
         {
-            appendTab(leagueName: leagueName, tabIndex: tabIndex)
+            loadTab(leagueName: leagueName, tabIndex: tabIndex)
         }
         else if stash?.tabsInfo[tabIndex].type == "MapStash"
         {

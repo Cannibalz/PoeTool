@@ -67,7 +67,7 @@ struct StashsView: View
             }
         }
             .navigationBarItems(trailing: Button(action: {
-                self.viewModel.appendTab(leagueName: self.leagueName, tabIndex: self.viewModel.tabIndex)
+                self.viewModel.loadTab(leagueName: self.leagueName, tabIndex: self.viewModel.tabIndex)
                 }, label: {
                     Image(systemName: "arrow.2.circlepath")
             }))

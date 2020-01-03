@@ -129,14 +129,21 @@ class PoEData : NSObject
     }
     private func getData(url:String,POESESSID:String,completion:@escaping (URLSession.DataTaskPublisher.Output)->())
     {
-        let url = URL(string: url)
+        let url = URL(string: url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "")
         var urlReq = URLRequest(url: url!)
         urlReq.setValue("POESESSID=\(POESESSID)", forHTTPHeaderField: "cookie")
         APIRequestCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
         .map{$0}
         .receive(on: RunLoop.main)
         .sink(receiveCompletion:
-        {_ in},
+        {(status) in
+            switch status {
+            case .failure(let error):
+              print(error.localizedDescription)
+            case .finished:
+              break
+            }
+        },
         receiveValue:
         {body in
             completion(body)
@@ -152,6 +159,29 @@ class PoEData : NSObject
     {
         self.account = Account()
         self.isLogged = false
+    }
+    func getPirce(type:String, league:String,completion:@escaping (URLSession.DataTaskPublisher.Output)->())
+    {
+        let url = URL(string: "https://poe.ninja/api/data/itemoverview?league=\(league)&type=\(type)")
+        var urlReq = URLRequest(url: url!)
+        APIRequestCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
+        .map{$0}
+            .receive(on: RunLoop.main)
+        .sink(receiveCompletion:
+        {(status) in
+            switch status {
+            case .failure(let error):
+              print(error.localizedDescription)
+            case .finished:
+              break
+            }
+            
+        },
+        receiveValue:
+        {body in
+            completion(body)
+        })
+        
     }
 }
 

@@ -102,7 +102,7 @@ struct CharactersListView: View
                     PoEData.shared.account = Account()
                     PoEData.shared.isLogged = false
                     self.logInSuccess = false
-            }, label: { Text("Log out") }))
+            }, label: { Text("Log out").foregroundColor(Color.red) }))
                 
             .onAppear(perform: {
                 self.viewModel.viewOnApper()

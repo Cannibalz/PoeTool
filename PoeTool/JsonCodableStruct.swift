@@ -57,7 +57,7 @@ struct Item: Codable,Identifiable {
     let enchantMods: [String]?
     let craftedMods: [String]?
     let artFilename : String?
-
+    var price : Double = 0
     enum CodingKeys: String, CodingKey {
         case verified = "verified"
         case w = "w"
@@ -265,3 +265,58 @@ extension Value
         }
     }
 }
+
+//MARK: - Price API
+
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let price = try? newJSONDecoder().decode(Price.self, from: jsonData)
+
+import Foundation
+
+// MARK: - Price
+struct Price: Codable {
+    let lines: [Line]
+}
+
+// MARK: - Line
+struct Line: Codable {
+    let currencyTypeName,name: String?
+    let pay: Receive?
+    let receive: Receive?
+    let chaosEquivalent: Double?
+    let detailsID: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case currencyTypeName, name, pay, receive, chaosEquivalent
+        case detailsID
+    }
+}
+
+// MARK: - Receive
+struct Receive: Codable {
+    let id, leagueID, payCurrencyID, getCurrencyID: Int?
+    //let sampleTimeUTC: SampleTimeUTC
+    let count: Int
+    let value: Double
+    //let dataPointCount: Int
+    let includesSecondary: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case leagueID
+        case payCurrencyID
+        case getCurrencyID
+        //case sampleTimeUTC
+        case count, value
+        //case dataPointCount
+        case includesSecondary
+    }
+}
+
+enum SampleTimeUTC: String, Codable {
+    case the20200102T0759014706719Z = "2020-01-02T07:59:01.4706719Z"
+}
+
+
