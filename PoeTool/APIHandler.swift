@@ -42,6 +42,7 @@ struct Account {
 class PoEData : NSObject
 {
     static let shared = PoEData()
+    
     var isLogged : Bool = false
     
     var account = Account()
@@ -147,7 +148,8 @@ class PoEData : NSObject
         receiveValue:
         {body in
             completion(body)
-        })
+            })
+        
     }
     func cancel()
     {
@@ -160,28 +162,33 @@ class PoEData : NSObject
         self.account = Account()
         self.isLogged = false
     }
-    func getPirce(type:String, league:String,completion:@escaping (URLSession.DataTaskPublisher.Output)->())
+    func allPrice(Completion:@escaping ([Line])->())
     {
-        let url = URL(string: "https://poe.ninja/api/data/itemoverview?league=\(league)&type=\(type)")
-        var urlReq = URLRequest(url: url!)
-        APIRequestCancellable = URLSession.DataTaskPublisher(request: urlReq, session: .shared)
-        .map{$0}
-            .receive(on: RunLoop.main)
-        .sink(receiveCompletion:
-        {(status) in
-            switch status {
-            case .failure(let error):
-              print(error.localizedDescription)
-            case .finished:
-              break
-            }
-            
-        },
-        receiveValue:
-        {body in
-            completion(body)
-        })
+        let priceableName : [String] = ["Currency","Fossil","Essence","DivinationCard","Incubator","Oil","Scarab","Fossil","Resonator","Prophecy"]
+        self.APIRequestCancellable = priceableName.publisher
         
+        .map{$0}
+        .tryMap{Value in  return Value}
+        .flatMap
+        { type in
+            return self.typePrice(type: type)
+        }
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion: { completion in
+
+        }) { wtf in
+            //self.LineArray.append(contentsOf: wtf.lines)
+            Completion(wtf.lines)
+        }
+    }
+    func typePrice(type:String)->AnyPublisher<Price,Error>
+    {
+        let url = URL(string: "https://poe.ninja/api/data/itemoverview?league=Metamorph&type=\(type)")!
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .mapError { $0 as Error }
+            .map { $0.data }
+            .decode(type: Price.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
 }
 

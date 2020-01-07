@@ -28,7 +28,7 @@ struct StashsView: View
         {
             //arrow.2.circlepath
             Divider()
-            if (self.viewModel.stash?.numTab ?? 0) > 0
+            if (self.viewModel.stash?.numTab ?? 0) > 0 && self.viewModel.prices.count > 0
             {
                 stashTabsPicker(viewModel: viewModel)
                 
@@ -60,6 +60,7 @@ struct StashsView: View
                 .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
+                Text(String(format:"%.1f",self.viewModel.prices["Mirror Shard"]?.chaosEquivalent ?? 1))
             }
             else
             {

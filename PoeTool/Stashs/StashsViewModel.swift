@@ -20,7 +20,7 @@ class StashsViewModel: ObservableObject
     var leagueName = ""
     func stashInit(leagueName: String)
     {
-        
+        var delay : Double = 5
         PoEData.shared.getStash(leagueName: leagueName, tabIndex: 0, needTabsInfo: 1)
         { parserStash in
             var initTabsLayout = Array(repeating: [String: TabLayout](), count: parserStash.numTabs)
@@ -31,27 +31,12 @@ class StashsViewModel: ObservableObject
             initItemsArray[0] = parserStash.items
             self.stash = Stash(numTab: parserStash.numTabs, tabLayout: initTabsLayout, tabsInfo: parserStash.tabsInfo!, itemsArray: initItemsArray)
             self.leagueName = leagueName
-            for catagory in self.priceableName
-            {
-                PoEData.shared.getPirce(type: catagory, league: self.leagueName)
-                { Body in
-                    let data = Body.data
-                    var price : Price
-                    do
-                    {
-                        price = try JSONDecoder().decode(Price.self, from: data)
-                        self.prices.merge(price.lines.toDictionary{$0.currencyTypeName ?? $0.name!}){(current, _) in current}
-                    }
-                    catch
-                    {
-                        print("Error here:\(error)")
-                    }
-
-                }
+            PoEData.shared.allPrice
+            { Lines in
+                self.prices.merge(Lines.toDictionary{$0.currencyTypeName ?? $0.name!}){(current, _) in current}
             }
-            print(self.prices)
-            print("")
         }
+        
     }
 
     func loadTab(leagueName: String, tabIndex: Int)
@@ -83,18 +68,19 @@ class StashsViewModel: ObservableObject
         var returnView = AnyView(EmptyView())
         if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
+            print(prices[((stash?.itemsArray[tabIndex]![i].name)!)])
+                returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, price: prices[(stash?.itemsArray[tabIndex]![i].name ?? "")]?.chaosEquivalent ?? 0, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
         }
         else if stash?.tabsInfo[tabIndex].type == "QuadStash"
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: prices[(stash?.itemsArray[tabIndex]![i].name)!]?.chaosEquivalent ?? 0, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
         }
         else if stash?.tabsInfo[tabIndex].type == "DivinationCardStash"
         {
         }
         else
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: prices[(stash?.itemsArray[tabIndex]![i].name)!]?.chaosEquivalent ?? 0, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
         }
         return returnView
     }

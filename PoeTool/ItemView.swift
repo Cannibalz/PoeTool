@@ -60,6 +60,7 @@ struct ItemView: View
     var item: Item
     let cellSize: CGFloat
     var offset: CGSize
+    let price : String
     @Binding var actived: UUID
     @Binding var isShowing: Bool
     ////    @Binding var position : CGSize
@@ -68,22 +69,36 @@ struct ItemView: View
     ////        self.item = item
     ////        self.cellSize = cellSize
     ////    }
-    init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>)
+    init(item: Item, price:Double,cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>)
     {
         self.item = item
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
         offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
+        var str = String(format:"%.1f",price ?? 0)
+        if str == "0"
+        {
+            str = ""
+        }
+        self.price = str
     }
 
-    init(item: Item, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
+    init(item: Item, price:Double, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
     {
         self.item = item
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
         self.offset = offset
+        var str = String(format:"%.1f",price ?? 0)
+        if str == "0"
+        {
+            str = ""
+        }
+        self.price = str
+        
+        
     }
 
     var body: some View
@@ -103,6 +118,7 @@ struct ItemView: View
                         else { return "" }
 
                 } ?? ""), alignment: .topLeading).font(.system(size: 12))
+                .overlay(Text(price), alignment: .bottomTrailing).font(.system(size: 12))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
                 .offset(x: offset.width, y: offset.height)
                 .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: self.offset.width, y: self.offset.height)] })
