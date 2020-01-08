@@ -285,11 +285,11 @@ struct Line: Codable {
     let currencyTypeName,name: String?
     let pay: Receive?
     let receive: Receive?
-    let chaosEquivalent: Double?
+    let chaosEquivalent,chaosValue: Double?
     let detailsID: String?
     
     enum CodingKeys: String, CodingKey {
-        case currencyTypeName, name, pay, receive, chaosEquivalent
+        case currencyTypeName, name, pay, receive, chaosEquivalent, chaosValue
         case detailsID
     }
 }

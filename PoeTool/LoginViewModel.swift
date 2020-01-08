@@ -14,16 +14,8 @@ class LoginViewModel: ObservableObject
     init()
     {
         dataSource.loadDataSource()
-        for userAcc in dataSource.fetchedObjects
-        {
-            print("-------")
-            print(userAcc.name)
-            print(userAcc.poesessid)
-            print(userAcc.order)
-            print("-------")
-        }
         DuplicationRemove()
-        print("DR")
+        
     }
 
     func viewOnApper() -> Bool

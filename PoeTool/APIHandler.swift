@@ -164,7 +164,7 @@ class PoEData : NSObject
     }
     func allPrice(Completion:@escaping ([Line])->())
     {
-        let priceableName : [String] = ["Currency","Fossil","Essence","DivinationCard","Incubator","Oil","Scarab","Fossil","Resonator","Prophecy"]
+        let priceableName : [String] = ["Currency", "Fragment","Fossil","Essence","DivinationCard","Incubator","Oil","Scarab","Fossil","Resonator","Prophecy"]
         self.APIRequestCancellable = priceableName.publisher
         
         .map{$0}
@@ -183,7 +183,12 @@ class PoEData : NSObject
     }
     func typePrice(type:String)->AnyPublisher<Price,Error>
     {
-        let url = URL(string: "https://poe.ninja/api/data/itemoverview?league=Metamorph&type=\(type)")!
+        var apiType = "item"
+        if type == "Fragment"
+        {
+            apiType = "currency"
+        }
+        let url = URL(string: "https://poe.ninja/api/data/\(apiType)overview?league=Metamorph&type=\(type)")!
         return URLSession.shared.dataTaskPublisher(for: url)
             .mapError { $0 as Error }
             .map { $0.data }

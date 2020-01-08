@@ -76,12 +76,7 @@ struct ItemView: View
         _actived = actived
         _isShowing = isShowing
         offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
-        var str = String(format:"%.1f",price ?? 0)
-        if str == "0"
-        {
-            str = ""
-        }
-        self.price = str
+        self.price = ItemView.totalPriceStr(price: price, stackSize: item.stackSize ?? 1)
     }
 
     init(item: Item, price:Double, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
@@ -91,16 +86,19 @@ struct ItemView: View
         _actived = actived
         _isShowing = isShowing
         self.offset = offset
-        var str = String(format:"%.1f",price ?? 0)
-        if str == "0"
+        self.price = ItemView.totalPriceStr(price: price, stackSize: item.stackSize ?? 1)
+    }
+    static func totalPriceStr(price:Double,stackSize:Int)->String
+    {
+        let totalPrice = price*Double(stackSize)
+        var str = String(format:"%.1f",totalPrice)
+        if str == "0.0"
         {
             str = ""
         }
-        self.price = str
-        
+        return str
         
     }
-
     var body: some View
     {
         ZStack(alignment: .topLeading)
@@ -117,8 +115,8 @@ struct ItemView: View
                         }
                         else { return "" }
 
-                } ?? ""), alignment: .topLeading).font(.system(size: 12))
-                .overlay(Text(price), alignment: .bottomTrailing).font(.system(size: 12))
+                    } ?? "").background(Color.alphaBackground()), alignment: .topLeading).font(.system(size: 12))
+                .overlay(Text(price).background(Color.alphaBackground()), alignment: .bottomTrailing).font(.system(size: 12))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
                 .offset(x: offset.width, y: offset.height)
                 .anchorPreference(key: itemPreferenceKey.self, value: .topLeading, transform: { [itemPreferenceData(item: self.item, topLeading: $0, x: self.offset.width, y: self.offset.height)] })

@@ -27,6 +27,10 @@ extension View
 }
 extension Color
 {
+    static func alphaBackground()->Color
+    {
+        return Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.7)
+    }
     static func frameTypeColor(_ frameType : Int)->Color
     {
         switch frameType

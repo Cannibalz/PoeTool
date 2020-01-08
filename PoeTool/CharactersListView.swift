@@ -68,7 +68,7 @@ struct CharactersListView: View
                             Spacer()
                             NavigationLink(destination: StashsView(leagueName: self.viewModel.leagues[self.viewModel.leagueIndex]))
                             {
-                                Text("  Stashs of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.secondary).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
+                                Text("  Stash of \(self.viewModel.leagues[self.viewModel.leagueIndex]) league  ").foregroundColor(Color.secondary).cornerRadius(10).frame(height: 50, alignment: .center).overlay(RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.secondary, lineWidth: 2))
                             }
                         }

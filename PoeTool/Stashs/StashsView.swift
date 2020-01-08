@@ -47,6 +47,10 @@ struct StashsView: View
                     {
                         Text("Unique tab is not available with POE API now!")
                     }
+                    else if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "MapStash"
+                    {
+                        Text("Map tab is not available with POE API now!")
+                    }
                     else
                     {
                         ForEach(0 ..< (self.viewModel.stash!.itemsArray[self.viewModel.tabIndex]?.count ?? 0), id: \.hashValue)
@@ -60,7 +64,9 @@ struct StashsView: View
                 .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
-                Text(String(format:"%.1f",self.viewModel.prices["Mirror Shard"]?.chaosEquivalent ?? 1))
+                Text(String(format:"%.1f",self.viewModel.prices["Deafening Essence of Contempt"]?.chaosEquivalent ?? 1)).padding(.top,0)
+                Text(String(format:"%.1f",self.viewModel.prices["Deafening Essence of Contempt"]?.chaosValue ?? 1)).padding(.top,0)
+                    
             }
             else
             {

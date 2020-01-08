@@ -150,10 +150,10 @@
             filePath = "PoeTool/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "typePrice(type:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -274,8 +274,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -290,8 +290,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -306,8 +306,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -322,8 +322,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -338,8 +338,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -354,8 +354,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -368,8 +368,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -382,8 +382,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -396,8 +396,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -410,8 +410,8 @@
             filePath = "PoeTool/Stashs/StashsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -426,8 +426,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -440,8 +440,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -454,8 +454,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -468,8 +468,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -482,8 +482,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130">
+            startingLineNumber = "144"
+            endingLineNumber = "144">
             <Locations>
                <Location
                   uuid = "A0B5EED0-C08A-4A9D-A61D-7DAB172445FC - 2ef3a984bbfc621f"
@@ -595,22 +595,6 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "init(_:delay:incremental:expireAfter:processors:placeholder:content:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4308B9EF-075D-47E9-8564-ECF145A2F310"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PoeTool/ItemView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "init(item:price:cellSize:actived:isShowing:offset:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1062,7 +1046,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "init()"
+            landmarkName = "viewOnApper()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1070,31 +1054,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E8B75C22-8DC9-46F9-89C0-BAFCB8C0EE94"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "stashTabCheck(tabIndex:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F03B75D2-F8ED-4461-98F9-386922211878"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PoeTool/ItemView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "init(item:price:cellSize:actived:isShowing:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1108,8 +1076,8 @@
             filePath = "PoeTool/Stashs/StashsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "stashPerCellView(i:actived:isShowing:)"
             landmarkType = "7">
             <Locations>
@@ -1142,6 +1110,69 @@
                   startingLineNumber = "72"
                   endingLineNumber = "72"
                   offsetFromSymbolStart = "11969">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89C48B40-57E5-423B-B6EE-0A407B7713D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PoeTool/Stashs/StashsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "stashInit(leagueName:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89C48B40-57E5-423B-B6EE-0A407B7713D4 - 571b549448cbbd5b"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;PoeTool.Line&gt;) -&gt; () in closure #1 (PoeTool.parserStash) -&gt; () in PoeTool.StashsViewModel.stashInit(leagueName: Swift.String) -&gt; ()"
+                  moduleName = "PoeTool"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kafn/Documents/PoeTool/PoeTool/Stashs/StashsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "89C48B40-57E5-423B-B6EE-0A407B7713D4 - da5fda70d6a36fe0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (PoeTool.Line) -&gt; Swift.String in closure #1 (Swift.Array&lt;PoeTool.Line&gt;) -&gt; () in closure #1 (PoeTool.parserStash) -&gt; () in PoeTool.StashsViewModel.stashInit(leagueName: Swift.String) -&gt; ()"
+                  moduleName = "PoeTool"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kafn/Documents/PoeTool/PoeTool/Stashs/StashsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  uuid = "89C48B40-57E5-423B-B6EE-0A407B7713D4 - 63cf626cd594f6e6"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (PoeTool.Line, PoeTool.Line) -&gt; PoeTool.Line in closure #1 (Swift.Array&lt;PoeTool.Line&gt;) -&gt; () in closure #1 (PoeTool.parserStash) -&gt; () in PoeTool.StashsViewModel.stashInit(leagueName: Swift.String) -&gt; ()"
+                  moduleName = "PoeTool"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kafn/Documents/PoeTool/PoeTool/Stashs/StashsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
          </BreakpointContent>

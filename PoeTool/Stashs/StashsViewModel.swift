@@ -33,6 +33,7 @@ class StashsViewModel: ObservableObject
             self.leagueName = leagueName
             PoEData.shared.allPrice
             { Lines in
+                
                 self.prices.merge(Lines.toDictionary{$0.currencyTypeName ?? $0.name!}){(current, _) in current}
             }
         }
@@ -57,8 +58,8 @@ class StashsViewModel: ObservableObject
         var returnView: some View
         {
             URLImage(URL(string: "https://web.poecdn.com/image/divination-card/\(item.artFilename!).png")!, content: { $0.image.resizable().aspectRatio(contentMode: .fit).clipped() })
-                .overlay(Text(item.typeLine + "\n" + item.properties![0].values[0][0].str()).font(.system(size: 12)), alignment: .topLeading)
-                //.overlay(Text(item.explicitMods?[0] ?? "").font(.system(size: 10)), alignment: .bottom)
+                .overlay(Text(item.typeLine + "\n" + item.properties![0].values[0][0].str()).font(.system(size: 12)).background(Color.alphaBackground()), alignment: .topLeading)
+                .overlay(Text(ItemView.totalPriceStr(price: prices[item.typeLine]?.chaosValue ?? 0, stackSize: item.stackSize ?? 1)).font(.system(size: 14)).background(Color.alphaBackground()), alignment: .bottomTrailing)
         }
         return returnView
     }
@@ -66,21 +67,34 @@ class StashsViewModel: ObservableObject
     func stashPerCellView(i: Int, actived: Binding<UUID>, isShowing: Binding<Bool>) -> AnyView
     {
         var returnView = AnyView(EmptyView())
+        var chaosPrice : Double = 0
+        if prices[(stash?.itemsArray[tabIndex]![i].typeLine ?? "")]?.chaosEquivalent != nil
+        {
+            chaosPrice = (prices[(stash?.itemsArray[tabIndex]![i].typeLine ?? "")]?.chaosEquivalent)!
+        }
+        else if prices[(stash?.itemsArray[tabIndex]![i].typeLine ?? "")]?.chaosValue != nil
+        {
+            chaosPrice = (prices[(stash?.itemsArray[tabIndex]![i].typeLine ?? "")]?.chaosValue)!
+        }
+        else
+        {
+            chaosPrice = 0
+        }
         if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
         {
-            print(prices[((stash?.itemsArray[tabIndex]![i].name)!)])
-                returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, price: prices[(stash?.itemsArray[tabIndex]![i].name ?? "")]?.chaosEquivalent ?? 0, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
+            
+                returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, price: chaosPrice, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
         }
         else if stash?.tabsInfo[tabIndex].type == "QuadStash"
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: prices[(stash?.itemsArray[tabIndex]![i].name)!]?.chaosEquivalent ?? 0, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
         }
         else if stash?.tabsInfo[tabIndex].type == "DivinationCardStash"
         {
         }
         else
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: prices[(stash?.itemsArray[tabIndex]![i].name)!]?.chaosEquivalent ?? 0, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
         }
         return returnView
     }

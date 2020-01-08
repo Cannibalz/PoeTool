@@ -13,7 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+
+        //Handle URL here
+    }
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .dark

@@ -72,6 +72,13 @@ struct LogInView: View
                     TextField("POESESSID", text: $viewModel.POESESSID)
                         // .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.default)
+                    Button(action: {
+                        UIApplication.shared.open(URL(string: "https://code.google.com/archive/p/procurement/wikis/LoginWithSessionID.wiki")!, options: [:], completionHandler: nil)
+                        
+                    })
+                    {
+                        Image(systemName: "questionmark.circle.fill").resizable().frame(width: 20, height: 20).foregroundColor(Color.primary)
+                    }
                 }
                 .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.white, lineWidth: 1))
@@ -86,13 +93,12 @@ struct LogInView: View
                         self.loginFail = !self.viewModel.authed
                         self.logInSuccess = self.viewModel.authed
                     }
-                    print("Authed : \(self.viewModel.authed)")
-                    print("log In Success : \(self.logInSuccess)")
                 })
                 {
                     Text("Authenticate")
                 }
-//                    })
+                .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.white, lineWidth: 1))
             }.frame(width: Screen.Width * 0.8)
 
             VStack
