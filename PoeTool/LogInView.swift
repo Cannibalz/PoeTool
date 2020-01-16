@@ -64,7 +64,7 @@ struct LogInView: View
                     
                 }
                 .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.white, lineWidth: 1))
+                    .stroke(Color.primary, lineWidth: 1))
 
                 HStack(spacing: 22)
                 {
@@ -81,7 +81,7 @@ struct LogInView: View
                     }
                 }
                 .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.white, lineWidth: 1))
+                    .stroke(Color.primary, lineWidth: 1))
 
                 Toggle(isOn: $viewModel.wannaStore)
                 {
@@ -98,7 +98,7 @@ struct LogInView: View
                     Text("Authenticate")
                 }
                 .padding(12).overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.white, lineWidth: 1))
+                .stroke(Color.blue, lineWidth: 1))
             }.frame(width: Screen.Width * 0.8)
 
             VStack

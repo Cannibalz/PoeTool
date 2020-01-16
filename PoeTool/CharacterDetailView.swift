@@ -41,13 +41,13 @@ struct CharacterDetailView: View
                     }
                 }
             }
-            .navigationBarItems(trailing: Button(action: {
-                self.openMenu()
-                }, label: {
-                    Image(systemName: "line.horizontal.3")
-            }))
+//            .navigationBarItems(trailing: Button(action: {
+//                self.openMenu()
+//                }, label: {
+//                    Image(systemName: "line.horizontal.3")
+//            }))
             .navigationBarTitle(Text((viewModel.selectCharacter ?? CharacterInfo()).name).font(.system(size: 10)), displayMode: .inline)
-            SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
+            //SideMenu(width: 200, isOpen: self.menuOpen, menuClose: self.openMenu)
         }
         .overlayPreferenceValue(itemPreferenceKey.self)
         { preferences in

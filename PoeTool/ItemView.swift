@@ -63,6 +63,7 @@ struct ItemView: View
     let price : String
     @Binding var actived: UUID
     @Binding var isShowing: Bool
+    //@Binding var searchText: String
     ////    @Binding var position : CGSize
     ////    init(_ item:Item, cellSize:Int)
     ////    {
@@ -77,6 +78,14 @@ struct ItemView: View
         _isShowing = isShowing
         offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
         self.price = ItemView.totalPriceStr(price: price, stackSize: item.stackSize ?? 1)
+//        let mirrorOjb = Mirror(reflecting: item)
+//        for (index,attr) in mirrorOjb.children.enumerated()
+//        {
+//            if let property_name = attr.label as String? {
+//                print("Attr \(index): \(property_name) = \(attr.value)")
+//            }
+//        }
+//        print("1")
     }
 
     init(item: Item, price:Double, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)

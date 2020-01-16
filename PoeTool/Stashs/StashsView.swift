@@ -27,7 +27,7 @@ struct StashsView: View
         VStack(alignment: .center)
         {
             //arrow.2.circlepath
-            Divider()
+            
             if (self.viewModel.stash?.numTab ?? 0) > 0 && self.viewModel.prices.count > 0
             {
                 stashTabsPicker(viewModel: viewModel)
@@ -60,13 +60,15 @@ struct StashsView: View
                     }
                 }
                 .frame(width: currencyTabWidth, height: currencyTabWidth, alignment: .topLeading)
-                .border(Color(red: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.r) / 255, green: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.g) / 255, blue: Double(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].colour.b) / 255), width: 2)
+                .border(self.viewModel.tabColor(), width: 2)
                 .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
-                Text(String(format:"%.1f",self.viewModel.prices["Deafening Essence of Contempt"]?.chaosEquivalent ?? 1)).padding(.top,0)
-                Text(String(format:"%.1f",self.viewModel.prices["Deafening Essence of Contempt"]?.chaosValue ?? 1)).padding(.top,0)
-                    
+                VStack(alignment: .trailing,spacing: 10)
+                {
+                    TextField("Search...", text: $viewModel.searchText).border(self.viewModel.tabColor()).frame(maxWidth:Screen.Width*0.25,alignment: .trailing)
+                }.padding(.top, -90)
+                
             }
             else
             {

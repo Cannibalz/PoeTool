@@ -17,6 +17,7 @@ class StashsViewModel: ObservableObject
     @Published var tabIndex = Int(0)
     @Published var stash: Stash?
     @Published var prices : [String:Line] = [:]
+    @Published var searchText = ""
     var leagueName = ""
     func stashInit(leagueName: String)
     {
@@ -128,7 +129,11 @@ class StashsViewModel: ObservableObject
             return AnyView(EmptyView())
         }
     }
-
+    func tabColor()->Color
+    {
+        let color = Color(red: Double(self.stash!.tabsInfo[self.tabIndex].colour.r) / 255, green: Double(self.stash!.tabsInfo[self.tabIndex].colour.g) / 255, blue: Double(self.stash!.tabsInfo[self.tabIndex].colour.b) / 255)
+        return color
+    }
     func highlightBorder(_ i: Int) -> Color
     {
         if i == tabIndex
