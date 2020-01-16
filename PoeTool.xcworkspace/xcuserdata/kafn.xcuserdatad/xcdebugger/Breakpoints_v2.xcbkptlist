@@ -528,9 +528,9 @@
             filePath = "PoeTool/ItemView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "init(item:price:cellSize:actived:isShowing:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "init(item:price:cellSize:actived:isShowing:searchText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -544,9 +544,9 @@
             filePath = "PoeTool/ItemView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "init(item:price:cellSize:actived:isShowing:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "init(item:price:cellSize:actived:isShowing:searchText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1187,9 +1187,9 @@
             filePath = "PoeTool/ItemView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "init(item:price:cellSize:actived:isShowing:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "init(item:price:cellSize:actived:isShowing:searchText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

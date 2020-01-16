@@ -34,7 +34,7 @@ struct CharacterDetailView: View
                         gridBackgroundView(cellProperty:itemCategory.seqCases[number].rawValue)
                             ForEach(self.viewModel.catagoryItems[number])
                             { item in
-                                ItemView(item: item, price: 0,cellSize: itemCategory.seqCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail)
+                                ItemView(item: item, price: 0,cellSize: itemCategory.seqCases[number].rawValue.cellSize, actived: self.$activeIdx, isShowing: self.$showDetail, searchText: "")
                             }
                         }
                         .frame(width: itemCategory.seqCases[number].rawValue.cellSize * itemCategory.seqCases[number].rawValue.w, height: itemCategory.seqCases[number].rawValue.cellSize * itemCategory.seqCases[number].rawValue.h)

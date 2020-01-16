@@ -84,18 +84,18 @@ class StashsViewModel: ObservableObject
         if tabCellSize.keys.contains(stash?.tabsInfo[tabIndex].type ?? "")
         {
             
-                returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, price: chaosPrice, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0)))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!, price: chaosPrice, cellSize: tabCellSize[stash?.tabsInfo[tabIndex].type ?? ""] ?? 0, actived: actived, isShowing: isShowing, offset: CGSize(width: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.x ?? 0, height: stash?.tabLayout[tabIndex]!["\(stash?.itemsArray[tabIndex]?[i].x as! Int)"]?.y ?? 0), searchText : self.searchText))
         }
         else if stash?.tabsInfo[tabIndex].type == "QuadStash"
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 24, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 24, actived: actived, isShowing: isShowing, searchText : self.searchText))
         }
         else if stash?.tabsInfo[tabIndex].type == "DivinationCardStash"
         {
         }
         else
         {
-            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 12, actived: actived, isShowing: isShowing))
+            returnView = AnyView(ItemView(item: (stash?.itemsArray[tabIndex]![i])!,price: chaosPrice, cellSize: 569 / 12, actived: actived, isShowing: isShowing, searchText : self.searchText))
         }
         return returnView
     }

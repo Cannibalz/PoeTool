@@ -64,38 +64,60 @@ struct ItemView: View
     @Binding var actived: UUID
     @Binding var isShowing: Bool
     //@Binding var searchText: String
+    var BorderOrNot = 0
     ////    @Binding var position : CGSize
     ////    init(_ item:Item, cellSize:Int)
     ////    {
     ////        self.item = item
     ////        self.cellSize = cellSize
     ////    }
-    init(item: Item, price:Double,cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>)
+    init(item: Item, price:Double,cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, searchText : String)
     {
         self.item = item
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
+        //_searchText = searchText
         offset = CGSize(width: CGFloat(item.x) * cellSize, height: CGFloat(item.y) * cellSize)
         self.price = ItemView.totalPriceStr(price: price, stackSize: item.stackSize ?? 1)
-//        let mirrorOjb = Mirror(reflecting: item)
-//        for (index,attr) in mirrorOjb.children.enumerated()
-//        {
+        let mirrorOjb = Mirror(reflecting: item)
+        self.BorderOrNot = 0
+        for (index,attr) in mirrorOjb.children.enumerated()
+        {
+            let valueString = "\(attr.value)"
+            if valueString.contains(searchText)
+            {
+                self.BorderOrNot = 1
+            }
 //            if let property_name = attr.label as String? {
 //                print("Attr \(index): \(property_name) = \(attr.value)")
 //            }
-//        }
+        }
 //        print("1")
     }
 
-    init(item: Item, price:Double, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize)
+    init(item: Item, price:Double, cellSize: CGFloat, actived: Binding<UUID>, isShowing: Binding<Bool>, offset: CGSize, searchText : String)
     {
         self.item = item
         self.cellSize = cellSize
         _actived = actived
         _isShowing = isShowing
+//        _searchText = searchText
         self.offset = offset
         self.price = ItemView.totalPriceStr(price: price, stackSize: item.stackSize ?? 1)
+        let mirrorOjb = Mirror(reflecting: item)
+        self.BorderOrNot = 0
+                for (index,attr) in mirrorOjb.children.enumerated()
+                {
+                    let valueString = "\(attr.value)"
+                    if valueString.contains(searchText)
+                    {
+                        self.BorderOrNot = 2
+                    }
+        //            if let property_name = attr.label as String? {
+        //                print("Attr \(index): \(property_name) = \(attr.value)")
+        //            }
+                }
     }
     static func totalPriceStr(price:Double,stackSize:Int)->String
     {
@@ -125,6 +147,7 @@ struct ItemView: View
                         else { return "" }
 
                     } ?? "").background(Color.alphaBackground()), alignment: .topLeading).font(.system(size: 12))
+                .border(Color.white, width: CGFloat(BorderOrNot))
                 .overlay(Text(price).background(Color.alphaBackground()), alignment: .bottomTrailing).font(.system(size: 12))
                 .frame(width: CGFloat(item.w) * cellSize, height: CGFloat(item.h) * cellSize)
                 .offset(x: offset.width, y: offset.height)
@@ -132,6 +155,7 @@ struct ItemView: View
                 .transformAnchorPreference(key: itemPreferenceKey.self, value: .bottomTrailing, transform: { (value: inout [itemPreferenceData], anchor: Anchor<CGPoint>) in
                     value[0].bottomTrailing = anchor
                 })
+                
             
         }
 
