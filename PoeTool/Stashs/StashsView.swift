@@ -17,6 +17,7 @@ struct StashsView: View
 {
     var leagueName: String
     @ObservedObject var viewModel = StashsViewModel()
+    @ObservedObject var keyboard = KeyboardResponder()
     var cellSize = CGFloat(37.9619)
     var currencyTabWidth = CGFloat(569)
     var scaleCoefficient: CGFloat = 1
@@ -64,9 +65,10 @@ struct StashsView: View
                 .background(Image(self.viewModel.stash!.tabsInfo[self.viewModel.tabIndex].type))
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
+                .offset(x: 0, y: keyboard.currentHeight * -1).animation(.easeInOut(duration: 1.0))
                 VStack(alignment: .trailing,spacing: 10)
                 {
-                    TextField("Search...", text: $viewModel.searchText).border(self.viewModel.tabColor()).frame(maxWidth:Screen.Width*0.25,alignment: .trailing)
+                    TextField("Search...", text: $viewModel.searchText).border(self.viewModel.tabColor()).frame(maxWidth:Screen.Width*0.25,alignment: .trailing).offset(x: 0, y: keyboard.currentHeight * -1).animation(.easeInOut(duration: 1.0))
                 }.padding(.top, -90)
                 
             }
