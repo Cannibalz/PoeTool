@@ -27,21 +27,19 @@ struct StashsView: View
     {
         VStack(alignment: .center)
         {
-            //arrow.2.circlepath
-            
+            // arrow.2.circlepath
+
             if (self.viewModel.stash?.numTab ?? 0) > 0 && self.viewModel.prices.count > 0
             {
                 stashTabsPicker(viewModel: viewModel)
-                
+
                 ZStack(alignment: .topLeading)
                 {
                     if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "DivinationCardStash"
                     {
-                        
                         QGrid(self.viewModel.stash?.itemsArray[self.viewModel.tabIndex] ?? [], columns: 4)
-                        {item in
+                        { item in
                             self.viewModel.divinationCardCell(item: item)
-                            
                         }
                     }
                     else if self.viewModel.stash?.tabsInfo[self.viewModel.tabIndex].type == "UniqueStash"
@@ -66,23 +64,26 @@ struct StashsView: View
                 .scaleEffect(Screen.Width / self.currencyTabWidth)
                 .padding(.top, -100)
                 .offset(x: 0, y: keyboard.currentHeight * -1).animation(.easeInOut(duration: 1.0))
-                VStack(alignment: .trailing,spacing: 10)
+                VStack(alignment: .trailing, spacing: 10)
                 {
-                    TextField("Search...", text: $viewModel.searchText).border(self.viewModel.tabColor()).frame(maxWidth:Screen.Width*0.25,alignment: .trailing).offset(x: 0, y: keyboard.currentHeight * -1).animation(.easeInOut(duration: 1.0))
+                    TextField("Search...", text: $viewModel.searchText).border(self.viewModel.tabColor()).frame(maxWidth: Screen.Width * 0.25, alignment: .trailing).offset(x: 0, y: keyboard.currentHeight * -1).animation(.easeInOut(duration: 1.0))
                 }.padding(.top, -90)
-                
             }
             else
             {
                 EmptyView()
             }
+        }.onTapGesture
+        {
+            UIApplication.shared.endEditing()
         }
+        .background(EmptyView().frame(width: Screen.Width, height: Screen.Height).onTapGesture{UIApplication.shared.endEditing()})
             .navigationBarItems(trailing: Button(action: {
                 self.viewModel.loadTab(leagueName: self.leagueName, tabIndex: self.viewModel.tabIndex)
                 }, label: {
                     Image(systemName: "arrow.2.circlepath")
             }))
-        .overlayPreferenceValue(itemPreferenceKey.self)
+            .overlayPreferenceValue(itemPreferenceKey.self)
         { preferences in
             GeometryReader
             { geometry in
