@@ -78,6 +78,7 @@
 		989415BC23681B1200E6BF85 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894159823681B1200E6BF85 /* CircleProgressView.swift */; };
 		989EBA5F238224AA00E77B38 /* adBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989EBA5E238224AA00E77B38 /* adBannerView.swift */; };
 		98A2EE992356E65F00C7F06C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A2EE982356E65F00C7F06C /* LoginViewModel.swift */; };
+		98E9208823FBACE4009728B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 98E9208723FBACE4009728B5 /* README.md */; };
 		98EA8819237296CF00B1E53A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EA8818237296CF00B1E53A /* Extensions.swift */; };
 		B94891EE010CF70E45E6C380 /* Pods_PoeToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5EA262EDFFF9072C05ECBC /* Pods_PoeToolTests.framework */; };
 /* End PBXBuildFile section */
@@ -178,6 +179,7 @@
 		9894159823681B1200E6BF85 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		989EBA5E238224AA00E77B38 /* adBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adBannerView.swift; sourceTree = "<group>"; };
 		98A2EE982356E65F00C7F06C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		98E9208723FBACE4009728B5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		98EA8818237296CF00B1E53A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9AAA7EED399AC29E2A36C952 /* Pods-PoeTool-PoeToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool-PoeToolUITests.debug.xcconfig"; path = "Target Support Files/Pods-PoeTool-PoeToolUITests/Pods-PoeTool-PoeToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD6A669D84B7F6B23B3D325E /* Pods-PoeTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoeTool.release.xcconfig"; path = "Target Support Files/Pods-PoeTool/Pods-PoeTool.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		9887FC4323535DB5005D7AD1 = {
 			isa = PBXGroup;
 			children = (
+				98E9208723FBACE4009728B5 /* README.md */,
 				9887FC4E23535DB6005D7AD1 /* PoeTool */,
 				9887FC6823535DB8005D7AD1 /* PoeToolTests */,
 				9887FC7323535DB8005D7AD1 /* PoeToolUITests */,
@@ -646,6 +649,7 @@
 			files = (
 				9887FC5F23535DB8005D7AD1 /* LaunchScreen.storyboard in Resources */,
 				9887FC5C23535DB8005D7AD1 /* Preview Assets.xcassets in Resources */,
+				98E9208823FBACE4009728B5 /* README.md in Resources */,
 				9887FC5923535DB8005D7AD1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
