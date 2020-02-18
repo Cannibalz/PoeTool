@@ -2,6 +2,8 @@
 
 An ios app for check inventories, equipments and your stash in all leagues.
 
+POESESSID is needed. ([How to get this?](https://code.google.com/archive/p/procurement/wikis/LoginWithSessionID.wiki))
+
 Features:
 
 1.Check all characters, or classified by leagues.
