@@ -8,7 +8,7 @@ import Foundation
 //  Copyright © 2019 KaFn. All rights reserved.
 //
 import SwiftUI
-
+import URLImage
 struct itemPreferenceData
 {
     let item: Item

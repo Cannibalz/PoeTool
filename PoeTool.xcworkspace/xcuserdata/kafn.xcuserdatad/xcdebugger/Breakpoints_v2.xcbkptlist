@@ -152,7 +152,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "195"
             endingLineNumber = "195"
-            landmarkName = "typePrice(type:)"
+            landmarkName = "allPrice(Completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -214,7 +214,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "isValid(accName:POESESSID:Completion:)"
+            landmarkName = "createList(Completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -230,7 +230,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "isValid(accName:POESESSID:Completion:)"
+            landmarkName = "createList(Completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -246,7 +246,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
-            landmarkName = "isValid(accName:POESESSID:Completion:)"
+            landmarkName = "createList(Completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1185,7 +1185,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AA1532C9-00C7-41AB-BA0D-AF3077EBDCDB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PoeTool/CharactersListView.swift"

@@ -60,7 +60,7 @@ struct CharactersListView: View
             {
                 VStack
                 {
-//                    Banner()
+                    Banner()
                     if self.viewModel.leagues.count > 0
                     {
                         if self.viewModel.leagueIndex != 0

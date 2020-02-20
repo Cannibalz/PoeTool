@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-
+import URLImage
 class StashsViewModel: ObservableObject
 {
     let tabCellSize: [String: CGFloat] = ["CurrencyStash": 37.9619, "FragmentStash": 30.127, "EssenceStash": 38.3238, "DelveStash": 42.1795]
